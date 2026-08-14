@@ -40,70 +40,84 @@
       object-fit: contain;
     }
 
+    /* Real button that completely covers the old BOG EXPLORER artwork */
     .bog-voyager {
       position: absolute;
-      top: 1.6%;
-      right: 2.2%;
 
-      width: 27%;
-      min-height: 5.2%;
+      top: 1.2%;
+      right: 1.8%;
+
+      width: 29%;
+      height: 5.8%;
+
+      margin: 0;
+      padding: 6px 10px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
 
-      padding: 6px 10px;
-
-      border: 1px solid rgba(168, 85, 247, 0.75);
+      border: 1px solid #7c3aed;
       border-radius: 6px;
 
-      background: rgba(12, 8, 20, 0.97);
+      background: #0b0713;
       color: white;
 
+      box-shadow:
+        0 0 0 3px #08090b,
+        0 0 10px rgba(124, 58, 237, 0.45);
+
       cursor: pointer;
-      z-index: 50;
+      z-index: 100;
     }
 
-    .voyager-info {
+    .voyager-text {
+      flex: 1;
       min-width: 0;
       text-align: left;
     }
 
     .voyager-title {
       display: block;
-      color: #d8b4fe;
+
+      color: #c084fc;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      line-height: 1.1;
+      letter-spacing: 0.6px;
+      line-height: 1;
     }
 
-    .voyager-address {
+    .wallet-address {
       display: block;
-      margin-top: 3px;
+
+      margin-top: 5px;
 
       color: #d1d5db;
       font-family: monospace;
       font-size: 8px;
+      line-height: 1;
+
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .status-dot {
       flex: 0 0 auto;
 
-      width: 9px;
-      height: 9px;
+      width: 10px;
+      height: 10px;
 
       border-radius: 50%;
 
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
-    }
-
-    .status-dot.disconnected {
       background: #ef4444;
       box-shadow: 0 0 8px #ef4444;
+    }
+
+    .status-dot.connected {
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
     }
   </style>
 </head>
@@ -113,7 +127,7 @@
   <main class="journey-page">
 
     <img
-      src="cdb-journey.png?v=9"
+      src="cdb-journey.png?v=10"
       alt="Cosmic Dream Bog Journey"
       class="journey-image"
     >
@@ -123,9 +137,10 @@
       class="bog-voyager"
       type="button"
       onclick="toggleWallet()"
+      aria-label="Bog Voyager wallet connection"
     >
 
-      <span class="voyager-info">
+      <span class="voyager-text">
 
         <span class="voyager-title">
           BOG VOYAGER
@@ -133,7 +148,7 @@
 
         <span
           id="walletAddress"
-          class="voyager-address">
+          class="wallet-address">
           DISCONNECTED
         </span>
 
@@ -141,7 +156,7 @@
 
       <span
         id="statusDot"
-        class="status-dot disconnected">
+        class="status-dot">
       </span>
 
     </button>
@@ -164,14 +179,12 @@
       );
     }
 
-    function showConnected(address) {
+    function setConnected(address) {
 
       walletAddress.textContent =
         shortenAddress(address);
 
-      statusDot.classList.remove(
-        "disconnected"
-      );
+      statusDot.classList.add("connected");
 
       sessionStorage.setItem(
         "cosmicDreamWallet",
@@ -179,24 +192,22 @@
       );
     }
 
-    function showDisconnected() {
+    function setDisconnected() {
 
       walletAddress.textContent =
         "DISCONNECTED";
 
-      statusDot.classList.add(
-        "disconnected"
-      );
+      statusDot.classList.remove("connected");
 
       sessionStorage.removeItem(
         "cosmicDreamWallet"
       );
     }
 
-    async function checkWallet() {
+    async function checkWalletStatus() {
 
       if (!window.ethereum) {
-        showDisconnected();
+        setDisconnected();
         return;
       }
 
@@ -208,19 +219,15 @@
           });
 
         if (accounts.length > 0) {
-
-          showConnected(accounts[0]);
-
+          setConnected(accounts[0]);
         } else {
-
-          showDisconnected();
-
+          setDisconnected();
         }
 
       } catch (error) {
 
         console.error(error);
-        showDisconnected();
+        setDisconnected();
 
       }
     }
@@ -228,11 +235,7 @@
     async function connectWallet() {
 
       if (!window.ethereum) {
-
-        alert(
-          "No compatible wallet detected."
-        );
-
+        alert("No compatible wallet detected.");
         return;
       }
 
@@ -244,9 +247,7 @@
           });
 
         if (accounts.length > 0) {
-
-          showConnected(accounts[0]);
-
+          setConnected(accounts[0]);
         }
 
       } catch (error) {
@@ -257,6 +258,10 @@
     }
 
     async function disconnectWallet() {
+
+      sessionStorage.removeItem(
+        "cosmicDreamWallet"
+      );
 
       if (window.ethereum) {
 
@@ -281,13 +286,13 @@
         }
       }
 
-      showDisconnected();
+      setDisconnected();
     }
 
     async function toggleWallet() {
 
       if (!window.ethereum) {
-        showDisconnected();
+        setDisconnected();
         return;
       }
 
@@ -299,19 +304,15 @@
           });
 
         if (accounts.length > 0) {
-
           await disconnectWallet();
-
         } else {
-
           await connectWallet();
-
         }
 
       } catch (error) {
 
         console.error(error);
-        showDisconnected();
+        setDisconnected();
 
       }
     }
@@ -323,20 +324,16 @@
         function(accounts) {
 
           if (accounts.length > 0) {
-
-            showConnected(accounts[0]);
-
+            setConnected(accounts[0]);
           } else {
-
-            showDisconnected();
-
+            setDisconnected();
           }
 
         }
       );
     }
 
-    checkWallet();
+    checkWalletStatus();
 
   </script>
 
