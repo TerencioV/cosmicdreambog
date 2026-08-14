@@ -10,17 +10,24 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      min-height: 100%;
+      height: 100%;
+      overflow: hidden;
       background: #08090b;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .journey-image {
       display: block;
-      width: 100%;
+      max-width: 100vw;
+      max-height: 100vh;
+      width: auto;
       height: auto;
-      min-height: 100vh;
       object-fit: contain;
-      margin: 0 auto;
     }
   </style>
 </head>
@@ -28,7 +35,7 @@
 <body>
 
   <img
-    src="./cdb-journey.png"
+    src="cdb-journey.png"
     alt="Cosmic Dream Bog Journey"
     class="journey-image"
   >
