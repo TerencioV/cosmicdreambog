@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cosmic Dream Bog - Journey</title>
 
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -31,16 +33,21 @@
       width: 100%;
       height: 100%;
       display: block;
+      object-fit: contain;
     }
 
-    .disconnect-proxy {
+    .bog-voyager-proxy {
       position: absolute;
+
       top: 2.5%;
       right: 3%;
+
       width: 18%;
       height: 5%;
+
       border: none;
       background: transparent;
+
       cursor: pointer;
       z-index: 10;
     }
@@ -58,33 +65,46 @@
     >
 
     <button
-      class="disconnect-proxy"
-      aria-label="Disconnect Wallet"
+      class="bog-voyager-proxy"
+      aria-label="Bog Voyager - Disconnect Wallet"
+      title="Bog Voyager"
       onclick="disconnectWallet()">
     </button>
 
   </main>
 
   <script>
+
     async function disconnectWallet() {
 
       sessionStorage.removeItem("cosmicDreamWallet");
 
       if (window.ethereum) {
+
         try {
+
           await window.ethereum.request({
             method: "wallet_revokePermissions",
-            params: [{
-              eth_accounts: {}
-            }]
+            params: [
+              {
+                eth_accounts: {}
+              }
+            ]
           });
+
         } catch (error) {
-          console.log(error);
+
+          console.log(
+            "Wallet permission could not be revoked:",
+            error
+          );
+
         }
       }
 
-      window.location.href = "index.html?v=5";
+      window.location.href = "index.html?v=6";
     }
+
   </script>
 
 </body>
