@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cosmic Dream Bog</title>
 
   <style>
@@ -38,24 +39,42 @@
       display: block;
     }
 
+    /* CONNECT WALLET area */
     .wallet-button {
       position: absolute;
       left: 34%;
       top: 76%;
       width: 32%;
       height: 9%;
+
       border: 0;
       background: transparent;
       cursor: pointer;
       z-index: 20;
     }
 
+    /* X icon */
+    .x-link {
+      position: absolute;
+      left: 60%;
+      top: 95%;
+      width: 3.5%;
+      height: 4%;
+
+      display: block;
+      background: transparent;
+      cursor: pointer;
+      z-index: 30;
+    }
+
+    /* Discord icon */
     .discord-link {
       position: absolute;
       left: 64.5%;
       top: 95%;
       width: 3.5%;
       height: 4%;
+
       display: block;
       background: transparent;
       cursor: pointer;
@@ -82,6 +101,15 @@
     </button>
 
     <a
+      class="x-link"
+      href="https://x.com/bogvoyager"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Cosmic Dream Bog on X"
+      title="@bogvoyager">
+    </a>
+
+    <a
       class="discord-link"
       href="https://discord.gg/XkxVPNsS6w"
       target="_blank"
@@ -95,6 +123,7 @@
   <script>
     const APECHAIN = {
       chainId: "0x8173",
+
       chainName: "ApeChain",
 
       nativeCurrency: {
@@ -104,7 +133,7 @@
       },
 
       rpcUrls: [
-        "https://rpc.apechain.com"
+        "https://apechain.calderachain.xyz/http"
       ],
 
       blockExplorerUrls: [
@@ -114,38 +143,55 @@
 
     async function ensureApeChain() {
       try {
+
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{
-            chainId: APECHAIN.chainId
-          }]
+          params: [
+            {
+              chainId: APECHAIN.chainId
+            }
+          ]
         });
+
       } catch (switchError) {
+
         if (switchError.code === 4902) {
+
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
             params: [APECHAIN]
           });
+
         } else {
+
           throw switchError;
+
         }
       }
     }
 
     async function connectWallet() {
+
       if (!window.ethereum) {
-        alert("No compatible wallet detected. Please install or open MetaMask.");
+
+        alert(
+          "No compatible wallet detected. Please install or open MetaMask."
+        );
+
         return;
       }
 
       try {
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts"
-        });
+
+        const accounts =
+          await window.ethereum.request({
+            method: "eth_requestAccounts"
+          });
 
         await ensureApeChain();
 
         if (accounts.length > 0) {
+
           sessionStorage.setItem(
             "cosmicDreamWallet",
             accounts[0]
@@ -155,16 +201,24 @@
             "bogVoyagerManualDisconnect"
           );
 
-          window.location.href = "journey.html";
+          window.location.href =
+            "journey.html";
         }
 
       } catch (error) {
+
         console.error(error);
 
         if (error.code === 4001) {
+
           alert("Wallet connection was cancelled.");
+
         } else {
-          alert("Wallet connection failed. Please try again.");
+
+          alert(
+            "Wallet connection failed. Please try again."
+          );
+
         }
       }
     }
