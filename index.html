@@ -75,7 +75,7 @@
         decimals: 18
       },
       rpcUrls: [
-        "https://rpc.apechain.com/http"
+        "https://rpc.apechain.com"
       ],
       blockExplorerUrls: [
         "https://apescan.io/"
@@ -85,9 +85,7 @@
     async function connectWallet() {
 
       if (typeof window.ethereum === "undefined") {
-        alert(
-          "No compatible browser wallet was detected. Please install or open MetaMask and try again."
-        );
+        alert("No compatible wallet detected. Please install or open MetaMask.");
         return;
       }
 
@@ -101,11 +99,9 @@
 
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [
-              {
-                chainId: APECHAIN.chainId
-              }
-            ]
+            params: [{
+              chainId: APECHAIN.chainId
+            }]
           });
 
         } catch (switchError) {
@@ -122,17 +118,12 @@
           }
         }
 
-        const address = accounts[0];
-
-        const shortAddress =
-          address.slice(0, 6) +
-          "..." +
-          address.slice(-4);
-
-        alert(
-          "Wallet connected to ApeChain: " +
-          shortAddress
+        sessionStorage.setItem(
+          "cosmicDreamWallet",
+          accounts[0]
         );
+
+        window.location.href = "journey.html";
 
       } catch (error) {
 
