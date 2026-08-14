@@ -21,20 +21,53 @@
       justify-content: center;
     }
 
-    .homepage-image {
+    .homepage {
+      position: relative;
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+    }
+
+    .homepage img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
       display: block;
+    }
+
+    .wallet-button {
+      position: absolute;
+      left: 34%;
+      top: 76%;
+      width: 32%;
+      height: 9%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <img
-    src="cdb-homepage-desktop.png"
-    alt="Cosmic Dream Bog"
-    class="homepage-image"
-  >
+
+  <div class="homepage">
+
+    <img
+      src="cdb-homepage-desktop.png"
+      alt="Cosmic Dream Bog"
+    >
+
+    <button
+      class="wallet-button"
+      aria-label="Connect Wallet"
+      onclick="connectWallet()">
+    </button>
+
+  </div>
+
+  <script>
+    function connectWallet() {
+      alert("Wallet connection coming soon.");
+    }
+  </script>
+
 </body>
 </html>
