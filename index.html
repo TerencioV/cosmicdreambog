@@ -23,13 +23,14 @@
 
     .homepage {
       position: relative;
-      width: min(100vw, calc(100vh * 16 / 9));
-      height: min(100vh, calc(100vw * 9 / 16));
+      width: 100vw;
+      height: 100vh;
     }
 
     .homepage img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
       display: block;
     }
 
@@ -42,6 +43,7 @@
       border: none;
       background: transparent;
       cursor: pointer;
+      z-index: 10;
     }
   </style>
 </head>
@@ -64,8 +66,85 @@
   </div>
 
   <script>
-    function connectWallet() {
-      alert("Wallet connection coming soon.");
+    const APECHAIN = {
+      chainId: "0x8173",
+      chainName: "ApeChain",
+      nativeCurrency: {
+        name: "APE",
+        symbol: "APE",
+        decimals: 18
+      },
+      rpcUrls: [
+        "https://rpc.apechain.com/http"
+      ],
+      blockExplorerUrls: [
+        "https://apescan.io/"
+      ]
+    };
+
+    async function connectWallet() {
+
+      if (typeof window.ethereum === "undefined") {
+        alert(
+          "No compatible browser wallet was detected. Please install or open MetaMask and try again."
+        );
+        return;
+      }
+
+      try {
+
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts"
+        });
+
+        try {
+
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [
+              {
+                chainId: APECHAIN.chainId
+              }
+            ]
+          });
+
+        } catch (switchError) {
+
+          if (switchError.code === 4902) {
+
+            await window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [APECHAIN]
+            });
+
+          } else {
+            throw switchError;
+          }
+        }
+
+        const address = accounts[0];
+
+        const shortAddress =
+          address.slice(0, 6) +
+          "..." +
+          address.slice(-4);
+
+        alert(
+          "Wallet connected to ApeChain: " +
+          shortAddress
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        if (error.code === 4001) {
+          alert("Wallet connection was cancelled.");
+        } else {
+          alert("Wallet connection failed. Please try again.");
+        }
+
+      }
     }
   </script>
 
