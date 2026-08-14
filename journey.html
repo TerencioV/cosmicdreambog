@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cosmic Dream Bog - Journey</title>
 
   <style>
@@ -28,8 +29,15 @@
 
     .journey-page {
       position: relative;
-      width: min(100vw, calc(100vh * 724 / 1086));
-      height: min(100vh, calc(100vw * 1086 / 724));
+      width: min(
+        100vw,
+        calc(100vh * 724 / 1086)
+      );
+
+      height: min(
+        100vh,
+        calc(100vw * 1086 / 724)
+      );
     }
 
     .journey-image {
@@ -39,11 +47,13 @@
       object-fit: contain;
     }
 
-    /* Real BOG VOYAGER button covering the old artwork */
+    /* Real BOG VOYAGER wallet button */
     .bog-voyager {
       position: absolute;
+
       top: 1.05%;
       right: 1.25%;
+
       width: 32.5%;
       height: 6.2%;
 
@@ -76,7 +86,9 @@
 
     .voyager-title {
       display: block;
+
       color: #d8b4fe;
+
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.7px;
@@ -85,19 +97,26 @@
 
     .wallet-address {
       display: block;
+
       margin-top: 5px;
+
       color: #d1d5db;
+
       font-family: monospace;
       font-size: 8px;
       line-height: 1;
+
       white-space: nowrap;
     }
 
     .status-dot {
       flex: 0 0 auto;
+
       width: 9px;
       height: 9px;
+
       border-radius: 50%;
+
       background: #ef4444;
       box-shadow: 0 0 7px #ef4444;
     }
@@ -107,15 +126,36 @@
       box-shadow: 0 0 7px #22c55e;
     }
 
-    /* Discord icon in Journey footer */
-    .discord-link {
+    /* X icon */
+    .x-link {
       position: absolute;
-      right: 2.5%;
-      bottom: 1.2%;
+
+      right: 8%;
+      bottom: 1%;
+
       width: 5%;
       height: 4%;
+
       display: block;
       background: transparent;
+
+      cursor: pointer;
+      z-index: 80;
+    }
+
+    /* Discord icon */
+    .discord-link {
+      position: absolute;
+
+      right: 2.5%;
+      bottom: 1%;
+
+      width: 5%;
+      height: 4%;
+
+      display: block;
+      background: transparent;
+
       cursor: pointer;
       z-index: 80;
     }
@@ -137,7 +177,7 @@
       class="bog-voyager"
       type="button"
       onclick="toggleWallet()"
-      aria-label="Bog Voyager wallet connection">
+      aria-label="Bog Voyager Wallet">
 
       <span class="voyager-text">
 
@@ -161,6 +201,15 @@
     </button>
 
     <a
+      class="x-link"
+      href="https://x.com/bogvoyager"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Cosmic Dream Bog on X"
+      title="@bogvoyager">
+    </a>
+
+    <a
       class="discord-link"
       href="https://discord.gg/XkxVPNsS6w"
       target="_blank"
@@ -174,6 +223,7 @@
   <script>
     const APECHAIN = {
       chainId: "0x8173",
+
       chainName: "ApeChain",
 
       nativeCurrency: {
@@ -183,7 +233,7 @@
       },
 
       rpcUrls: [
-        "https://rpc.apechain.com"
+        "https://apechain.calderachain.xyz/http"
       ],
 
       blockExplorerUrls: [
@@ -192,20 +242,32 @@
     };
 
     const walletAddress =
-      document.getElementById("walletAddress");
+      document.getElementById(
+        "walletAddress"
+      );
 
     const statusDot =
-      document.getElementById("statusDot");
+      document.getElementById(
+        "statusDot"
+      );
 
     function shortenAddress(address) {
-      return address.slice(0, 6) + "..." + address.slice(-4);
+
+      return (
+        address.slice(0, 6) +
+        "..." +
+        address.slice(-4)
+      );
     }
 
     function setConnected(address) {
+
       walletAddress.textContent =
         shortenAddress(address);
 
-      statusDot.classList.add("connected");
+      statusDot.classList.add(
+        "connected"
+      );
 
       sessionStorage.setItem(
         "cosmicDreamWallet",
@@ -218,10 +280,13 @@
     }
 
     function setDisconnected() {
+
       walletAddress.textContent =
         "DISCONNECTED";
 
-      statusDot.classList.remove("connected");
+      statusDot.classList.remove(
+        "connected"
+      );
 
       sessionStorage.removeItem(
         "cosmicDreamWallet"
@@ -229,67 +294,93 @@
     }
 
     async function ensureApeChain() {
+
       try {
+
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{
-            chainId: APECHAIN.chainId
-          }]
+
+          params: [
+            {
+              chainId: APECHAIN.chainId
+            }
+          ]
         });
 
       } catch (switchError) {
 
         if (switchError.code === 4902) {
+
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
             params: [APECHAIN]
           });
+
         } else {
+
           throw switchError;
+
         }
       }
     }
 
     async function checkWalletStatus() {
+
       if (
         sessionStorage.getItem(
           "bogVoyagerManualDisconnect"
         ) === "true"
       ) {
+
         setDisconnected();
         return;
       }
 
       if (!window.ethereum) {
+
         setDisconnected();
         return;
       }
 
       try {
+
         const accounts =
           await window.ethereum.request({
             method: "eth_accounts"
           });
 
         if (accounts.length > 0) {
+
           setConnected(accounts[0]);
+
         } else {
+
           setDisconnected();
+
         }
 
       } catch (error) {
+
         console.error(error);
+
         setDisconnected();
+
       }
     }
 
     async function connectWallet() {
+
       if (!window.ethereum) {
-        alert("No compatible wallet detected.");
+
+        alert(
+          "No compatible wallet detected."
+        );
+
         return;
       }
 
       try {
+
         const accounts =
           await window.ethereum.request({
             method: "eth_requestAccounts"
@@ -298,15 +389,20 @@
         await ensureApeChain();
 
         if (accounts.length > 0) {
+
           setConnected(accounts[0]);
+
         }
 
       } catch (error) {
+
         console.error(error);
+
       }
     }
 
     async function disconnectWallet() {
+
       sessionStorage.setItem(
         "bogVoyagerManualDisconnect",
         "true"
@@ -317,19 +413,26 @@
       );
 
       if (window.ethereum) {
+
         try {
+
           await window.ethereum.request({
             method: "wallet_revokePermissions",
-            params: [{
-              eth_accounts: {}
-            }]
+
+            params: [
+              {
+                eth_accounts: {}
+              }
+            ]
           });
 
         } catch (error) {
+
           console.log(
             "Wallet permission revoke:",
             error
           );
+
         }
       }
 
@@ -337,39 +440,51 @@
     }
 
     async function toggleWallet() {
+
       if (
         sessionStorage.getItem(
           "bogVoyagerManualDisconnect"
         ) === "true"
       ) {
+
         await connectWallet();
         return;
       }
 
       if (!window.ethereum) {
+
         setDisconnected();
         return;
       }
 
       try {
+
         const accounts =
           await window.ethereum.request({
             method: "eth_accounts"
           });
 
         if (accounts.length > 0) {
+
           await disconnectWallet();
+
         } else {
+
           await connectWallet();
+
         }
 
       } catch (error) {
+
         console.error(error);
+
         setDisconnected();
+
       }
     }
 
     if (window.ethereum) {
+
       window.ethereum.on(
         "accountsChanged",
         function(accounts) {
@@ -379,14 +494,19 @@
               "bogVoyagerManualDisconnect"
             ) === "true"
           ) {
+
             setDisconnected();
             return;
           }
 
           if (accounts.length > 0) {
+
             setConnected(accounts[0]);
+
           } else {
+
             setDisconnected();
+
           }
         }
       );
