@@ -38,18 +38,32 @@
 
     .bog-voyager-proxy {
       position: absolute;
-
       top: 2.5%;
       right: 3%;
-
       width: 18%;
       height: 5%;
-
       border: none;
       background: transparent;
-
       cursor: pointer;
       z-index: 10;
+    }
+
+    .wallet-status-dot {
+      position: absolute;
+      top: 4.05%;
+      right: 17%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      z-index: 11;
+      pointer-events: none;
+    }
+
+    .wallet-status-dot.disconnected {
+      background: #ef4444;
+      box-shadow: 0 0 8px #ef4444;
     }
   </style>
 </head>
@@ -64,6 +78,11 @@
       class="journey-image"
     >
 
+    <div
+      id="walletStatusDot"
+      class="wallet-status-dot">
+    </div>
+
     <button
       class="bog-voyager-proxy"
       aria-label="Bog Voyager - Disconnect Wallet"
@@ -75,9 +94,48 @@
 
   <script>
 
+    const statusDot =
+      document.getElementById("walletStatusDot");
+
+    function showConnected() {
+      statusDot.classList.remove("disconnected");
+    }
+
+    function showDisconnected() {
+      statusDot.classList.add("disconnected");
+    }
+
+    async function checkWalletStatus() {
+
+      if (!window.ethereum) {
+        showDisconnected();
+        return;
+      }
+
+      try {
+
+        const accounts =
+          await window.ethereum.request({
+            method: "eth_accounts"
+          });
+
+        if (accounts.length > 0) {
+          showConnected();
+        } else {
+          showDisconnected();
+        }
+
+      } catch (error) {
+        console.log(error);
+        showDisconnected();
+      }
+    }
+
     async function disconnectWallet() {
 
-      sessionStorage.removeItem("cosmicDreamWallet");
+      sessionStorage.removeItem(
+        "cosmicDreamWallet"
+      );
 
       if (window.ethereum) {
 
@@ -95,15 +153,17 @@
         } catch (error) {
 
           console.log(
-            "Wallet permission could not be revoked:",
+            "Wallet disconnect error:",
             error
           );
 
         }
       }
 
-      window.location.href = "index.html?v=6";
+      showDisconnected();
     }
+
+    checkWalletStatus();
 
   </script>
 
