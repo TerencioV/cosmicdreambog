@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cosmic Dream Bog</title>
 
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -23,60 +29,91 @@
 
     .homepage {
       position: relative;
-      width: 100vw;
-      height: 100vh;
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
     }
 
-    .homepage img {
+    .homepage-image {
       width: 100%;
       height: 100%;
-      object-fit: contain;
       display: block;
     }
 
+    /* Invisible button over CONNECT WALLET */
     .wallet-button {
       position: absolute;
       left: 34%;
       top: 76%;
       width: 32%;
       height: 9%;
-      border: none;
+
+      border: 0;
       background: transparent;
       cursor: pointer;
-      z-index: 10;
+      z-index: 20;
+    }
+
+    /* Invisible clickable area over Discord icon */
+    .discord-link {
+      position: absolute;
+      left: 64.5%;
+      top: 95%;
+      width: 3.5%;
+      height: 4%;
+
+      display: block;
+      z-index: 30;
+      cursor: pointer;
+
+      background: transparent;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="homepage">
+  <main class="homepage">
 
     <img
       src="cdb-homepage-desktop.png"
       alt="Cosmic Dream Bog"
+      class="homepage-image"
     >
 
     <button
       class="wallet-button"
+      type="button"
       aria-label="Connect Wallet"
       onclick="connectWallet()">
     </button>
 
-  </div>
+    <a
+      class="discord-link"
+      href="https://discord.gg/XkxVPNsS6w"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Join Cosmic Dream Bog Discord"
+      title="Join Discord">
+    </a>
+
+  </main>
 
   <script>
+
     const APECHAIN = {
       chainId: "0x8173",
       chainName: "ApeChain",
+
       nativeCurrency: {
         name: "APE",
         symbol: "APE",
         decimals: 18
       },
+
       rpcUrls: [
         "https://rpc.apechain.com"
       ],
+
       blockExplorerUrls: [
         "https://apescan.io/"
       ]
@@ -84,24 +121,32 @@
 
     async function connectWallet() {
 
-      if (typeof window.ethereum === "undefined") {
-        alert("No compatible wallet detected. Please install or open MetaMask.");
+      if (!window.ethereum) {
+
+        alert(
+          "No compatible wallet detected. Please install or open MetaMask."
+        );
+
         return;
       }
 
       try {
 
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts"
-        });
+        const accounts =
+          await window.ethereum.request({
+            method: "eth_requestAccounts"
+          });
 
         try {
 
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{
-              chainId: APECHAIN.chainId
-            }]
+
+            params: [
+              {
+                chainId: APECHAIN.chainId
+              }
+            ]
           });
 
         } catch (switchError) {
@@ -114,29 +159,41 @@
             });
 
           } else {
+
             throw switchError;
+
           }
         }
 
-        sessionStorage.setItem(
-          "cosmicDreamWallet",
-          accounts[0]
-        );
+        if (accounts.length > 0) {
 
-        window.location.href = "journey.html";
+          sessionStorage.setItem(
+            "cosmicDreamWallet",
+            accounts[0]
+          );
+
+          window.location.href =
+            "journey.html?v=11";
+        }
 
       } catch (error) {
 
         console.error(error);
 
         if (error.code === 4001) {
-          alert("Wallet connection was cancelled.");
-        } else {
-          alert("Wallet connection failed. Please try again.");
-        }
 
+          alert("Wallet connection was cancelled.");
+
+        } else {
+
+          alert(
+            "Wallet connection failed. Please try again."
+          );
+
+        }
       }
     }
+
   </script>
 
 </body>
