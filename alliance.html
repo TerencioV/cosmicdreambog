@@ -1,1 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Cosmic Dream Bog — Alliance Briefing</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #050507;
+      --deep: #09060f;
+      --panel: rgba(10, 8, 16, 0.92);
+      --purple: #8b3dff;
+      --purple-light: #c78cff;
+      --green: #a7d52d;
+      --green-dark: #58781a;
+      --white: #f6f3fa;
+      --muted: #bdb6c8;
+      --line: rgba(178, 105, 255, 0.28);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* =========================================
+       HERO
+       ========================================= */
+
+    .hero {
+      position: relative;
+
+      min-height: 100vh;
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(3, 4, 5, 0.95) 0%,
+          rgba(5, 5, 8, 0.80) 42%,
+          rgba(5, 3, 10, 0.58) 100%
+        ),
+        radial-gradient(
+          circle at 72% 45%,
+          rgba(116, 32, 192, 0.35),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 42% 80%,
+          rgba(106, 145, 25, 0.18),
+          transparent 30%
+        ),
+        url("alliance-background.png");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 60%,
+          var(--black) 100%
+        );
+    }
+
+    .hero-inner {
+      position: relative;
+
+      z-index: 2;
+
+      width: min(1180px, 90vw);
+
+      margin: 0 auto;
+
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+
+      align-items: center;
+
+      padding: 70px 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+
+      color: var(--green);
+
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+
+      max-width: 760px;
+
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.92;
+
+      letter-spacing: -3px;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--purple-light);
+    }
+
+    .hero-copy {
+      max-width: 700px;
+
+      margin-top: 24px;
+
+      color: #d4cedc;
+
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.65;
+    }
+
+    .hero-copy strong {
+      color: white;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 48px;
+
+      padding: 0 20px;
+
+      border: 1px solid var(--purple);
+      border-radius: 7px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #843ee4,
+          #55209c
+        );
+
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 1.3px;
+
+      text-transform: uppercase;
+
+      box-shadow:
+        0 4px 0 #2d104f,
+        0 0 14px rgba(124, 58, 237, 0.24);
+
+      transition:
+        transform 0.13s ease,
+        filter 0.13s ease,
+        box-shadow 0.13s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+
+      filter: brightness(1.12);
+
+      box-shadow:
+        0 6px 0 #2d104f,
+        0 0 20px rgba(124, 58, 237, 0.42);
+    }
+
+    .button.green {
+      border-color: var(--green);
+
+      background:
+        linear-gradient(
+          180deg,
+          #91bc2b,
+          #567618
+        );
+
+      color: #091006;
+
+      box-shadow:
+        0 4px 0 #29380b,
+        0 0 14px rgba(167, 213, 45, 0.2);
+    }
+
+    .greeter-wrap {
+      position: relative;
+
+      min-height: 520px;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .greeter-glow {
+      position: absolute;
+
+      width: 390px;
+      height: 390px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(139, 61, 255, 0.40),
+          rgba(139, 61, 255, 0.04) 56%,
+          transparent 72%
+        );
+
+      filter: blur(8px);
+    }
+
+    .greeter {
+      position: relative;
+
+      z-index: 2;
+
+      display: block;
+
+      max-width: 420px;
+      width: 100%;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(
+          0 20px 40px rgba(0,0,0,0.75)
+        );
+    }
+
+    .greeter-placeholder {
+      position: relative;
+
+      width: min(360px, 100%);
+      min-height: 420px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px dashed rgba(199, 140, 255, 0.35);
+      border-radius: 14px;
+
+      color: rgba(255,255,255,0.35);
+
+      font-size: 12px;
+
+      text-align: center;
+    }
+
+    /* =========================================
+       NAV
+       ========================================= */
+
+    .nav {
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      border-bottom: 1px solid rgba(139, 61, 255, 0.18);
+
+      background: rgba(5, 5, 8, 0.90);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: min(1180px, 92vw);
+
+      margin: 0 auto;
+
+      min-height: 60px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--purple-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+
+      text-decoration: none;
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* =========================================
+       CONTENT
+       ========================================= */
+
+    .section {
+      position: relative;
+
+      padding: 100px 0;
+    }
+
+    .section:nth-of-type(even) {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(17, 9, 27, 0.32),
+          rgba(5, 5, 7, 0)
+        );
+    }
+
+    .container {
+      width: min(1050px, 88vw);
+
+      margin: 0 auto;
+    }
+
+    .section-number {
+      margin-bottom: 10px;
+
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 900;
+
+      letter-spacing: 2px;
+    }
+
+    .section h2 {
+      margin: 0 0 20px;
+
+      max-width: 800px;
+
+      font-size: clamp(34px, 5vw, 65px);
+      line-height: 1;
+
+      letter-spacing: -2px;
+    }
+
+    .lead {
+      max-width: 800px;
+
+      color: #d2ccd9;
+
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .lead strong {
+      color: white;
+    }
+
+    .story-line {
+      margin: 45px 0;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--purple),
+          var(--green),
+          transparent
+        );
+    }
+
+    /* =========================================
+       CARDS
+       ========================================= */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 18px;
+
+      margin-top: 40px;
+    }
+
+    .card {
+      position: relative;
+
+      min-height: 220px;
+
+      padding: 28px;
+
+      border: 1px solid var(--line);
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(18, 11, 28, 0.9),
+          rgba(7, 7, 10, 0.96)
+        );
+
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 3px;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          180deg,
+          var(--purple),
+          var(--green)
+        );
+    }
+
+    .card-label {
+      margin-bottom: 14px;
+
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 900;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      line-height: 1.65;
+    }
+
+    /* =========================================
+       STORY CHAPTERS
+       ========================================= */
+
+    .chapters {
+      margin-top: 50px;
+
+      display: grid;
+      gap: 20px;
+    }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 25px;
+
+      padding: 30px 0;
+
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .chapter-number {
+      color: var(--purple-light);
+
+      font-size: 45px;
+      font-weight: 900;
+    }
+
+    .chapter h3 {
+      margin: 0 0 8px;
+
+      font-size: 25px;
+    }
+
+    .chapter p {
+      margin: 0;
+
+      max-width: 780px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       ALLIANCE ROLE
+       ========================================= */
+
+    .role-panel {
+      margin-top: 45px;
+
+      padding: 38px;
+
+      border:
+        1px solid rgba(167, 213, 45, 0.28);
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(31, 44, 13, 0.28),
+          rgba(7, 7, 10, 0.96)
+        );
+    }
+
+    .role-panel h3 {
+      margin-top: 0;
+
+      font-size: 27px;
+    }
+
+    .role-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 13px;
+
+      margin: 23px 0;
+
+      align-items: start;
+    }
+
+    .role-icon {
+      width: 30px;
+      height: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--green);
+      border-radius: 50%;
+
+      color: var(--green);
+
+      font-weight: 900;
+    }
+
+    .role-item strong {
+      display: block;
+
+      margin-bottom: 5px;
+    }
+
+    .role-item p {
+      margin: 0;
+
+      color: var(--muted);
+
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       FINAL MINT
+       ========================================= */
+
+    .sealed {
+      margin-top: 45px;
+
+      padding: 50px 35px;
+
+      border:
+        1px solid rgba(199, 140, 255, 0.35);
+
+      border-radius: 12px;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(117, 37, 183, 0.22),
+          rgba(6, 5, 9, 0.96) 65%
+        );
+    }
+
+    .sealed-mark {
+      margin-bottom: 12px;
+
+      color: var(--purple-light);
+
+      font-size: 38px;
+    }
+
+    .sealed h3 {
+      margin: 0 0 12px;
+
+      font-size: 30px;
+    }
+
+    .sealed p {
+      max-width: 680px;
+
+      margin: 0 auto;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       END
+       ========================================= */
+
+    .invitation {
+      min-height: 75vh;
+
+      display: flex;
+      align-items: center;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(90, 24, 145, 0.22),
+          transparent 50%
+        );
+    }
+
+    .invitation h2 {
+      margin-left: auto;
+      margin-right: auto;
+
+      max-width: 900px;
+    }
+
+    .invitation .lead {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .invitation .hero-actions {
+      justify-content: center;
+    }
+
+    footer {
+      padding: 25px;
+
+      border-top: 1px solid rgba(255,255,255,0.06);
+
+      color: #81798a;
+
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 850px) {
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+
+        padding-top: 90px;
+
+        text-align: left;
+      }
+
+      .greeter-wrap {
+        min-height: 350px;
+      }
+
+      .greeter {
+        max-width: 300px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .chapter {
+        grid-template-columns: 55px 1fr;
+
+        gap: 15px;
+      }
+
+      .chapter-number {
+        font-size: 34px;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- DIRECT-LINK PROTECTION -->
+
+  <script>
+    if (
+      sessionStorage.getItem("allianceAccess") !== "granted"
+    ) {
+      window.location.replace("index.html");
+    }
+  </script>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="hero-inner">
+
+      <div>
+
+        <div class="eyebrow">
+          Private Alliance Transmission
+        </div>
+
+        <h1>
+          Welcome to the
+          <span>Bog.</span>
+        </h1>
+
+        <p class="hero-copy">
+          You were given access because we believe your community
+          may belong inside what is being built here.
+          <strong>
+            Cosmic Dream Bog is not simply an NFT launch.
+          </strong>
+          It is a story that participants enter, investigate and
+          eventually help shape.
+        </p>
+
+        <p class="hero-copy">
+          This briefing explains the world, the journey, your role
+          as an Alliance partner and what your community should
+          expect when the call begins.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            class="button green"
+            href="#transmission">
+            Read the Transmission
+          </a>
+
+          <a
+            class="button"
+            href="https://discord.gg/XkxVPNsS6w"
+            target="_blank"
+            rel="noopener noreferrer">
+            Enter Discord
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="greeter-wrap">
+
+        <div class="greeter-glow"></div>
+
+        <img
+          src="alliance-greeter.png"
+          alt="Alliance Greeter"
+          class="greeter"
+          onerror="this.style.display='none'; document.getElementById('greeterFallback').style.display='flex';"
+        >
+
+        <div
+          id="greeterFallback"
+          class="greeter-placeholder"
+          style="display:none;">
+          Alliance Greeter artwork will appear here.
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- NAV -->
+
+  <nav class="nav">
+
+    <div class="nav-inner">
+
+      <div class="brand">
+        Cosmic Dream <span>Bog</span>
+      </div>
+
+      <div class="nav-links">
+
+        <a href="#world">
+          World
+        </a>
+
+        <a href="#journey">
+          Journey
+        </a>
+
+        <a href="#alliance">
+          Alliance
+        </a>
+
+        <a href="#otherside">
+          Otherside
+        </a>
+
+        <a href="#final">
+          Final Path
+        </a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <!-- TRANSMISSION -->
+
+  <section
+    id="transmission"
+    class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 01
+      </div>
+
+      <h2>
+        Not another drop.
+        A call to enter the Bog.
+      </h2>
+
+      <p class="lead">
+        Most launches begin by showing people what they can buy.
+        Cosmic Dream Bog begins differently.
+        Participants are invited into a mystery.
+        They enter because someone they trust gave them the signal.
+        They discover what is happening by being present,
+        paying attention and moving through the story together.
+      </p>
+
+      <div class="story-line"></div>
+
+      <p class="lead">
+        Your role in the Alliance is not to become part of the
+        Cosmic Dream Bog team. You remain the leader of your own
+        project and your own community.
+        <strong>
+          The Alliance simply creates the bridge between those
+          communities and the Bog.
+        </strong>
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- WORLD -->
+
+  <section
+    id="world"
+    class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 02
+      </div>
+
+      <h2>
+        The Bog is already waiting.
+      </h2>
+
+      <p class="lead">
+        Cosmic Dream Bog exists around a specific location inside
+        the Otherside ecosystem: a Bog environment shaped by
+        Cosmic Dream sediment. The setting is strange,
+        unstable and dreamlike.
+      </p>
+
+
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card-label">
+            The Obelisk
+          </div>
+
+          <h3>
+            Something has shattered.
+          </h3>
+
+          <p>
+            At the center of the mystery is an ancient obelisk
+            that has been deliberately broken. Its fragments have
+            scattered throughout the Bog, and the reason for its
+            destruction becomes one of the central questions of
+            the story.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            The Shards
+          </div>
+
+          <h3>
+            Discovery has consequences.
+          </h3>
+
+          <p>
+            Shards, clues and fragments become part of the
+            investigation. Some will be discovered through the
+            Discord experience. Others will require participants
+            to pay attention to what the Bog is revealing.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            The Discord
+          </div>
+
+          <h3>
+            The live front door.
+          </h3>
+
+          <p>
+            Discord is where the active campaign unfolds:
+            gated chapters, clues, community discoveries,
+            Shard Hunt activity and story progression.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            The Tone
+          </div>
+
+          <h3>
+            Strange. Eerie. Playful.
+          </h3>
+
+          <p>
+            The project sits inside interactive horror rather
+            than traditional horror. The Bog should feel
+            mysterious and unsettling without losing the weird,
+            communal energy that makes discovery fun.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- STORY -->
+
+  <section
+    id="journey"
+    class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 03
+      </div>
+
+      <h2>
+        Four movements.
+        One shared story.
+      </h2>
+
+      <p class="lead">
+        Participants do not receive the entire story at once.
+        The world changes chapter by chapter.
+      </p>
+
+
+      <div class="chapters">
+
+        <div class="chapter">
+
+          <div class="chapter-number">
+            01
+          </div>
+
+          <div>
+
+            <h3>
+              Answer the Call
+            </h3>
+
+            <p>
+              Selected communities receive the first signal.
+              Those who choose to answer enter the Bog and begin
+              their path.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+          <div class="chapter-number">
+            02
+          </div>
+
+          <div>
+
+            <h3>
+              The Shattering
+            </h3>
+
+            <p>
+              Participants discover that the obelisk has been
+              destroyed. New spaces open. The Shard Hunt begins,
+              and the first pieces of the mystery appear.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+          <div class="chapter-number">
+            03
+          </div>
+
+          <div>
+
+            <h3>
+              The Investigation
+            </h3>
+
+            <p>
+              Clues, puzzles, fragments and strange discoveries
+              begin connecting the communities to the same
+              question: what happened here, and why?
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+          <div class="chapter-number">
+            04
+          </div>
+
+          <div>
+
+            <h3>
+              The Rally
+            </h3>
+
+            <p>
+              Separate communities become one expedition.
+              The investigation moves toward restoration of the
+              obelisk, confrontation with the force behind its
+              destruction and the final path.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DREAM HERALD -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 04
+      </div>
+
+      <h2>
+        There is someone else in the Bog.
+      </h2>
+
+      <p class="lead">
+        The destruction was not an accident.
+        Behind the Shattering is a figure known as the
+        <strong>Dream Herald</strong>.
+        His interest in the obelisk and its power is part of a
+        larger purpose that participants will slowly uncover.
+      </p>
+
+      <div class="story-line"></div>
+
+      <p class="lead">
+        The Alliance does not need to explain every secret to
+        participants. In fact, it should not.
+        The story works because communities discover the truth
+        together rather than receiving a roadmap filled with
+        spoilers.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- PARTICIPANT PATH -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 05
+      </div>
+
+      <h2>
+        The path is deliberately simple.
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card-label">
+            Rule One
+          </div>
+
+          <h3>
+            One wallet. One path.
+          </h3>
+
+          <p>
+            Each participant follows the journey through a single
+            wallet. The system is designed around participation,
+            not stacking.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Rule Two
+          </div>
+
+          <h3>
+            Progress at your own pace.
+          </h3>
+
+          <p>
+            The campaign is asynchronous. Someone arriving later
+            can still move through earlier chapters rather than
+            being permanently locked out because they missed a
+            specific day.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Rule Three
+          </div>
+
+          <h3>
+            Three story mints.
+          </h3>
+
+          <p>
+            Three story NFTs act as progression markers through
+            the journey. Each one represents movement deeper into
+            the campaign and helps determine access to what comes
+            next.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Rule Four
+          </div>
+
+          <h3>
+            The final reward is earned.
+          </h3>
+
+          <p>
+            Completing the journey creates one final mint
+            opportunity for that qualifying wallet.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ALLIANCE ROLE -->
+
+  <section
+    id="alliance"
+    class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 06
+      </div>
+
+      <h2>
+        What we are asking from the Alliance.
+      </h2>
+
+      <p class="lead">
+        The contribution is intentionally light.
+        This is not a paid promotional campaign and it is not a
+        request to repeatedly market Cosmic Dream Bog.
+      </p>
+
+
+      <div class="role-panel">
+
+        <h3>
+          Your role is to become the signal.
+        </h3>
+
+
+        <div class="role-item">
+
+          <div class="role-icon">
+            1
+          </div>
+
+          <div>
+
+            <strong>
+              Receive the private call.
+            </strong>
+
+            <p>
+              Alliance partners receive the initial material and
+              context before their community enters the story.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="role-item">
+
+          <div class="role-icon">
+            2
+          </div>
+
+          <div>
+
+            <strong>
+              Select the people you trust.
+            </strong>
+
+            <p>
+              Share the call with holders or community members
+              you believe would genuinely enjoy solving,
+              discovering and participating.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="role-item">
+
+          <div class="role-icon">
+            3
+          </div>
+
+          <div>
+
+            <strong>
+              Point them toward Discord.
+            </strong>
+
+            <p>
+              Discord becomes their live entrance into the
+              campaign and the place where the active story
+              progresses.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="role-item">
+
+          <div class="role-icon">
+            4
+          </div>
+
+          <div>
+
+            <strong>
+              Join key moments when it fits.
+            </strong>
+
+            <p>
+              Alliance partners are welcome to appear during
+              important chapter moments, but there is no
+              expectation that you constantly promote or manage
+              the experience.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DISCORD EXPECTATIONS -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 07
+      </div>
+
+      <h2>
+        What happens inside Discord.
+      </h2>
+
+      <p class="lead">
+        Discord is not simply a chat server attached to the
+        project. During the campaign it functions as part of the
+        environment itself.
+      </p>
+
+
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card-label">
+            Shard Hunt
+          </div>
+
+          <h3>
+            Discovery through participation.
+          </h3>
+
+          <p>
+            The custom Shard Hunt system allows members to search
+            for discoveries as part of the unfolding narrative.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Gated Chapters
+          </div>
+
+          <h3>
+            The story opens progressively.
+          </h3>
+
+          <p>
+            Story progression and wallet ownership eventually
+            determine access to deeper areas of the campaign.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Community Solving
+          </div>
+
+          <h3>
+            No community has to do this alone.
+          </h3>
+
+          <p>
+            The point is cross-community discovery. Members from
+            different projects may find separate pieces of the
+            same puzzle.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Participation
+          </div>
+
+          <h3>
+            Curiosity matters more than speed.
+          </h3>
+
+          <p>
+            The experience rewards people for paying attention
+            and participating rather than simply being first.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OTHERSIDE -->
+
+  <section
+    id="otherside"
+    class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 08
+      </div>
+
+      <h2>
+        This world has a real location.
+      </h2>
+
+      <p class="lead">
+        Cosmic Dream Bog is anchored to owned land in Otherside,
+        rather than existing only as a collection name.
+      </p>
+
+
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card-label">
+            Primary Anchor
+          </div>
+
+          <h3>
+            Otherdeed #31867
+          </h3>
+
+          <p>
+            Environment: Bog.<br><br>
+            Sediment: Cosmic Dream.<br><br>
+            This deed is the primary narrative home of the
+            Cosmic Dream Bog experience.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Secondary Anchor
+          </div>
+
+          <h3>
+            Otherdeed #12450
+          </h3>
+
+          <p>
+            Environment: Splinter.<br><br>
+            A visually distinct second land anchor exists inside
+            the project, while the Bog remains the focus of the
+            current story.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LONG TERM VISION -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 09
+      </div>
+
+      <h2>
+        Discord begins it.
+        Otherside can make it physical.
+      </h2>
+
+      <p class="lead">
+        The long-term direction is an interactive horror-themed
+        experience built around the Bog deed.
+        The goal is not to create a static virtual showroom.
+        The location should eventually become somewhere people
+        explore, encounter strange events, uncover clues and
+        experience the world spatially.
+      </p>
+
+      <div class="story-line"></div>
+
+      <p class="lead">
+        Development is intended to happen deliberately:
+        build small, testable experiences first and expand where
+        the community proves there is real energy.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- WHAT EXISTS -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 10
+      </div>
+
+      <h2>
+        This is not starting from zero.
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card">
+
+          <div class="card-label">
+            Built
+          </div>
+
+          <h3>
+            Discord foundation
+          </h3>
+
+          <p>
+            The community infrastructure and custom Shard Hunt
+            experience are already being developed.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Built
+          </div>
+
+          <h3>
+            Story spine
+          </h3>
+
+          <p>
+            The central progression already exists:
+            the Call, the Shattering, the Investigation and the
+            Rally.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Owned
+          </div>
+
+          <h3>
+            Otherside land
+          </h3>
+
+          <p>
+            The narrative is anchored to owned ecosystem land,
+            giving the story a permanent place to grow.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-label">
+            Live
+          </div>
+
+          <h3>
+            CosmicDreamBog.com
+          </h3>
+
+          <p>
+            The public website, wallet connection and journey
+            infrastructure are already taking shape.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL PATH -->
+
+  <section
+    id="final"
+    class="section">
+
+    <div class="container">
+
+      <div class="section-number">
+        TRANSMISSION 11
+      </div>
+
+      <h2>
+        The final mint stays behind the curtain.
+      </h2>
+
+      <p class="lead">
+        The experience is built around discovery first.
+        Participants should not begin the journey because every
+        final detail has already been revealed to them.
+      </p>
+
+
+      <div class="sealed">
+
+        <div class="sealed-mark">
+          ◉
+        </div>
+
+        <h3>
+          FINAL MINT
+        </h3>
+
+        <p>
+          Participants who successfully complete the path will
+          qualify for a fourth and final mint:
+          a <strong>3D avatar</strong>.
+          Details of that avatar and the final reveal remain
+          unreleased.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INVITATION -->
+
+  <section class="section invitation">
+
+    <div class="container">
+
+      <div class="section-number">
+        FINAL TRANSMISSION
+      </div>
+
+      <h2>
+        Will your people answer the call?
+      </h2>
+
+      <p class="lead">
+        Cosmic Dream Bog is looking for aligned project leaders
+        whose communities would enjoy entering a strange place,
+        solving together and becoming part of the early history
+        of the Bog.
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          class="button green"
+          href="https://discord.gg/XkxVPNsS6w"
+          target="_blank"
+          rel="noopener noreferrer">
+          Enter Discord
+        </a>
+
+        <a
+          class="button"
+          href="https://x.com/bogvoyager"
+          target="_blank"
+          rel="noopener noreferrer">
+          @BogVoyager
+        </a>
+
+        <a
+          class="button"
+          href="index.html">
+          Return to the Bog
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    Cosmic Dream Bog · Private Alliance Briefing · A Terencio Verde Project
+  </footer>
+
+</body>
+</html>
