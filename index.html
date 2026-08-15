@@ -1,1255 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cosmic Dream Bog</title>
-
   <style>
     * {
       box-sizing: border-box;
-    }
-
-    :root {
-      --black: #08090b;
-      --panel: rgba(10, 7, 17, 0.96);
-      --purple: #7c3aed;
-      --purple-light: #c084fc;
-      --green: #9acd32;
-      --white: #ffffff;
-      --muted: #b9b4c3;
-    }
-
-    html,
-    body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      min-height: 100%;
-      background: var(--black);
-      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
+      background: #000;
       min-height: 100vh;
-      min-height: 100svh;
-
       display: flex;
-      align-items: center;
       justify-content: center;
-
+      align-items: center;
+      font-family: Arial, sans-serif;
       overflow: hidden;
     }
 
-    /* =========================================================
-       MAIN HOMEPAGE
-       ========================================================= */
-
-    .homepage {
+    .page {
       position: relative;
-
-      width: min(
-        100vw,
-        calc(100vh * 16 / 9)
-      );
-
-      height: min(
-        100vh,
-        calc(100vw * 9 / 16)
-      );
-
-      background: var(--black);
-
-      overflow: hidden;
+      width: min(100vw, 1600px);
+      aspect-ratio: 16 / 9;
+      background: url('cdb-homepage-desktop.png') center center / contain no-repeat;
+      background-color: #000;
     }
 
-    .homepage-image {
+    .hotspot {
       position: absolute;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: contain;
-
-      display: block;
-
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* =========================================================
-       REAL CONNECT WALLET BUTTON
-       Covers the old image-based button
-       ========================================================= */
-
-    .wallet-button {
-      position: absolute;
-
-      left: 34%;
-      top: 76%;
-
-      width: 32%;
-      height: 9%;
-
-      border: 1px solid rgba(192, 132, 252, 0.95);
-      border-radius: 7px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #8b3ff2,
-          #6227c5
-        );
-
-      color: white;
-
-      font-size: clamp(11px, 1.1vw, 18px);
-      font-weight: 800;
-      letter-spacing: 1px;
-
+      background: transparent;
+      border: none;
       cursor: pointer;
-
-      box-shadow:
-        0 5px 0 #351267,
-        0 0 18px rgba(139, 61, 255, 0.45);
-
-      z-index: 20;
-
-      transition:
-        transform 0.12s ease,
-        box-shadow 0.12s ease,
-        filter 0.12s ease;
+      z-index: 5;
     }
 
-    .wallet-button:hover {
-      transform: translateY(-3px);
-
-      filter: brightness(1.12);
-
-      box-shadow:
-        0 8px 0 #351267,
-        0 0 24px rgba(139, 61, 255, 0.7);
-    }
-
-    .wallet-button:active {
-      transform: translateY(4px);
-
-      box-shadow:
-        0 1px 0 #351267,
-        0 0 10px rgba(139, 61, 255, 0.5);
-    }
-
-    /* =========================================================
-       SOCIAL BUTTONS
-       ========================================================= */
-
-    .social-button {
-      position: absolute;
-
-      bottom: 1.1%;
-
-      height: 5.2%;
-
-      min-width: 5%;
-
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 6px;
-
-      background: rgba(7, 7, 12, 0.92);
-      color: white;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-decoration: none;
-
-      font-weight: 800;
-
-      cursor: pointer;
-
-      z-index: 30;
-
-      transition:
-        transform 0.12s ease,
-        background 0.12s ease,
-        border-color 0.12s ease;
-    }
-
-    .social-button:hover {
-      transform: translateY(-3px) scale(1.04);
-
-      background: rgba(80, 30, 135, 0.95);
-
-      border-color: var(--purple-light);
-    }
-
-    .social-button:active {
-      transform: translateY(2px) scale(0.98);
-    }
-
-    .x-button {
-      left: 59.5%;
-      width: 4.2%;
-
-      font-size: clamp(13px, 1.5vw, 22px);
-    }
-
-    .discord-button {
-      left: 64.3%;
-      width: 7.5%;
-
-      font-size: clamp(7px, 0.65vw, 11px);
-    }
-
-    /* =========================================================
-       ALLIANCE ACCESS
-       ========================================================= */
-
-    .alliance-button {
-      position: absolute;
-
-      top: 3%;
-      right: 3%;
-
-      padding: 9px 15px;
-
-      border: 1px solid rgba(154, 205, 50, 0.65);
-      border-radius: 6px;
-
-      background: rgba(5, 10, 7, 0.88);
-      color: #d8ff91;
-
-      font-size: clamp(8px, 0.7vw, 12px);
-      font-weight: 800;
-
-      letter-spacing: 1px;
-
-      cursor: pointer;
-
-      z-index: 40;
-
-      transition:
-        transform 0.12s ease,
-        background 0.12s ease,
-        box-shadow 0.12s ease;
-    }
-
-    .alliance-button:hover {
-      transform: translateY(-2px);
-
-      background: rgba(38, 70, 20, 0.95);
-
-      box-shadow:
-        0 0 14px rgba(154, 205, 50, 0.35);
-    }
-
-    .alliance-button:active {
-      transform: translateY(2px);
-    }
-
-    /* =========================================================
-       MODALS
-       ========================================================= */
-
-    .modal-overlay {
-      position: fixed;
-
-      inset: 0;
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-
-      background: rgba(0, 0, 0, 0.76);
-      backdrop-filter: blur(8px);
-
-      z-index: 1000;
-    }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    .modal {
-      position: relative;
-
-      width: min(92vw, 430px);
-
-      padding: 26px;
-
-      border: 1px solid rgba(139, 61, 255, 0.7);
+    .hotspot:hover {
+      box-shadow: 0 0 0 2px rgba(162, 84, 255, 0.55);
       border-radius: 12px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(14, 8, 24, 0.99),
-          rgba(5, 9, 12, 0.99)
-        );
-
-      color: white;
-
-      box-shadow:
-        0 25px 80px rgba(0,0,0,0.7),
-        0 0 30px rgba(124,58,237,0.18);
     }
 
-    .modal h2 {
-      margin: 0 0 8px;
-
-      color: var(--purple-light);
-
-      font-size: 22px;
-    }
-
-    .modal p {
-      margin: 0 0 20px;
-
-      color: var(--muted);
-
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .modal-close {
+    .sr-only {
       position: absolute;
-
-      top: 10px;
-      right: 12px;
-
-      width: 32px;
-      height: 32px;
-
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
       border: 0;
-      border-radius: 50%;
-
-      background: rgba(255,255,255,0.06);
-      color: white;
-
-      font-size: 20px;
-
-      cursor: pointer;
     }
 
-    /* =========================================================
-       WALLET CHOICES
-       ========================================================= */
-
-    .wallet-choice {
-      width: 100%;
-
-      margin-top: 10px;
-      padding: 14px 15px;
-
-      border: 1px solid rgba(255,255,255,0.12);
+    /* Desktop positions based on your current artwork */
+    .alliance-btn {
+      top: 3%;
+      right: 5.3%;
+      width: 13.5%;
+      height: 8%;
       border-radius: 8px;
-
-      background: rgba(255,255,255,0.045);
-      color: white;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      text-align: left;
-
-      cursor: pointer;
-
-      transition:
-        transform 0.12s ease,
-        border-color 0.12s ease,
-        background 0.12s ease;
     }
 
-    .wallet-choice:hover {
-      transform: translateX(4px);
-
-      border-color: var(--purple-light);
-
-      background: rgba(124,58,237,0.15);
+    .wallet-btn {
+      left: 31.5%;
+      bottom: 13.3%;
+      width: 32.8%;
+      height: 10.2%;
+      border-radius: 14px;
     }
 
-    .wallet-choice:active {
-      transform: translateX(7px);
+    .x-btn {
+      left: 39%;
+      bottom: 3.7%;
+      width: 6.2%;
+      height: 5.8%;
+      border-radius: 10px;
     }
 
-    .wallet-choice strong {
-      display: block;
-
-      font-size: 14px;
+    .discord-btn {
+      left: 47.8%;
+      bottom: 3.7%;
+      width: 12.2%;
+      height: 5.8%;
+      border-radius: 10px;
     }
 
-    .wallet-choice small {
-      display: block;
-
-      margin-top: 3px;
-
-      color: #aaa2b6;
-
-      font-size: 11px;
-    }
-
-    .wallet-arrow {
-      color: var(--purple-light);
-
-      font-size: 18px;
-    }
-
-    /* =========================================================
-       ALLIANCE GATE
-       ========================================================= */
-
-    .alliance-input {
-      width: 100%;
-
-      padding: 14px;
-
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 7px;
-
-      outline: none;
-
-      background: rgba(0,0,0,0.35);
-      color: white;
-
-      font-size: 16px;
-    }
-
-    .alliance-input:focus {
-      border-color: var(--green);
-
-      box-shadow:
-        0 0 0 3px rgba(154,205,50,0.12);
-    }
-
-    .alliance-submit {
-      width: 100%;
-
-      margin-top: 12px;
-      padding: 14px;
-
-      border: 1px solid #a8d44b;
-      border-radius: 7px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #8cb934,
-          #52751b
-        );
-
-      color: #071005;
-
-      font-weight: 900;
-      letter-spacing: 1px;
-
-      cursor: pointer;
-
-      transition:
-        transform 0.12s ease,
-        filter 0.12s ease;
-    }
-
-    .alliance-submit:hover {
-      transform: translateY(-2px);
-
-      filter: brightness(1.12);
-    }
-
-    .alliance-submit:active {
-      transform: translateY(2px);
-    }
-
-    .gate-message {
-      min-height: 18px;
-
-      margin-top: 10px;
-
-      color: #ff7777;
-
-      font-size: 12px;
-      text-align: center;
-    }
-
-    /* =========================================================
-       SMALL NOTIFICATION
-       ========================================================= */
-
-    .toast {
-      position: fixed;
-
-      left: 50%;
-      bottom: 25px;
-
-      transform:
-        translateX(-50%)
-        translateY(30px);
-
-      max-width: min(90vw, 500px);
-
-      padding: 12px 18px;
-
-      border: 1px solid rgba(192,132,252,0.55);
-      border-radius: 7px;
-
-      background: rgba(8, 7, 14, 0.97);
-      color: white;
-
-      font-size: 13px;
-
-      opacity: 0;
-      pointer-events: none;
-
-      transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
-
-      z-index: 2000;
-    }
-
-    .toast.show {
-      opacity: 1;
-
-      transform:
-        translateX(-50%)
-        translateY(0);
-    }
-
-    /* =========================================================
-       MOBILE
-       ========================================================= */
-
-    @media (max-width: 768px) {
-
-      body {
-        overflow: hidden;
-      }
-
-      .homepage {
+    /* Mobile adjustments */
+    @media (max-width: 900px) {
+      .page {
         width: 100vw;
-
         height: 100vh;
-        height: 100svh;
+        aspect-ratio: auto;
+        background-size: contain;
       }
 
-      .homepage-image {
-        object-fit: cover;
-        object-position: center;
-
-        filter: brightness(0.7);
+      .alliance-btn {
+        top: 4%;
+        right: 5%;
+        width: 24%;
+        height: 6%;
       }
 
-      .wallet-button {
-        left: 50%;
-        top: auto;
-        bottom: 105px;
-
-        transform: translateX(-50%);
-
-        width: min(82vw, 390px);
-        height: 58px;
-
-        font-size: 15px;
+      .wallet-btn {
+        left: 19%;
+        bottom: 18%;
+        width: 62%;
+        height: 8%;
       }
 
-      .wallet-button:hover {
-        transform:
-          translateX(-50%)
-          translateY(-3px);
+      .x-btn {
+        left: 34%;
+        bottom: 8%;
+        width: 10%;
+        height: 4.5%;
       }
 
-      .wallet-button:active {
-        transform:
-          translateX(-50%)
-          translateY(3px);
-      }
-
-      .alliance-button {
-        top: max(
-          16px,
-          env(safe-area-inset-top)
-        );
-
-        right: 15px;
-
-        font-size: 10px;
-
-        padding: 9px 12px;
-      }
-
-      .social-button {
-        bottom: max(
-          28px,
-          env(safe-area-inset-bottom)
-        );
-
-        width: 50px;
-        height: 48px;
-      }
-
-      .x-button {
-        left: calc(50% - 58px);
-      }
-
-      .discord-button {
-        left: calc(50% + 8px);
-
-        width: 72px;
-
-        font-size: 9px;
+      .discord-btn {
+        left: 47%;
+        bottom: 8%;
+        width: 18%;
+        height: 4.5%;
       }
     }
   </style>
 </head>
-
 <body>
+  <div class="page">
 
-  <main class="homepage">
-
-    <img
-      src="cdb-homepage-desktop.png"
-      alt="Cosmic Dream Bog"
-      class="homepage-image"
-    >
-
-    <button
-      class="wallet-button"
-      type="button"
-      onclick="openWalletModal()">
-      CONNECT WALLET
+    <button class="hotspot alliance-btn" onclick="allianceAccess()">
+      <span class="sr-only">Alliance Access</span>
     </button>
 
-    <button
-      class="alliance-button"
-      type="button"
-      onclick="openAllianceGate()">
-      ALLIANCE ACCESS
+    <button class="hotspot wallet-btn" onclick="connectWallet()">
+      <span class="sr-only">Connect Wallet</span>
     </button>
 
-    <a
-      class="social-button x-button"
-      href="https://x.com/bogvoyager"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Bog Voyager on X"
-      title="@bogvoyager">
-      𝕏
-    </a>
+    <button class="hotspot x-btn" onclick="window.open('https://x.com/bogvoyager', '_blank')">
+      <span class="sr-only">X</span>
+    </button>
 
-    <a
-      class="social-button discord-button"
-      href="https://discord.gg/XkxVPNsS6w"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Cosmic Dream Bog Discord"
-      title="Join Discord">
-      DISCORD
-    </a>
+    <button class="hotspot discord-btn" onclick="window.open('https://discord.gg/XkxVPNsS6w', '_blank')">
+      <span class="sr-only">Discord</span>
+    </button>
 
-  </main>
-
-  <!-- ======================================================
-       WALLET MODAL
-       ====================================================== -->
-
-  <div
-    id="walletModal"
-    class="modal-overlay"
-    onclick="overlayClose(event, 'walletModal')">
-
-    <section class="modal">
-
-      <button
-        class="modal-close"
-        onclick="closeModal('walletModal')">
-        ×
-      </button>
-
-      <h2>
-        Enter the Bog
-      </h2>
-
-      <p>
-        Choose how you want to connect.
-      </p>
-
-      <button
-        class="wallet-choice"
-        onclick="connectBrowserWallet()">
-
-        <span>
-          <strong>
-            Browser Wallet
-          </strong>
-
-          <small>
-            MetaMask or another installed EVM wallet
-          </small>
-        </span>
-
-        <span class="wallet-arrow">
-          →
-        </span>
-
-      </button>
-
-      <button
-        class="wallet-choice"
-        onclick="connectGlyph()">
-
-        <span>
-          <strong>
-            Glyph
-          </strong>
-
-          <small>
-            Yuga / ApeChain onboarding
-          </small>
-        </span>
-
-        <span class="wallet-arrow">
-          →
-        </span>
-
-      </button>
-
-      <button
-        class="wallet-choice"
-        onclick="connectUniversalWallet()">
-
-        <span>
-          <strong>
-            All Wallets
-          </strong>
-
-          <small>
-            WalletConnect / Reown universal connection
-          </small>
-        </span>
-
-        <span class="wallet-arrow">
-          →
-        </span>
-
-      </button>
-
-    </section>
-
-  </div>
-
-  <!-- ======================================================
-       ALLIANCE PASSWORD GATE
-       ====================================================== -->
-
-  <div
-    id="allianceModal"
-    class="modal-overlay"
-    onclick="overlayClose(event, 'allianceModal')">
-
-    <section class="modal">
-
-      <button
-        class="modal-close"
-        onclick="closeModal('allianceModal')">
-        ×
-      </button>
-
-      <h2>
-        Alliance Access
-      </h2>
-
-      <p>
-        This briefing is reserved for invited project allies.
-      </p>
-
-      <input
-        id="alliancePassword"
-        class="alliance-input"
-        type="password"
-        placeholder="Enter access code"
-        autocomplete="off"
-      >
-
-      <button
-        class="alliance-submit"
-        onclick="enterAlliance()">
-        ENTER
-      </button>
-
-      <div
-        id="gateMessage"
-        class="gate-message">
-      </div>
-
-    </section>
-
-  </div>
-
-  <div
-    id="toast"
-    class="toast">
   </div>
 
   <script>
-    /* ======================================================
-       APECHAIN
-       ====================================================== */
-
-    const APECHAIN = {
-
-      chainId: "0x8173",
-
-      chainName: "ApeChain",
-
-      nativeCurrency: {
-        name: "APE",
-        symbol: "APE",
-        decimals: 18
-      },
-
-      rpcUrls: [
-        "https://rpc.apechain.com/http"
-      ],
-
-      blockExplorerUrls: [
-        "https://apescan.io/"
-      ]
-    };
-
-
-    /* ======================================================
-       FUTURE WALLET INTEGRATIONS
-
-       These stay blank until we create the required
-       developer accounts / IDs.
-       ====================================================== */
-
-    const GLYPH_CONFIG = {
-      enabled: false,
-      appId: "",
-      clientId: ""
-    };
-
-    const REOWN_CONFIG = {
-      enabled: false,
-      projectId: ""
-    };
-
-
-    /* ======================================================
-       MODALS
-       ====================================================== */
-
-    function openWalletModal() {
-
-      document
-        .getElementById("walletModal")
-        .classList
-        .add("open");
+    function connectWallet() {
+      localStorage.setItem('bogWalletConnected', 'true');
+      window.location.href = 'journey.html?v=11';
     }
 
-
-    function openAllianceGate() {
-
-      document
-        .getElementById("gateMessage")
-        .textContent = "";
-
-      document
-        .getElementById("alliancePassword")
-        .value = "";
-
-      document
-        .getElementById("allianceModal")
-        .classList
-        .add("open");
-
-      setTimeout(() => {
-
-        document
-          .getElementById("alliancePassword")
-          .focus();
-
-      }, 100);
-    }
-
-
-    function closeModal(id) {
-
-      document
-        .getElementById(id)
-        .classList
-        .remove("open");
-    }
-
-
-    function overlayClose(event, id) {
-
-      if (event.target.id === id) {
-        closeModal(id);
+    function allianceAccess() {
+      const password = prompt('Enter Alliance Password');
+      if (password === 'Alliance') {
+        window.location.href = 'alliance.html';
+      } else if (password !== null) {
+        alert('Incorrect password');
       }
     }
-
-
-    /* ======================================================
-       NOTIFICATION
-       ====================================================== */
-
-    let toastTimer;
-
-
-    function showToast(message) {
-
-      const toast =
-        document.getElementById("toast");
-
-      toast.textContent = message;
-
-      toast.classList.add("show");
-
-      clearTimeout(toastTimer);
-
-      toastTimer = setTimeout(() => {
-
-        toast.classList.remove("show");
-
-      }, 3500);
-    }
-
-
-    /* ======================================================
-       APECHAIN NETWORK
-       ====================================================== */
-
-    async function ensureApeChain() {
-
-      try {
-
-        await window.ethereum.request({
-
-          method:
-            "wallet_switchEthereumChain",
-
-          params: [
-            {
-              chainId:
-                APECHAIN.chainId
-            }
-          ]
-        });
-
-      }
-
-      catch (switchError) {
-
-        if (switchError.code === 4902) {
-
-          await window.ethereum.request({
-
-            method:
-              "wallet_addEthereumChain",
-
-            params: [
-              APECHAIN
-            ]
-          });
-
-        }
-
-        else {
-
-          throw switchError;
-        }
-      }
-    }
-
-
-    /* ======================================================
-       SUCCESSFUL WALLET CONNECTION
-       ====================================================== */
-
-    function walletConnected(address) {
-
-      sessionStorage.setItem(
-        "cosmicDreamWallet",
-        address
-      );
-
-      sessionStorage.removeItem(
-        "bogVoyagerManualDisconnect"
-      );
-
-      closeModal("walletModal");
-
-      window.location.href =
-        "journey.html";
-    }
-
-
-    /* ======================================================
-       BROWSER WALLET
-       WORKS NOW
-       ====================================================== */
-
-    async function connectBrowserWallet() {
-
-      if (!window.ethereum) {
-
-        showToast(
-          "No compatible browser wallet was detected."
-        );
-
-        return;
-      }
-
-      try {
-
-        const accounts =
-          await window.ethereum.request({
-
-            method:
-              "eth_requestAccounts"
-          });
-
-        await ensureApeChain();
-
-        if (accounts.length > 0) {
-
-          walletConnected(
-            accounts[0]
-          );
-        }
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        if (error.code === 4001) {
-
-          showToast(
-            "Wallet connection cancelled."
-          );
-
-        }
-
-        else {
-
-          showToast(
-            "Wallet connection failed."
-          );
-        }
-      }
-    }
-
-
-    /* ======================================================
-       GLYPH CONNECTION HOOK
-
-       The visual button is ready.
-
-       Actual Glyph connection gets activated after
-       Glyph / Privy application credentials are created.
-       ====================================================== */
-
-    async function connectGlyph() {
-
-      if (!GLYPH_CONFIG.enabled) {
-
-        showToast(
-          "Glyph integration is prepared. Developer credentials are the next setup step."
-        );
-
-        return;
-      }
-
-      /*
-        Glyph / Privy integration
-        will be inserted here.
-      */
-    }
-
-
-    /* ======================================================
-       REOWN / WALLETCONNECT HOOK
-
-       The visual button is ready.
-
-       Actual universal wallet connection gets activated
-       after a Reown Project ID is created.
-       ====================================================== */
-
-    async function connectUniversalWallet() {
-
-      if (!REOWN_CONFIG.enabled) {
-
-        showToast(
-          "Universal wallet connection is prepared. A Reown Project ID is the next setup step."
-        );
-
-        return;
-      }
-
-      /*
-        Reown AppKit connection
-        will be inserted here.
-      */
-    }
-
-
-    /* ======================================================
-       ALLIANCE ACCESS
-
-       Password itself is not written directly into
-       the HTML. This is the SHA-256 hash of the
-       current access word.
-
-       This is still only a LIGHT client-side gate.
-       ====================================================== */
-
-    const ALLIANCE_HASH =
-      "afe3c1947d3b3a6e5e04159d81d9ceba8ab63094c8f67abf717ad752f86bd4f6";
-
-
-    async function sha256(value) {
-
-      const data =
-        new TextEncoder()
-        .encode(value);
-
-      const hashBuffer =
-        await crypto.subtle.digest(
-          "SHA-256",
-          data
-        );
-
-      return Array
-        .from(
-          new Uint8Array(
-            hashBuffer
-          )
-        )
-        .map(
-          byte =>
-            byte
-              .toString(16)
-              .padStart(2, "0")
-        )
-        .join("");
-    }
-
-
-    async function enterAlliance() {
-
-      const input =
-        document
-          .getElementById(
-            "alliancePassword"
-          );
-
-      const message =
-        document
-          .getElementById(
-            "gateMessage"
-          );
-
-      const value =
-        input.value.trim();
-
-      if (!value) {
-
-        message.textContent =
-          "Enter the access code.";
-
-        return;
-      }
-
-      const enteredHash =
-        await sha256(value);
-
-      if (
-        enteredHash ===
-        ALLIANCE_HASH
-      ) {
-
-        sessionStorage.setItem(
-          "allianceAccess",
-          "granted"
-        );
-
-        window.location.href =
-          "alliance.html";
-
-      }
-
-      else {
-
-        message.textContent =
-          "Access denied.";
-
-        input.value = "";
-        input.focus();
-      }
-    }
-
-
-    /* ======================================================
-       ENTER KEY FOR ALLIANCE PASSWORD
-       ====================================================== */
-
-    document
-      .getElementById(
-        "alliancePassword"
-      )
-      .addEventListener(
-        "keydown",
-        function(event) {
-
-          if (
-            event.key === "Enter"
-          ) {
-
-            enterAlliance();
-          }
-        }
-      );
-
-
-    /* ======================================================
-       ESCAPE CLOSES MODALS
-       ====================================================== */
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          closeModal(
-            "walletModal"
-          );
-
-          closeModal(
-            "allianceModal"
-          );
-        }
-      }
-    );
-
   </script>
-
 </body>
 </html>
