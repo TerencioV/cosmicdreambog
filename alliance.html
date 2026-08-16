@@ -1,2399 +1,4510 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Cosmic Dream Bog — Alliance Briefing</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #050507;
-      --deep: #09060f;
-      --panel: rgba(10, 8, 16, 0.94);
-      --purple: #8b3dff;
-      --purple-light: #c78cff;
-      --green: #a7d52d;
-      --white: #f6f3fa;
-      --muted: #bdb6c8;
-      --line: rgba(178, 105, 255, 0.28);
-      --paper: #b99b62;
-      --paper-dark: #594420;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html,
-    body {
-      margin: 0;
-      width: 100%;
-      min-height: 100%;
-      background: var(--black);
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    /* =========================
-       HERO
-       ========================= */
-
-    .hero {
-      position: relative;
-
-      min-height: 100vh;
-      min-height: 100svh;
-
-      display: flex;
-      align-items: center;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(3,4,5,.96),
-          rgba(5,5,8,.79) 43%,
-          rgba(5,3,10,.57)
-        ),
-        radial-gradient(
-          circle at 72% 45%,
-          rgba(116,32,192,.35),
-          transparent 35%
-        ),
-        url("alliance-background.png");
-
-      background-size: cover;
-      background-position: center;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          180deg,
-          transparent 60%,
-          var(--black)
-        );
 
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
+<meta charset="UTF-8">
 
-      width: min(1180px, 90vw);
-      margin: 0 auto;
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 50px;
+<title>
+Cosmic Dream Bog — Alliance Transmission
+</title>
 
-      align-items: center;
 
-      padding: 70px 0;
-    }
+<style>
 
-    .eyebrow {
-      margin-bottom: 18px;
+* {
+  box-sizing: border-box;
+}
 
-      color: var(--green);
+:root {
 
-      font-size: 12px;
-      font-weight: 900;
+  --black: #050507;
 
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
+  --purple: #8b3dff;
 
-    .hero h1 {
-      margin: 0;
+  --purple-light: #c78cff;
 
-      font-size: clamp(48px, 7vw, 96px);
-      line-height: .92;
+  --green: #a7d52d;
 
-      letter-spacing: -3px;
-      text-transform: uppercase;
-    }
+  --white: #f6f3fa;
 
-    .hero h1 span {
-      color: var(--purple-light);
-    }
+  --muted: #bdb6c8;
 
-    .hero-copy {
-      max-width: 700px;
+  --line:
+    rgba(178,105,255,.28);
 
-      margin-top: 24px;
+  --ink: #241708;
 
-      color: #d4cedc;
+}
 
-      font-size: clamp(17px, 1.5vw, 21px);
-      line-height: 1.65;
-    }
 
-    .hero-copy strong {
-      color: white;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
 
-      margin-top: 30px;
-    }
+html,
+body {
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+  margin: 0;
 
-      min-height: 48px;
+  width: 100%;
 
-      padding: 0 20px;
+  min-height: 100%;
 
-      border: 1px solid var(--purple);
-      border-radius: 7px;
+  background:
+    var(--black);
 
-      background:
-        linear-gradient(
-          180deg,
-          #843ee4,
-          #55209c
-        );
+  color:
+    var(--white);
 
-      color: white;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-      text-decoration: none;
+}
 
-      font-size: 12px;
-      font-weight: 900;
 
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
+body {
+  overflow-x: hidden;
+}
 
-      cursor: pointer;
 
-      transition:
-        transform .13s ease,
-        filter .13s ease;
-    }
+a {
+  color: inherit;
+}
 
-    .button:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.12);
-    }
 
-    .button.green {
-      border-color: var(--green);
+/* ==================================================
+   HERO
+================================================== */
 
-      background:
-        linear-gradient(
-          180deg,
-          #91bc2b,
-          #567618
-        );
+.hero {
 
-      color: #091006;
-    }
+  position: relative;
 
-    .greeter-wrap {
-      position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
 
-      min-height: 520px;
+  display: flex;
 
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
+  align-items: flex-start;
 
-    .greeter-glow {
-      position: absolute;
+  overflow: hidden;
 
-      width: 390px;
-      height: 390px;
+  background:
 
-      border-radius: 50%;
+    linear-gradient(
+      90deg,
+      rgba(3,4,5,.96),
+      rgba(5,5,8,.80) 46%,
+      rgba(5,3,10,.60)
+    ),
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(139,61,255,.4),
-          rgba(139,61,255,.04) 56%,
-          transparent 72%
-        );
-    }
+    radial-gradient(
+      circle at 75% 42%,
+      rgba(116,32,192,.35),
+      transparent 35%
+    ),
 
-    .greeter {
-      position: relative;
-      z-index: 2;
+    url("alliance-background.png");
 
-      max-width: 420px;
-      width: 100%;
+  background-size: cover;
 
-      object-fit: contain;
+  background-position: center;
 
-      filter:
-        drop-shadow(
-          0 20px 40px rgba(0,0,0,.75)
-        );
-    }
+}
 
-    /* =========================
-       NAV
-       ========================= */
 
-    .nav {
-      position: sticky;
-      top: 0;
+.hero::after {
 
-      z-index: 100;
+  content: "";
 
-      border-bottom:
-        1px solid rgba(139,61,255,.18);
+  position: absolute;
 
-      background:
-        rgba(5,5,8,.91);
+  inset: 0;
 
-      backdrop-filter: blur(12px);
-    }
+  pointer-events: none;
 
-    .nav-inner {
-      width: min(1180px, 92vw);
-      margin: 0 auto;
+  background:
 
-      min-height: 60px;
+    linear-gradient(
+      180deg,
+      transparent 75%,
+      var(--black)
+    );
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+}
 
-      gap: 20px;
-    }
 
-    .brand {
-      font-size: 12px;
-      font-weight: 900;
+.hero-inner {
 
-      letter-spacing: 1.5px;
+  position: relative;
 
-      text-transform: uppercase;
-    }
+  z-index: 2;
 
-    .brand span {
-      color: var(--purple-light);
-    }
+  width:
+    min(1450px,94vw);
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
+  margin: 0 auto;
 
-    .nav-links a {
-      color: var(--muted);
+  display: grid;
 
-      text-decoration: none;
+  grid-template-columns:
+    minmax(280px,.80fr)
+    minmax(400px,1.25fr)
+    minmax(250px,.75fr);
 
-      font-size: 11px;
-      font-weight: 800;
+  gap: 38px;
 
-      letter-spacing: 1px;
+  align-items: start;
 
-      text-transform: uppercase;
-    }
+  padding:
+    65px 0 110px;
 
-    .nav-links a:hover {
-      color: white;
-    }
+}
 
-    /* =========================
-       SECTIONS
-       ========================= */
 
-    .section {
-      padding: 100px 0;
-    }
+/* ==================================================
+   HERO TEXT
+================================================== */
 
-    .section:nth-of-type(even) {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(17,9,27,.32),
-          transparent
-        );
-    }
+.hero-copy-column {
 
-    .container {
-      width: min(1050px, 88vw);
-      margin: 0 auto;
-    }
+  padding-top: 55px;
 
-    .section-number {
-      margin-bottom: 10px;
+}
 
-      color: var(--green);
 
-      font-size: 11px;
-      font-weight: 900;
+.eyebrow {
 
-      letter-spacing: 2px;
-    }
+  margin-bottom: 18px;
 
-    .section h2 {
-      margin: 0 0 20px;
+  color:
+    var(--green);
 
-      max-width: 850px;
+  font-size: 12px;
 
-      font-size: clamp(34px, 5vw, 65px);
-      line-height: 1;
+  font-weight: 900;
 
-      letter-spacing: -2px;
-    }
+  letter-spacing: 3px;
 
-    .lead {
-      max-width: 820px;
+  text-transform: uppercase;
 
-      color: #d2ccd9;
+}
 
-      font-size: 18px;
-      line-height: 1.75;
-    }
 
-    .lead strong {
-      color: white;
-    }
+.hero h1 {
 
-    .story-line {
-      margin: 45px 0;
+  margin: 0;
 
-      height: 1px;
+  font-size:
+    clamp(46px,6vw,90px);
 
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--purple),
-          var(--green),
-          transparent
-        );
-    }
+  line-height: .92;
 
-    /* =========================
-       CARDS
-       ========================= */
+  letter-spacing: -3px;
 
-    .grid {
-      display: grid;
+  text-transform: uppercase;
 
-      grid-template-columns:
-        repeat(2, 1fr);
+}
 
-      gap: 18px;
 
-      margin-top: 40px;
-    }
+.hero h1 span {
 
-    .card {
-      position: relative;
+  color:
+    var(--purple-light);
 
-      min-height: 220px;
+}
 
-      padding: 28px;
 
-      border: 1px solid var(--line);
-      border-radius: 10px;
+.hero-copy {
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(18,11,28,.9),
-          rgba(7,7,10,.96)
-        );
+  max-width: 690px;
 
-      overflow: hidden;
-    }
+  margin-top: 24px;
 
-    .card::before {
-      content: "";
+  color: #d4cedc;
 
-      position: absolute;
+  font-size:
+    clamp(16px,1.4vw,20px);
 
-      left: 0;
-      top: 0;
+  line-height: 1.65;
 
-      width: 3px;
-      height: 100%;
+}
 
-      background:
-        linear-gradient(
-          180deg,
-          var(--purple),
-          var(--green)
-        );
-    }
 
-    .card-label {
-      margin-bottom: 14px;
+.hero-copy strong {
+  color: white;
+}
 
-      color: var(--green);
 
-      font-size: 11px;
-      font-weight: 900;
+.hero-actions {
 
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+  display: flex;
 
-    .card h3 {
-      margin: 0 0 12px;
+  flex-wrap: wrap;
 
-      font-size: 22px;
-    }
+  gap: 12px;
 
-    .card p {
-      margin: 0;
+  margin-top: 30px;
 
-      color: var(--muted);
+}
 
-      line-height: 1.65;
-    }
 
-    /* =========================
-       CHAPTERS
-       ========================= */
+.button {
 
-    .chapters {
-      margin-top: 50px;
+  display: inline-flex;
 
-      display: grid;
-      gap: 20px;
-    }
+  align-items: center;
 
-    .chapter {
-      display: grid;
+  justify-content: center;
 
-      grid-template-columns:
-        90px 1fr;
+  min-height: 48px;
 
-      gap: 25px;
+  padding:
+    0 20px;
 
-      padding: 30px 0;
+  border:
+    1px solid
+    var(--purple);
 
-      border-bottom:
-        1px solid rgba(255,255,255,.08);
-    }
+  border-radius: 7px;
 
-    .chapter-number {
-      color: var(--purple-light);
+  background:
 
-      font-size: 45px;
-      font-weight: 900;
-    }
+    linear-gradient(
+      180deg,
+      #843ee4,
+      #55209c
+    );
 
-    .chapter h3 {
-      margin: 0 0 8px;
+  color: white;
 
-      font-size: 25px;
-    }
+  text-decoration: none;
 
-    .chapter p {
-      margin: 0;
+  font-size: 12px;
 
-      color: var(--muted);
+  font-weight: 900;
 
-      line-height: 1.7;
-    }
+  letter-spacing: 1.2px;
 
-    /* =========================
-       PROGRESSION
-       ========================= */
+  text-transform: uppercase;
 
-    .progression {
-      margin-top: 45px;
+  cursor: pointer;
 
-      display: grid;
+  transition:
+    transform .13s ease,
+    filter .13s ease;
 
-      grid-template-columns:
-        repeat(4, 1fr);
+}
 
-      gap: 10px;
-    }
 
-    .progress-step {
-      min-height: 185px;
+.button:hover {
 
-      padding: 22px;
+  transform:
+    translateY(-2px);
 
-      border: 1px solid var(--line);
-      border-radius: 8px;
+  filter:
+    brightness(1.12);
 
-      background: #09070e;
-    }
+}
 
-    .progress-step span {
-      display: block;
 
-      margin-bottom: 12px;
+.button.green {
 
-      color: var(--green);
+  border-color:
+    var(--green);
 
-      font-size: 11px;
-      font-weight: 900;
+  background:
 
-      letter-spacing: 2px;
-    }
+    linear-gradient(
+      180deg,
+      #91bc2b,
+      #567618
+    );
 
-    .progress-step strong {
-      display: block;
+  color: #091006;
 
-      margin-bottom: 10px;
+}
 
-      color: white;
 
-      font-size: 18px;
-    }
+/* ==================================================
+   GREETER
+================================================== */
 
-    .progress-step p {
-      margin: 0;
+.greeter-wrap {
 
-      color: var(--muted);
+  min-height: 520px;
 
-      font-size: 14px;
-      line-height: 1.6;
-    }
+  padding-top: 65px;
 
-    .progress-step.final {
-      border-color:
-        rgba(167,213,45,.5);
-    }
+  display: flex;
 
-    /* =========================
-       ALLIANCE ROLE
-       ========================= */
+  align-items: flex-end;
 
-    .role-panel {
-      margin-top: 45px;
+  justify-content: center;
 
-      padding: 38px;
+}
 
-      border:
-        1px solid rgba(167,213,45,.28);
 
-      border-radius: 12px;
+.greeter {
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(31,44,13,.28),
-          rgba(7,7,10,.96)
-        );
-    }
+  display: block;
 
-    .role-panel h3 {
-      margin-top: 0;
+  width: 100%;
 
-      font-size: 27px;
-    }
+  max-width: 390px;
 
-    .role-item {
-      display: grid;
+  object-fit: contain;
 
-      grid-template-columns:
-        38px 1fr;
+  filter:
 
-      gap: 13px;
+    drop-shadow(
+      0 20px 40px
+      rgba(0,0,0,.75)
+    );
 
-      margin: 23px 0;
-    }
+}
 
-    .role-icon {
-      width: 30px;
-      height: 30px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+/* ==================================================
+   ALLIANCE SCROLL
+   TOP LEFT OF HERO
+================================================== */
 
-      border: 1px solid var(--green);
-      border-radius: 50%;
+.hero-scroll {
 
-      color: var(--green);
+  position: relative;
 
-      font-weight: 900;
-    }
+  width: 100%;
 
-    .role-item strong {
-      display: block;
+  min-height: 360px;
 
-      margin-bottom: 5px;
-    }
+  padding:
+    55px 30px 55px;
 
-    .role-item p {
-      margin: 0;
+  color:
+    var(--ink);
 
-      color: var(--muted);
+  border-radius: 7px;
 
-      line-height: 1.6;
-    }
+  background:
 
-    /* =========================
-       FINAL MINT
-       ========================= */
+    linear-gradient(
+      90deg,
 
-    .sealed {
-      margin-top: 45px;
+      #735126,
 
-      padding: 50px 35px;
+      #bf9e5c 6%,
 
-      border:
-        1px solid rgba(199,140,255,.35);
+      #dfc88c 18%,
 
-      border-radius: 12px;
+      #e5d09a 50%,
 
-      text-align: center;
+      #dfc88c 82%,
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(117,37,183,.22),
-          rgba(6,5,9,.96) 65%
-        );
-    }
+      #bf9e5c 94%,
 
-    .sealed-mark {
-      margin-bottom: 12px;
+      #735126
+    );
 
-      color: var(--purple-light);
+  box-shadow:
 
-      font-size: 38px;
-    }
+    0 25px 55px
+    rgba(0,0,0,.72),
 
-    .sealed h3 {
-      margin: 0 0 12px;
+    0 0 30px
+    rgba(139,61,255,.12);
 
-      font-size: 30px;
-    }
+}
 
-    .sealed p {
-      max-width: 680px;
 
-      margin: 0 auto;
+/* Scroll rollers */
 
-      color: var(--muted);
+.hero-scroll::before,
+.hero-scroll::after {
 
-      line-height: 1.7;
-    }
+  content: "";
 
-    /* =========================
-       PLEDGE
-       ========================= */
+  position: absolute;
 
-    .pledge-wrap {
-      margin-top: 45px;
+  left: -10px;
 
-      display: grid;
+  right: -10px;
 
-      grid-template-columns:
-        .9fr 1.1fr;
+  height: 25px;
 
-      gap: 35px;
+  border-radius: 50%;
 
-      align-items: start;
-    }
+  background:
 
-    .pledge-form {
-      padding: 32px;
+    linear-gradient(
+      180deg,
+      #4b3114,
+      #b28643,
+      #62431d
+    );
 
-      border:
-        1px solid rgba(167,213,45,.32);
+  box-shadow:
 
-      border-radius: 12px;
+    0 5px 12px
+    rgba(0,0,0,.45);
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(20,25,10,.45),
-          rgba(8,7,11,.98)
-        );
-    }
+}
 
-    .pledge-form h3 {
-      margin-top: 0;
 
-      color: var(--green);
+.hero-scroll::before {
+  top: -9px;
+}
 
-      font-size: 27px;
-    }
 
-    .form-group {
-      margin-top: 18px;
-    }
+.hero-scroll::after {
+  bottom: -9px;
+}
 
-    .form-group label {
-      display: block;
 
-      margin-bottom: 7px;
+/* Medieval-style title */
 
-      color: #ddd7e5;
+.scroll-title {
 
-      font-size: 12px;
-      font-weight: 900;
+  margin:
+    0 0 8px;
 
-      letter-spacing: 1px;
+  text-align: center;
 
-      text-transform: uppercase;
-    }
+  font-family:
+    "Palatino Linotype",
+    "Book Antiqua",
+    Palatino,
+    Georgia,
+    serif;
 
-    .form-group input {
-      width: 100%;
+  font-size: 29px;
 
-      padding: 14px;
+  font-weight: 900;
 
-      border:
-        1px solid rgba(255,255,255,.14);
+  font-variant:
+    small-caps;
 
-      border-radius: 7px;
+  letter-spacing: 2px;
 
-      outline: none;
+}
 
-      background: #08070b;
-      color: white;
 
-      font-size: 15px;
-    }
+.scroll-subtitle {
 
-    .form-group input:focus {
-      border-color: var(--purple-light);
+  margin:
+    0 0 25px;
 
-      box-shadow:
-        0 0 0 3px
-        rgba(139,61,255,.12);
-    }
+  text-align: center;
 
-    .pledge-submit {
-      width: 100%;
+  font-family:
+    Georgia,
+    serif;
 
-      margin-top: 24px;
-      padding: 15px;
+  font-size: 12px;
 
-      border: 1px solid var(--green);
-      border-radius: 7px;
+  font-style: italic;
 
-      background:
-        linear-gradient(
-          180deg,
-          #9aca2d,
-          #557516
-        );
+  opacity: .72;
 
-      color: #071004;
+}
 
-      font-size: 13px;
-      font-weight: 900;
 
-      letter-spacing: 1px;
+.pledge-list {
 
-      text-transform: uppercase;
+  display: grid;
 
-      cursor: pointer;
-    }
+  gap: 5px;
 
-    .pledge-submit:hover {
-      filter: brightness(1.12);
-    }
+}
 
-    .pledge-submit:disabled {
-      opacity: .5;
-      cursor: wait;
-    }
 
-    .pledge-message {
-      min-height: 22px;
+/* ==================================================
+   PROJECT ROW
+================================================== */
 
-      margin-top: 14px;
+.pledge-project {
 
-      color: var(--muted);
+  position: relative;
 
-      font-size: 13px;
-      line-height: 1.5;
+  display: flex;
 
-      text-align: center;
-    }
+  align-items: center;
 
-    .pledge-message.success {
-      color: var(--green);
-    }
+  gap: 10px;
 
-    .pledge-message.error {
-      color: #ff7777;
-    }
+  min-height: 50px;
 
-    /* =========================
-       PLEDGE SCROLL
-       ========================= */
+  padding:
+    8px 5px;
 
-    .scroll-shell {
-      position: relative;
+  border-bottom:
 
-      padding:
-        48px 45px 55px;
+    1px solid
+    rgba(65,43,15,.24);
 
-      min-height: 430px;
+  cursor: pointer;
 
-      color: #20180b;
+  outline: none;
 
-      border-radius: 6px;
+}
 
-      background:
-        linear-gradient(
-          90deg,
-          #705327,
-          #c4a96b 8%,
-          #dbc48b 50%,
-          #c4a96b 92%,
-          #705327
-        );
 
-      box-shadow:
-        0 25px 45px
-        rgba(0,0,0,.55);
-    }
+.project-display {
 
-    .scroll-shell::before,
-    .scroll-shell::after {
-      content: "";
+  position: relative;
 
-      position: absolute;
+  flex: 1;
 
-      left: -8px;
-      right: -8px;
+  min-width: 0;
 
-      height: 23px;
+  min-height: 38px;
 
-      border-radius: 50%;
+  display: flex;
 
-      background:
-        linear-gradient(
-          180deg,
-          #5e431e,
-          #b58f4f,
-          #5a401c
-        );
+  align-items: center;
 
-      box-shadow:
-        0 5px 10px
-        rgba(0,0,0,.35);
-    }
+}
 
-    .scroll-shell::before {
-      top: -8px;
-    }
 
-    .scroll-shell::after {
-      bottom: -8px;
-    }
+/* ==================================================
+   KODA PROJECT NAME
+================================================== */
 
-    .scroll-title {
-      margin: 0 0 8px;
+.koda-display {
 
-      text-align: center;
+  width: 100%;
 
-      font-family: Georgia, serif;
+  display: flex;
 
-      font-size: 27px;
+  align-items: center;
 
-      text-transform: uppercase;
+  min-height: 38px;
 
-      letter-spacing: 2px;
-    }
+  opacity: 1;
 
-    .scroll-subtitle {
-      margin: 0 0 28px;
+  transition:
+    opacity .22s ease,
+    transform .22s ease;
 
-      text-align: center;
+}
 
-      font-family: Georgia, serif;
 
-      font-size: 13px;
+/*
+  Override sprite sizing to guarantee
+  the uploaded 26-character sprite works.
+*/
 
-      opacity: .72;
-    }
+.koda-glyph {
 
-    .pledge-list {
-      display: grid;
+  background-size:
+    2600% 100% !important;
 
-      gap: 10px;
-    }
+  filter:
+    brightness(0)
+    saturate(100%);
 
-    .pledge-project {
-      position: relative;
+  width: .88em !important;
 
-      padding:
-        12px 14px 12px 30px;
+  height: 1.15em !important;
 
-      border-bottom:
-        1px solid rgba(60,40,14,.25);
+}
 
-      font-family:
-        Georgia, "Times New Roman", serif;
 
-      font-size: 18px;
-      font-weight: 700;
-    }
+/* ==================================================
+   ENGLISH REVEAL
+================================================== */
 
-    .pledge-project::before {
-      content: "✦";
+.english-display {
 
-      position: absolute;
+  position: absolute;
 
-      left: 5px;
-      top: 11px;
+  inset: 0;
 
-      color: #563717;
-    }
+  display: flex;
 
-    .scroll-empty {
-      padding: 35px 10px;
+  align-items: center;
 
-      text-align: center;
+  color:
+    #291a08;
 
-      font-family: Georgia, serif;
+  font-family:
 
-      font-style: italic;
+    "Palatino Linotype",
+    "Book Antiqua",
+    Palatino,
+    Georgia,
+    serif;
 
-      opacity: .65;
-    }
+  font-size: 18px;
 
-    /* =========================
-       FINAL
-       ========================= */
+  font-weight: 900;
 
-    .invitation {
-      min-height: 70vh;
+  letter-spacing: .5px;
 
-      display: flex;
-      align-items: center;
+  opacity: 0;
 
-      text-align: center;
+  transform:
+    translateY(5px);
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(90,24,145,.22),
-          transparent 50%
-        );
-    }
+  transition:
+    opacity .22s ease,
+    transform .22s ease;
 
-    .invitation h2,
-    .invitation .lead {
-      margin-left: auto;
-      margin-right: auto;
-    }
+}
 
-    .invitation .hero-actions {
-      justify-content: center;
-    }
 
-    footer {
-      padding: 25px;
+/* Hover reveal */
 
-      border-top:
-        1px solid rgba(255,255,255,.06);
+.pledge-project:hover
+.koda-display,
 
-      color: #81798a;
+.pledge-project:focus
+.koda-display,
 
-      font-size: 11px;
-      text-align: center;
-    }
+.pledge-project.revealed
+.koda-display {
 
-    /* =========================
-       MOBILE
-       ========================= */
+  opacity: 0;
 
-    @media (max-width: 850px) {
+  transform:
+    translateY(-5px);
 
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding-top: 90px;
-      }
+}
 
-      .greeter-wrap {
-        min-height: 350px;
-      }
 
-      .greeter {
-        max-width: 300px;
-      }
+.pledge-project:hover
+.english-display,
 
-      .grid {
-        grid-template-columns: 1fr;
-      }
+.pledge-project:focus
+.english-display,
 
-      .progression {
-        grid-template-columns: 1fr;
-      }
+.pledge-project.revealed
+.english-display {
 
-      .pledge-wrap {
-        grid-template-columns: 1fr;
-      }
+  opacity: 1;
 
-      .nav-links {
-        display: none;
-      }
+  transform:
+    translateY(0);
 
-      .chapter {
-        grid-template-columns: 55px 1fr;
-        gap: 15px;
-      }
+}
 
-      .chapter-number {
-        font-size: 34px;
-      }
 
-      .section {
-        padding: 75px 0;
-      }
+/* ==================================================
+   ADMIN CONTROLS
+================================================== */
 
-      .scroll-shell {
-        padding:
-          42px 25px 48px;
-      }
-    }
+.admin-panel {
 
-  </style>
+  display: none;
+
+  margin-bottom: 18px;
+
+  padding: 10px;
+
+  border:
+    1px solid
+    rgba(60,39,13,.45);
+
+  border-radius: 5px;
+
+  background:
+    rgba(255,255,255,.17);
+
+  color:
+    #2b1b08;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 10px;
+
+}
+
+
+.admin-panel.visible {
+
+  display: block;
+
+}
+
+
+.admin-panel strong {
+
+  display: block;
+
+  margin-bottom: 4px;
+
+}
+
+
+.admin-wallet {
+
+  word-break:
+    break-all;
+
+  font-family:
+    monospace;
+
+  font-size: 9px;
+
+}
+
+
+.admin-actions {
+
+  display: flex;
+
+  gap: 5px;
+
+  flex: 0 0 auto;
+
+}
+
+
+.admin-button {
+
+  padding:
+    5px 7px;
+
+  border:
+    1px solid
+    #533610;
+
+  border-radius: 4px;
+
+  background:
+    #ead399;
+
+  color:
+    #251706;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+}
+
+
+.admin-button.delete {
+
+  color: white;
+
+  background:
+    #a94236;
+
+}
+
+
+.admin-login {
+
+  display: block;
+
+  margin:
+    20px auto 0;
+
+  padding:
+    5px 9px;
+
+  border:
+    1px solid
+    rgba(55,34,10,.35);
+
+  border-radius: 3px;
+
+  background:
+    transparent;
+
+  color:
+    rgba(48,29,8,.55);
+
+  font-size: 8px;
+
+  cursor: pointer;
+
+}
+
+
+.admin-login:hover {
+
+  color:
+    #291a08;
+
+  border-color:
+    #291a08;
+
+}
+
+
+/* ==================================================
+   NAV
+================================================== */
+
+.nav {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  background:
+    rgba(5,5,8,.92);
+
+  backdrop-filter:
+    blur(12px);
+
+  border-bottom:
+    1px solid
+    rgba(139,61,255,.18);
+
+}
+
+
+.nav-inner {
+
+  width:
+    min(1180px,92vw);
+
+  margin: 0 auto;
+
+  min-height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+}
+
+
+.brand {
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+.brand span {
+
+  color:
+    var(--purple-light);
+
+}
+
+
+.nav-links {
+
+  display: flex;
+
+  gap: 20px;
+
+}
+
+
+.nav-links a {
+
+  color:
+    var(--muted);
+
+  text-decoration: none;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+/* ==================================================
+   CONTENT
+================================================== */
+
+.section {
+
+  padding:
+    100px 0;
+
+}
+
+
+.container {
+
+  width:
+    min(1050px,88vw);
+
+  margin:
+    0 auto;
+
+}
+
+
+.section-number {
+
+  margin-bottom:
+    10px;
+
+  color:
+    var(--green);
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+}
+
+
+.section h2 {
+
+  margin:
+    0 0 20px;
+
+  max-width: 850px;
+
+  font-size:
+    clamp(34px,5vw,65px);
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+
+}
+
+
+.lead {
+
+  max-width: 820px;
+
+  color:
+    #d2ccd9;
+
+  font-size: 18px;
+
+  line-height: 1.75;
+
+}
+
+
+.lead strong {
+
+  color: white;
+
+}
+
+
+.story-line {
+
+  margin:
+    45px 0;
+
+  height: 1px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--purple),
+      var(--green),
+      transparent
+    );
+
+}
+
+
+/* ==================================================
+   CARDS
+================================================== */
+
+.grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap: 18px;
+
+  margin-top:
+    40px;
+
+}
+
+
+.card {
+
+  min-height:
+    220px;
+
+  padding:
+    28px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    10px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(18,11,28,.9),
+      rgba(7,7,10,.96)
+    );
+
+}
+
+
+.card-label {
+
+  margin-bottom:
+    14px;
+
+  color:
+    var(--green);
+
+  font-size:
+    11px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    2px;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+.card h3 {
+
+  margin:
+    0 0 12px;
+
+  font-size:
+    22px;
+
+}
+
+
+.card p {
+
+  margin: 0;
+
+  color:
+    var(--muted);
+
+  line-height:
+    1.65;
+
+}
+
+
+/* ==================================================
+   CHAPTERS
+================================================== */
+
+.chapters {
+
+  margin-top:
+    50px;
+
+}
+
+
+.chapter {
+
+  display: grid;
+
+  grid-template-columns:
+    90px 1fr;
+
+  gap:
+    25px;
+
+  padding:
+    30px 0;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+
+.chapter-number {
+
+  color:
+    var(--purple-light);
+
+  font-size:
+    45px;
+
+  font-weight:
+    900;
+
+}
+
+
+.chapter h3 {
+
+  margin:
+    0 0 8px;
+
+  font-size:
+    25px;
+
+}
+
+
+.chapter p {
+
+  margin: 0;
+
+  color:
+    var(--muted);
+
+  line-height:
+    1.7;
+
+}
+
+
+/* ==================================================
+   AIRDROP PROGRESSION
+================================================== */
+
+.progression {
+
+  margin-top:
+    45px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:
+    10px;
+
+}
+
+
+.progress-step {
+
+  min-height:
+    185px;
+
+  padding:
+    22px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    8px;
+
+  background:
+    #09070e;
+
+}
+
+
+.progress-step span {
+
+  display: block;
+
+  margin-bottom:
+    12px;
+
+  color:
+    var(--green);
+
+  font-size:
+    11px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    2px;
+
+}
+
+
+.progress-step strong {
+
+  display: block;
+
+  margin-bottom:
+    10px;
+
+  font-size:
+    18px;
+
+}
+
+
+.progress-step p {
+
+  color:
+    var(--muted);
+
+  font-size:
+    14px;
+
+  line-height:
+    1.6;
+
+}
+
+
+/* ==================================================
+   ALLIANCE ROLE
+================================================== */
+
+.role-panel {
+
+  margin-top:
+    45px;
+
+  padding:
+    38px;
+
+  border:
+    1px solid
+    rgba(167,213,45,.28);
+
+  border-radius:
+    12px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(31,44,13,.28),
+      rgba(7,7,10,.96)
+    );
+
+}
+
+
+.role-item {
+
+  display: grid;
+
+  grid-template-columns:
+    38px 1fr;
+
+  gap:
+    13px;
+
+  margin:
+    23px 0;
+
+}
+
+
+.role-icon {
+
+  width:
+    30px;
+
+  height:
+    30px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid
+    var(--green);
+
+  border-radius:
+    50%;
+
+  color:
+    var(--green);
+
+  font-weight:
+    900;
+
+}
+
+
+.role-item p {
+
+  color:
+    var(--muted);
+
+  line-height:
+    1.6;
+
+}
+
+
+/* ==================================================
+   FINAL MINT
+================================================== */
+
+.sealed {
+
+  margin-top:
+    45px;
+
+  padding:
+    50px 35px;
+
+  border:
+    1px solid
+    rgba(199,140,255,.35);
+
+  border-radius:
+    12px;
+
+  text-align:
+    center;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(117,37,183,.22),
+      rgba(6,5,9,.96)
+      65%
+    );
+
+}
+
+
+/* ==================================================
+   PLEDGE FORM
+================================================== */
+
+.pledge-form {
+
+  width:
+    min(600px,100%);
+
+  margin-top:
+    40px;
+
+  padding:
+    32px;
+
+  border:
+    1px solid
+    rgba(167,213,45,.32);
+
+  border-radius:
+    12px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(20,25,10,.45),
+      rgba(8,7,11,.98)
+    );
+
+}
+
+
+.pledge-form h3 {
+
+  margin-top: 0;
+
+  color:
+    var(--green);
+
+}
+
+
+.form-group {
+
+  margin-top:
+    18px;
+
+}
+
+
+.form-group label {
+
+  display:
+    block;
+
+  margin-bottom:
+    7px;
+
+  color:
+    #ddd7e5;
+
+  font-size:
+    12px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    1px;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+.form-group input {
+
+  width:
+    100%;
+
+  padding:
+    14px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+
+  border-radius:
+    7px;
+
+  background:
+    #08070b;
+
+  color:
+    white;
+
+  outline:
+    none;
+
+  font-size:
+    15px;
+
+}
+
+
+.pledge-submit {
+
+  width:
+    100%;
+
+  margin-top:
+    24px;
+
+  padding:
+    15px;
+
+  border:
+    1px solid
+    var(--green);
+
+  border-radius:
+    7px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #9aca2d,
+      #557516
+    );
+
+  color:
+    #071004;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    1px;
+
+  cursor:
+    pointer;
+
+}
+
+
+.pledge-message {
+
+  min-height:
+    22px;
+
+  margin-top:
+    14px;
+
+  font-size:
+    13px;
+
+  text-align:
+    center;
+
+}
+
+
+.success {
+  color:
+    var(--green);
+}
+
+
+.error {
+  color:
+    #ff7777;
+}
+
+
+/* ==================================================
+   FINAL SECTION
+================================================== */
+
+.invitation {
+
+  min-height:
+    70vh;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  text-align:
+    center;
+
+}
+
+
+.invitation h2,
+.invitation .lead {
+
+  margin-left:
+    auto;
+
+  margin-right:
+    auto;
+
+}
+
+
+.invitation
+.hero-actions {
+
+  justify-content:
+    center;
+
+}
+
+
+footer {
+
+  padding:
+    25px;
+
+  color:
+    #81798a;
+
+  text-align:
+    center;
+
+  font-size:
+    11px;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(
+  max-width: 1050px
+) {
+
+  .hero-inner {
+
+    grid-template-columns:
+      1fr 1.2fr;
+
+  }
+
+
+  .hero-scroll {
+
+    grid-column:
+      1;
+
+    grid-row:
+      1;
+
+  }
+
+
+  .hero-copy-column {
+
+    grid-column:
+      2;
+
+    grid-row:
+      1;
+
+  }
+
+
+  .greeter-wrap {
+
+    grid-column:
+      1 / 3;
+
+    min-height:
+      320px;
+
+    padding-top:
+      10px;
+
+  }
+
+
+  .greeter {
+
+    max-width:
+      280px;
+
+  }
+
+}
+
+
+@media(
+  max-width: 750px
+) {
+
+  .hero-inner {
+
+    grid-template-columns:
+      1fr;
+
+    width:
+      min(92vw,600px);
+
+  }
+
+
+  .hero-scroll,
+  .hero-copy-column,
+  .greeter-wrap {
+
+    grid-column:
+      1;
+
+  }
+
+
+  .hero-scroll {
+    grid-row:
+      1;
+  }
+
+
+  .hero-copy-column {
+
+    grid-row:
+      2;
+
+    padding-top:
+      15px;
+
+  }
+
+
+  .greeter-wrap {
+
+    grid-row:
+      3;
+
+  }
+
+
+  .grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .progression {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .nav-links {
+    display:
+      none;
+  }
+
+
+  .chapter {
+
+    grid-template-columns:
+      55px 1fr;
+
+  }
+
+
+  .section {
+
+    padding:
+      75px 0;
+
+  }
+
+
+  .hero-scroll {
+
+    padding:
+      50px 24px;
+
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <!-- PRIVATE PAGE GUARD -->
 
-  <script>
+<!-- ==================================================
+     PRIVATE PAGE GUARD
+================================================== -->
+
+<script>
+
+if (
+  sessionStorage
+  .getItem(
+    "allianceAccess"
+  )
+  !==
+  "granted"
+) {
+
+  window.location
+  .replace(
+    "index.html"
+  );
+
+}
+
+</script>
+
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<header class="hero">
+
+
+<div class="hero-inner">
+
+
+<!-- ALLIANCE SCROLL -->
+
+<aside
+  class="hero-scroll"
+>
+
+<h2 class="scroll-title">
+
+The Alliance Pledge
+
+</h2>
+
+
+<p class="scroll-subtitle">
+
+Projects that have answered the call
+
+</p>
+
+
+<div
+  id="adminPanel"
+  class="admin-panel"
+>
+
+<strong>
+
+ADMIN EDITING ACTIVE
+
+</strong>
+
+<div
+  id="adminWalletDisplay"
+  class="admin-wallet"
+>
+</div>
+
+</div>
+
+
+<div
+  id="pledgeList"
+  class="pledge-list"
+>
+</div>
+
+
+<button
+  id="adminLogin"
+  class="admin-login"
+  type="button"
+  onclick="activateAdmin()"
+>
+
+Admin
+
+</button>
+
+
+</aside>
+
+
+
+<!-- HERO COPY -->
+
+<div class="hero-copy-column">
+
+
+<div class="eyebrow">
+
+Private Alliance Transmission
+
+</div>
+
+
+<h1>
+
+Welcome to the
+<span>Bog.</span>
+
+</h1>
+
+
+<p class="hero-copy">
+
+You were given access because we believe
+your community may belong inside what is
+being built here.
+
+<strong>
+
+Cosmic Dream Bog is not simply an NFT launch.
+
+</strong>
+
+It is a story participants enter,
+investigate and experience together.
+
+</p>
+
+
+<p class="hero-copy">
+
+This transmission explains the world,
+the journey and what it means for your
+project to answer the Alliance call.
+
+</p>
+
+
+<div class="hero-actions">
+
+
+<a
+  class="button green"
+  href="#transmission"
+>
+
+Read the Transmission
+
+</a>
+
+
+<a
+  class="button"
+  href="https://discord.gg/XkxVPNsS6w"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+Enter Discord
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- GREETER -->
+
+<div class="greeter-wrap">
+
+
+<img
+
+  src="alliance-greeter.png"
+
+  alt="Alliance Greeter"
+
+  class="greeter"
+
+>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+
+<!-- ==================================================
+     NAV
+================================================== -->
+
+<nav class="nav">
+
+
+<div class="nav-inner">
+
+
+<div class="brand">
+
+Cosmic Dream
+<span>Bog</span>
+
+</div>
+
+
+<div class="nav-links">
+
+
+<a href="#world">
+
+World
+
+</a>
+
+
+<a href="#journey">
+
+Journey
+
+</a>
+
+
+<a href="#alliance">
+
+Alliance
+
+</a>
+
+
+<a href="#otherside">
+
+Otherside
+
+</a>
+
+
+<a href="#pledge">
+
+Pledge
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</nav>
+
+
+
+<!-- ==================================================
+     TRANSMISSION 01
+================================================== -->
+
+<section
+  id="transmission"
+  class="section"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 01
+
+</div>
+
+
+<h2>
+
+Not another drop.
+A call to enter the Bog.
+
+</h2>
+
+
+<p class="lead">
+
+Most NFT launches begin by showing people
+exactly what they can buy.
+
+Cosmic Dream Bog begins differently.
+
+Participants enter a mystery first.
+
+</p>
+
+
+<div class="story-line"></div>
+
+
+<p class="lead">
+
+Your project remains your project.
+
+Joining the Alliance does not make you
+part of the Cosmic Dream Bog team.
+
+<strong>
+
+The Alliance creates a bridge between
+respected communities and one shared adventure.
+
+</strong>
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     WORLD
+================================================== -->
+
+<section
+  id="world"
+  class="section"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 02
+
+</div>
+
+
+<h2>
+
+The Bog is already waiting.
+
+</h2>
+
+
+<p class="lead">
+
+Cosmic Dream Bog is built around a specific
+place inside the Otherside ecosystem:
+
+a Bog environment shaped by
+Cosmic Dream sediment.
+
+Strange.
+Unstable.
+Dreamlike.
+
+</p>
+
+
+
+<div class="grid">
+
+
+<article class="card">
+
+
+<div class="card-label">
+
+The Obelisk
+
+</div>
+
+
+<h3>
+
+Something has shattered.
+
+</h3>
+
+
+<p>
+
+An ancient obelisk has been deliberately
+broken.
+
+Its fragments are scattered throughout
+the Bog.
+
+Discovering why becomes part of the journey.
+
+</p>
+
+
+</article>
+
+
+
+<article class="card">
+
+
+<div class="card-label">
+
+The Shards
+
+</div>
+
+
+<h3>
+
+Discovery matters.
+
+</h3>
+
+
+<p>
+
+Shards, fragments, puzzles and clues
+become pieces of a mystery shared across
+participating communities.
+
+</p>
+
+
+</article>
+
+
+
+<article class="card">
+
+
+<div class="card-label">
+
+Discord
+
+</div>
+
+
+<h3>
+
+The live campaign layer.
+
+</h3>
+
+
+<p>
+
+Discord is where chapters open,
+discoveries happen,
+Shard Hunt runs and participant
+progress is earned.
+
+</p>
+
+
+</article>
+
+
+
+<article class="card">
+
+
+<div class="card-label">
+
+Tone
+
+</div>
+
+
+<h3>
+
+Eerie. Strange. Playful.
+
+</h3>
+
+
+<p>
+
+The atmosphere sits inside interactive
+horror and community discovery.
+
+</p>
+
+
+</article>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     STORY
+================================================== -->
+
+<section
+  id="journey"
+  class="section"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 03
+
+</div>
+
+
+<h2>
+
+Four movements.
+One shared story.
+
+</h2>
+
+
+<div class="chapters">
+
+
+
+<div class="chapter">
+
+
+<div class="chapter-number">
+
+01
+
+</div>
+
+
+<div>
+
+
+<h3>
+
+Answer the Call
+
+</h3>
+
+
+<p>
+
+Alliance projects bring selected
+community members into the Bog.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="chapter">
+
+
+<div class="chapter-number">
+
+02
+
+</div>
+
+
+<div>
+
+
+<h3>
+
+The Shattering
+
+</h3>
+
+
+<p>
+
+The obelisk is destroyed.
+
+Channels open.
+
+Shard Hunt begins.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="chapter">
+
+
+<div class="chapter-number">
+
+03
+
+</div>
+
+
+<div>
+
+
+<h3>
+
+The Investigation
+
+</h3>
+
+
+<p>
+
+Clues, puzzles, fragments and strange
+discoveries connect participating
+communities to one mystery.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="chapter">
+
+
+<div class="chapter-number">
+
+04
+
+</div>
+
+
+<div>
+
+
+<h3>
+
+The Rally
+
+</h3>
+
+
+<p>
+
+Communities move toward restoration of
+the obelisk and confrontation with the
+force responsible for the Shattering.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     AIRDROP PROGRESSION
+================================================== -->
+
+<section class="section">
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 04
+
+</div>
+
+
+<h2>
+
+Progress is proven on-chain.
+
+</h2>
+
+
+<p class="lead">
+
+Participants complete required tasks and
+game progression inside Discord.
+
+As each stage is completed,
+qualifying wallets become part of
+that chapter's community airdrop.
+
+</p>
+
+
+
+<div class="progression">
+
+
+
+<div class="progress-step">
+
+
+<span>
+
+AIRDROP 01
+
+</span>
+
+
+<strong>
+
+Story NFT One
+
+</strong>
+
+
+<p>
+
+Complete the first qualifying
+story milestone.
+
+</p>
+
+
+</div>
+
+
+
+<div class="progress-step">
+
+
+<span>
+
+AIRDROP 02
+
+</span>
+
+
+<strong>
+
+Story NFT Two
+
+</strong>
+
+
+<p>
+
+Continue the investigation
+and complete the next stage.
+
+</p>
+
+
+</div>
+
+
+
+<div class="progress-step">
+
+
+<span>
+
+AIRDROP 03
+
+</span>
+
+
+<strong>
+
+Story NFT Three
+
+</strong>
+
+
+<p>
+
+Complete the final qualifying
+story stage.
+
+</p>
+
+
+</div>
+
+
+
+<div class="progress-step">
+
+
+<span>
+
+UNLOCK
+
+</span>
+
+
+<strong>
+
+Fourth Mint
+
+</strong>
+
+
+<p>
+
+The same wallet must contain
+all three story NFTs to
+become eligible.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="story-line"></div>
+
+
+<p class="lead">
+
+
+<strong>
+
+One wallet.
+One path.
+
+</strong>
+
+
+All three progression NFTs must exist
+together inside the qualifying wallet
+before the fourth mint can unlock.
+
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     ALLIANCE ROLE
+================================================== -->
+
+<section
+  id="alliance"
+  class="section"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 05
+
+</div>
+
+
+<h2>
+
+Become the signal.
+
+</h2>
+
+
+
+<div class="role-panel">
+
+
+
+<div class="role-item">
+
+
+<div class="role-icon">
+
+1
+
+</div>
+
+
+<div>
+
+
+<strong>
+
+Receive the call.
+
+</strong>
+
+
+<p>
+
+Alliance projects receive the invitation
+before their community enters.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="role-item">
+
+
+<div class="role-icon">
+
+2
+
+</div>
+
+
+<div>
+
+
+<strong>
+
+Invite your people.
+
+</strong>
+
+
+<p>
+
+Bring community members who enjoy
+mystery, collaboration and discovery.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="role-item">
+
+
+<div class="role-icon">
+
+3
+
+</div>
+
+
+<div>
+
+
+<strong>
+
+Send them into Discord.
+
+</strong>
+
+
+<p>
+
+Discord becomes the active entrance
+into the campaign.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="role-item">
+
+
+<div class="role-icon">
+
+4
+
+</div>
+
+
+<div>
+
+
+<strong>
+
+Rally when the story calls.
+
+</strong>
+
+
+<p>
+
+Join important chapter moments
+when it fits your community.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     OTHERSIDE
+================================================== -->
+
+<section
+  id="otherside"
+  class="section"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 06
+
+</div>
+
+
+<h2>
+
+The story has a real location.
+
+</h2>
+
+
+
+<div class="grid">
+
+
+
+<article class="card">
+
+
+<div class="card-label">
+
+Primary Anchor
+
+</div>
+
+
+<h3>
+
+Otherdeed #31867
+
+</h3>
+
+
+<p>
+
+Environment: Bog.
+
+<br><br>
+
+Sediment: Cosmic Dream.
+
+<br><br>
+
+Primary narrative home
+of Cosmic Dream Bog.
+
+</p>
+
+
+</article>
+
+
+
+<article class="card">
+
+
+<div class="card-label">
+
+Secondary Anchor
+
+</div>
+
+
+<h3>
+
+Otherdeed #12450
+
+</h3>
+
+
+<p>
+
+Environment: Splinter.
+
+<br><br>
+
+A second owned land anchor while
+the Bog remains the focus of the
+current journey.
+
+</p>
+
+
+</article>
+
+
+</div>
+
+
+
+<div class="story-line"></div>
+
+
+<p class="lead">
+
+The long-term direction is an
+interactive horror-themed spatial
+experience built around the Bog deed.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     FINAL MINT
+================================================== -->
+
+<section class="section">
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+TRANSMISSION 07
+
+</div>
+
+
+<h2>
+
+The final mint remains
+behind the curtain.
+
+</h2>
+
+
+<div class="sealed">
+
+
+<h3>
+
+FOURTH MINT
+
+</h3>
+
+
+<p>
+
+Wallets holding all three qualifying
+story NFTs become eligible for a fourth
+and final mint:
+
+<strong>
+
+a 3D avatar.
+
+</strong>
+
+Additional details remain unreleased.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     PLEDGE FORM
+================================================== -->
+
+<section
+  id="pledge"
+  class="section"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+ALLIANCE PLEDGE
+
+</div>
+
+
+<h2>
+
+Answer the call.
+
+</h2>
+
+
+<p class="lead">
+
+Enter the three required pieces of
+information below.
+
+Only the project name appears publicly
+on the Alliance Pledge Scroll.
+
+</p>
+
+
+
+<form
+  id="pledgeForm"
+  class="pledge-form"
+>
+
+
+<h3>
+
+Answer the Alliance Pledge
+
+</h3>
+
+
+
+<div class="form-group">
+
+
+<label for="pledgeName">
+
+Name
+
+</label>
+
+
+<input
+
+  id="pledgeName"
+
+  type="text"
+
+  required
+
+>
+
+
+</div>
+
+
+
+<div class="form-group">
+
+
+<label for="pledgeProject">
+
+Project
+
+</label>
+
+
+<input
+
+  id="pledgeProject"
+
+  type="text"
+
+  required
+
+>
+
+
+</div>
+
+
+
+<div class="form-group">
+
+
+<label for="pledgeWallet">
+
+Wallet Address
+
+</label>
+
+
+<input
+
+  id="pledgeWallet"
+
+  type="text"
+
+  placeholder="0x..."
+
+  required
+
+>
+
+
+</div>
+
+
+
+<button
+
+  class="pledge-submit"
+
+  type="submit"
+
+>
+
+Answer the Pledge
+
+</button>
+
+
+
+<div
+
+  id="pledgeMessage"
+
+  class="pledge-message"
+
+>
+</div>
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     FINAL TRANSMISSION
+================================================== -->
+
+<section
+  class="section invitation"
+>
+
+
+<div class="container">
+
+
+<div class="section-number">
+
+FINAL TRANSMISSION
+
+</div>
+
+
+<h2>
+
+Will your people answer the call?
+
+</h2>
+
+
+<p class="lead">
+
+Separate communities.
+
+One strange place.
+
+One mystery waiting to be solved.
+
+</p>
+
+
+
+<div class="hero-actions">
+
+
+<a
+
+  class="button green"
+
+  href="https://discord.gg/XkxVPNsS6w"
+
+  target="_blank"
+
+  rel="noopener noreferrer"
+
+>
+
+Enter Discord
+
+</a>
+
+
+
+<a
+
+  class="button"
+
+  href="https://x.com/bogvoyager"
+
+  target="_blank"
+
+  rel="noopener noreferrer"
+
+>
+
+@BogVoyager
+
+</a>
+
+
+
+<a
+
+  class="button"
+
+  href="index.html"
+
+>
+
+Return to the Bog
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<footer>
+
+Cosmic Dream Bog ·
+Private Alliance Transmission ·
+A Terencio Verde Project
+
+</footer>
+
+
+
+<!-- ==================================================
+     KODA GLYPH ENGINE
+================================================== -->
+
+<script src="koda-glyphs.js"></script>
+
+
+
+<script>
+
+
+/* ==================================================
+   ADMIN WALLET
+================================================== */
+
+const ADMIN_WALLET =
+
+"0x6a0f160c342490d3F2C0B47f8283F442660F07d9"
+.toLowerCase();
+
+
+let adminMode = false;
+
+
+
+/* ==================================================
+   TEST PROJECT STORAGE
+================================================== */
+
+const TEST_STORAGE_KEY =
+
+"cosmicDreamAllianceProjects";
+
+
+
+function getProjects() {
+
+
+  try {
+
+
+    const saved =
+
+      localStorage.getItem(
+        TEST_STORAGE_KEY
+      );
+
+
+    if (!saved) {
+
+      return [];
+
+    }
+
+
+    return JSON.parse(
+      saved
+    );
+
+
+  }
+
+
+  catch(error) {
+
+
+    console.error(
+      error
+    );
+
+
+    return [];
+
+
+  }
+
+
+}
+
+
+
+function saveProjects(
+  projects
+) {
+
+
+  localStorage.setItem(
+
+    TEST_STORAGE_KEY,
+
+    JSON.stringify(
+      projects
+    )
+
+  );
+
+
+}
+
+
+
+/* ==================================================
+   ADMIN WALLET
+================================================== */
+
+async function activateAdmin() {
+
+
+  if (!window.ethereum) {
+
+
+    alert(
+      "No browser wallet detected."
+    );
+
+
+    return;
+
+
+  }
+
+
+  try {
+
+
+    const accounts =
+
+      await window.ethereum.request({
+
+        method:
+          "eth_requestAccounts"
+
+      });
+
+
+
     if (
-      sessionStorage.getItem(
-        "allianceAccess"
-      ) !== "granted"
+
+      accounts.length > 0 &&
+
+      accounts[0]
+      .toLowerCase()
+      ===
+      ADMIN_WALLET
+
     ) {
-      window.location.replace(
-        "index.html"
+
+
+      adminMode = true;
+
+
+      sessionStorage.setItem(
+
+        "cosmicDreamAdmin",
+
+        "active"
+
       );
+
+
+      updateAdminUI();
+
+
+      renderProjects();
+
+
     }
-  </script>
 
 
-  <!-- HERO -->
+    else {
 
-  <header class="hero">
 
-    <div class="hero-inner">
-
-      <div>
-
-        <div class="eyebrow">
-          Private Alliance Transmission
-        </div>
-
-        <h1>
-          Welcome to the
-          <span>Bog.</span>
-        </h1>
-
-        <p class="hero-copy">
-          You were given access because we believe your
-          community may belong inside what is being built here.
-          <strong>
-            Cosmic Dream Bog is not simply an NFT launch.
-          </strong>
-          It is a story participants enter, investigate,
-          influence and experience together.
-        </p>
-
-        <p class="hero-copy">
-          This transmission explains the world, the journey
-          and what it means for your project to answer the
-          Alliance call.
-        </p>
-
-        <div class="hero-actions">
-
-          <a
-            class="button green"
-            href="#transmission">
-            Read the Transmission
-          </a>
-
-          <a
-            class="button"
-            href="https://discord.gg/XkxVPNsS6w"
-            target="_blank"
-            rel="noopener noreferrer">
-            Enter Discord
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="greeter-wrap">
-
-        <div class="greeter-glow"></div>
-
-        <img
-          src="alliance-greeter.png"
-          alt="Alliance Greeter"
-          class="greeter"
-        >
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- NAV -->
-
-  <nav class="nav">
-
-    <div class="nav-inner">
-
-      <div class="brand">
-        Cosmic Dream <span>Bog</span>
-      </div>
-
-      <div class="nav-links">
-
-        <a href="#world">World</a>
-
-        <a href="#journey">Journey</a>
-
-        <a href="#alliance">Alliance</a>
-
-        <a href="#otherside">Otherside</a>
-
-        <a href="#pledge">Pledge</a>
-
-      </div>
-
-    </div>
-
-  </nav>
-
-
-  <!-- TRANSMISSION 01 -->
-
-  <section
-    id="transmission"
-    class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 01
-      </div>
-
-      <h2>
-        Not another drop.
-        A call to enter the Bog.
-      </h2>
-
-      <p class="lead">
-        Most NFT launches begin by showing people exactly
-        what they can buy.
-        Cosmic Dream Bog begins differently.
-        Participants enter a mystery first.
-      </p>
-
-      <div class="story-line"></div>
-
-      <p class="lead">
-        Your project remains your project.
-        Joining the Alliance does not make you part of the
-        Cosmic Dream Bog team.
-        <strong>
-          The Alliance creates a bridge between respected
-          communities and one shared adventure.
-        </strong>
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- WORLD -->
-
-  <section
-    id="world"
-    class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 02
-      </div>
-
-      <h2>
-        The Bog is already waiting.
-      </h2>
-
-      <p class="lead">
-        Cosmic Dream Bog is built around a specific place
-        inside the Otherside ecosystem:
-        a Bog environment shaped by Cosmic Dream sediment.
-        Strange. Unstable. Dreamlike.
-      </p>
-
-
-      <div class="grid">
-
-        <article class="card">
-
-          <div class="card-label">
-            The Obelisk
-          </div>
-
-          <h3>
-            Something has shattered.
-          </h3>
-
-          <p>
-            An ancient obelisk has been deliberately broken.
-            Its fragments are scattered throughout the Bog,
-            and discovering why becomes part of the journey.
-          </p>
-
-        </article>
-
-
-        <article class="card">
-
-          <div class="card-label">
-            The Shards
-          </div>
-
-          <h3>
-            Discovery matters.
-          </h3>
-
-          <p>
-            Shards, fragments, puzzles and clues become
-            pieces of a mystery shared across participating
-            communities.
-          </p>
-
-        </article>
-
-
-        <article class="card">
-
-          <div class="card-label">
-            Discord
-          </div>
-
-          <h3>
-            The live campaign layer.
-          </h3>
-
-          <p>
-            Discord is where chapters open, discoveries happen,
-            Shard Hunt runs and participant progress is earned.
-          </p>
-
-        </article>
-
-
-        <article class="card">
-
-          <div class="card-label">
-            Tone
-          </div>
-
-          <h3>
-            Eerie. Strange. Playful.
-          </h3>
-
-          <p>
-            The atmosphere sits inside interactive horror:
-            unsettling enough to create mystery,
-            but communal enough to make discovery fun.
-          </p>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STORY -->
-
-  <section
-    id="journey"
-    class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 03
-      </div>
-
-      <h2>
-        Four movements.
-        One shared story.
-      </h2>
-
-
-      <div class="chapters">
-
-        <div class="chapter">
-
-          <div class="chapter-number">
-            01
-          </div>
-
-          <div>
-
-            <h3>
-              Answer the Call
-            </h3>
-
-            <p>
-              Alliance projects bring selected community
-              members into the Bog.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="chapter">
-
-          <div class="chapter-number">
-            02
-          </div>
-
-          <div>
-
-            <h3>
-              The Shattering
-            </h3>
-
-            <p>
-              Participants discover the destroyed obelisk.
-              Channels open.
-              Shard Hunt begins.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="chapter">
-
-          <div class="chapter-number">
-            03
-          </div>
-
-          <div>
-
-            <h3>
-              The Investigation
-            </h3>
-
-            <p>
-              Clues, puzzles, fragments and strange discoveries
-              begin connecting separate communities to the
-              same mystery.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="chapter">
-
-          <div class="chapter-number">
-            04
-          </div>
-
-          <div>
-
-            <h3>
-              The Rally
-            </h3>
-
-            <p>
-              Communities move toward restoration of the
-              obelisk and confrontation with the force
-              responsible for the Shattering.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PROGRESSION / AIRDROPS -->
-
-  <section class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 04
-      </div>
-
-      <h2>
-        Progress is proven on-chain.
-      </h2>
-
-      <p class="lead">
-        The first three story NFTs are not simply collected
-        from an open mint page.
-        They represent completion of the journey.
-      </p>
-
-      <p class="lead">
-        Participants complete the required tasks and game
-        progression inside Discord.
-        Once a chapter requirement has been satisfied,
-        qualifying wallets are included in the appropriate
-        community airdrop.
-      </p>
-
-
-      <div class="progression">
-
-        <div class="progress-step">
-
-          <span>
-            AIRDROP 01
-          </span>
-
-          <strong>
-            First Story NFT
-          </strong>
-
-          <p>
-            Earn the first progression milestone through
-            the opening Discord experience.
-          </p>
-
-        </div>
-
-
-        <div class="progress-step">
-
-          <span>
-            AIRDROP 02
-          </span>
-
-          <strong>
-            Second Story NFT
-          </strong>
-
-          <p>
-            Continue the investigation and complete the
-            next required story tasks.
-          </p>
-
-        </div>
-
-
-        <div class="progress-step">
-
-          <span>
-            AIRDROP 03
-          </span>
-
-          <strong>
-            Third Story NFT
-          </strong>
-
-          <p>
-            Complete the final qualifying stage of the
-            campaign.
-          </p>
-
-        </div>
-
-
-        <div class="progress-step final">
-
-          <span>
-            UNLOCK
-          </span>
-
-          <strong>
-            Final Mint
-          </strong>
-
-          <p>
-            The same wallet must contain all three story
-            NFTs to unlock eligibility for the fourth mint.
-          </p>
-
-        </div>
-
-      </div>
-
-      <div class="story-line"></div>
-
-      <p class="lead">
-        <strong>
-          One wallet means one path.
-        </strong>
-        A participant cannot split the three progression
-        NFTs between multiple wallets and still unlock
-        the final mint.
-        All three must exist together in the qualifying wallet.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- DREAM HERALD -->
-
-  <section class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 05
-      </div>
-
-      <h2>
-        There is someone else in the Bog.
-      </h2>
-
-      <p class="lead">
-        The destruction of the obelisk was not an accident.
-        Behind the Shattering is a figure known as the
-        <strong>Dream Herald</strong>.
-      </p>
-
-      <div class="story-line"></div>
-
-      <p class="lead">
-        Participants should discover the truth through the
-        journey rather than receive every answer in advance.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- ALLIANCE ROLE -->
-
-  <section
-    id="alliance"
-    class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 06
-      </div>
-
-      <h2>
-        What the Alliance is being asked to do.
-      </h2>
-
-      <p class="lead">
-        The contribution is intentionally simple.
-        This is not a generic paid promotional campaign.
-      </p>
-
-
-      <div class="role-panel">
-
-        <h3>
-          Become the signal.
-        </h3>
-
-
-        <div class="role-item">
-
-          <div class="role-icon">
-            1
-          </div>
-
-          <div>
-
-            <strong>
-              Receive the call.
-            </strong>
-
-            <p>
-              Alliance projects receive the context and
-              invitation before their community enters.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="role-item">
-
-          <div class="role-icon">
-            2
-          </div>
-
-          <div>
-
-            <strong>
-              Invite selected community members.
-            </strong>
-
-            <p>
-              Bring people who genuinely enjoy mysteries,
-              games, community collaboration and discovery.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="role-item">
-
-          <div class="role-icon">
-            3
-          </div>
-
-          <div>
-
-            <strong>
-              Send them into Discord.
-            </strong>
-
-            <p>
-              Discord becomes the active entrance into
-              the campaign.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="role-item">
-
-          <div class="role-icon">
-            4
-          </div>
-
-          <div>
-
-            <strong>
-              Rally when the story calls.
-            </strong>
-
-            <p>
-              Join major chapter moments when it makes
-              sense for your community.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- OTHERSIDE -->
-
-  <section
-    id="otherside"
-    class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 07
-      </div>
-
-      <h2>
-        The story has a real location.
-      </h2>
-
-      <p class="lead">
-        Cosmic Dream Bog is anchored to owned land inside
-        Otherside rather than existing only as a collection.
-      </p>
-
-
-      <div class="grid">
-
-        <article class="card">
-
-          <div class="card-label">
-            Primary Anchor
-          </div>
-
-          <h3>
-            Otherdeed #31867
-          </h3>
-
-          <p>
-            Environment: Bog.<br><br>
-            Sediment: Cosmic Dream.<br><br>
-            The primary narrative home of Cosmic Dream Bog.
-          </p>
-
-        </article>
-
-
-        <article class="card">
-
-          <div class="card-label">
-            Secondary Anchor
-          </div>
-
-          <h3>
-            Otherdeed #12450
-          </h3>
-
-          <p>
-            Environment: Splinter.<br><br>
-            A second owned land anchor exists while the
-            Bog remains the focus of the current journey.
-          </p>
-
-        </article>
-
-      </div>
-
-      <div class="story-line"></div>
-
-      <p class="lead">
-        The long-term direction is an interactive,
-        horror-themed spatial experience built around
-        the Bog deed:
-        somewhere participants can eventually explore,
-        encounter events and experience the world beyond
-        Discord.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- FINAL -->
-
-  <section class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        TRANSMISSION 08
-      </div>
-
-      <h2>
-        The final mint remains behind the curtain.
-      </h2>
-
-      <div class="sealed">
-
-        <div class="sealed-mark">
-          ◉
-        </div>
-
-        <h3>
-          FOURTH MINT
-        </h3>
-
-        <p>
-          Wallets holding all three qualifying story NFTs
-          will become eligible for a fourth and final mint:
-          a <strong>3D avatar</strong>.
-          Additional details remain unreleased.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PLEDGE -->
-
-  <section
-    id="pledge"
-    class="section">
-
-    <div class="container">
-
-      <div class="section-number">
-        ALLIANCE PLEDGE
-      </div>
-
-      <h2>
-        Answer the call.
-      </h2>
-
-      <p class="lead">
-        If your project is ready to stand with the Alliance,
-        enter the three pieces of information below.
-      </p>
-
-      <p class="lead">
-        Only your <strong>project name</strong> will appear
-        publicly on the Alliance Pledge Scroll.
-        Your name and wallet address remain private.
-      </p>
-
-
-      <div class="pledge-wrap">
-
-
-        <!-- PRIVATE FORM -->
-
-        <form
-          id="pledgeForm"
-          class="pledge-form">
-
-          <h3>
-            Answer the Alliance Pledge
-          </h3>
-
-
-          <div class="form-group">
-
-            <label for="pledgeName">
-              Name
-            </label>
-
-            <input
-              id="pledgeName"
-              name="name"
-              type="text"
-              maxlength="100"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="pledgeProject">
-              Project
-            </label>
-
-            <input
-              id="pledgeProject"
-              name="project"
-              type="text"
-              maxlength="100"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="pledgeWallet">
-              Wallet Address
-            </label>
-
-            <input
-              id="pledgeWallet"
-              name="wallet"
-              type="text"
-              maxlength="42"
-              placeholder="0x..."
-              required
-            >
-
-          </div>
-
-
-          <button
-            id="pledgeSubmit"
-            class="pledge-submit"
-            type="submit">
-            Answer the Pledge
-          </button>
-
-
-          <div
-            id="pledgeMessage"
-            class="pledge-message">
-          </div>
-
-        </form>
-
-
-        <!-- PUBLIC SCROLL -->
-
-        <div class="scroll-shell">
-
-          <h3 class="scroll-title">
-            Alliance Pledge
-          </h3>
-
-          <p class="scroll-subtitle">
-            Projects that have answered the call
-          </p>
-
-          <div
-            id="pledgeList"
-            class="pledge-list">
-
-            <div class="scroll-empty">
-              The scroll awaits its first signatures.
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- INVITATION -->
-
-  <section class="section invitation">
-
-    <div class="container">
-
-      <div class="section-number">
-        FINAL TRANSMISSION
-      </div>
-
-      <h2>
-        Will your people answer the call?
-      </h2>
-
-      <p class="lead">
-        Separate communities.
-        One strange place.
-        One mystery waiting to be solved.
-      </p>
-
-      <div class="hero-actions">
-
-        <a
-          class="button green"
-          href="https://discord.gg/XkxVPNsS6w"
-          target="_blank"
-          rel="noopener noreferrer">
-          Enter Discord
-        </a>
-
-        <a
-          class="button"
-          href="https://x.com/bogvoyager"
-          target="_blank"
-          rel="noopener noreferrer">
-          @BogVoyager
-        </a>
-
-        <a
-          class="button"
-          href="index.html">
-          Return to the Bog
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <footer>
-    Cosmic Dream Bog · Private Alliance Transmission ·
-    A Terencio Verde Project
-  </footer>
-
-
-  <script>
-
-    /*
-      ====================================================
-      ALLIANCE PLEDGE DATABASE
-
-      We will fill these two values in when we connect
-      Supabase.
-
-      DO NOT put a Supabase service/secret key here.
-      ====================================================
-    */
-
-    const SUPABASE_URL =
-      "PASTE_SUPABASE_URL_HERE";
-
-    const SUPABASE_ANON_KEY =
-      "PASTE_SUPABASE_ANON_KEY_HERE";
-
-
-    function pledgeBackendReady() {
-
-      return (
-        !SUPABASE_URL.includes("PASTE_") &&
-        !SUPABASE_ANON_KEY.includes("PASTE_")
+      alert(
+        "Admin wallet not detected."
       );
+
+
     }
 
 
-    function escapeText(value) {
+  }
 
-      return String(value || "")
-        .trim();
+
+  catch(error) {
+
+
+    console.error(
+      error
+    );
+
+
+  }
+
+
+}
+
+
+
+async function checkAdminWallet() {
+
+
+  adminMode = false;
+
+
+  const storedWallet =
+
+    sessionStorage.getItem(
+      "cosmicDreamWallet"
+    );
+
+
+  if (
+
+    storedWallet &&
+
+    storedWallet
+    .toLowerCase()
+    ===
+    ADMIN_WALLET
+
+  ) {
+
+
+    adminMode = true;
+
+
+  }
+
+
+  if (window.ethereum) {
+
+
+    try {
+
+
+      const accounts =
+
+        await window.ethereum.request({
+
+          method:
+            "eth_accounts"
+
+        });
+
+
+
+      if (
+
+        accounts.length > 0 &&
+
+        accounts[0]
+        .toLowerCase()
+        ===
+        ADMIN_WALLET
+
+      ) {
+
+
+        adminMode = true;
+
+
+      }
+
+
     }
 
 
-    function validWallet(wallet) {
+    catch(error) {
 
-      return /^0x[a-fA-F0-9]{40}$/
-        .test(wallet);
+
+      console.error(
+        error
+      );
+
+
     }
 
 
-    async function loadAllianceScroll() {
-
-      const list =
-        document.getElementById(
-          "pledgeList"
-        );
+  }
 
 
-      if (!pledgeBackendReady()) {
+  updateAdminUI();
 
-        list.innerHTML =
-          '<div class="scroll-empty">The Alliance Pledge Scroll is being connected.</div>';
+
+  renderProjects();
+
+
+}
+
+
+
+function updateAdminUI() {
+
+
+  const panel =
+
+    document.getElementById(
+      "adminPanel"
+    );
+
+
+  const login =
+
+    document.getElementById(
+      "adminLogin"
+    );
+
+
+  const walletDisplay =
+
+    document.getElementById(
+      "adminWalletDisplay"
+    );
+
+
+  if (adminMode) {
+
+
+    panel.classList.add(
+      "visible"
+    );
+
+
+    login.style.display =
+      "none";
+
+
+    walletDisplay.textContent =
+
+      ADMIN_WALLET;
+
+
+  }
+
+
+  else {
+
+
+    panel.classList.remove(
+      "visible"
+    );
+
+
+    login.style.display =
+      "block";
+
+
+  }
+
+
+}
+
+
+
+/* ==================================================
+   PROJECT ROW CREATION
+================================================== */
+
+function createProjectRow(
+  entry,
+  index
+) {
+
+
+  const row =
+
+    document.createElement(
+      "div"
+    );
+
+
+  row.className =
+    "pledge-project";
+
+
+  row.tabIndex = 0;
+
+
+  row.setAttribute(
+
+    "aria-label",
+
+    entry.project
+
+  );
+
+
+  row.title =
+
+    "Reveal " +
+    entry.project;
+
+
+
+  const display =
+
+    document.createElement(
+      "div"
+    );
+
+
+  display.className =
+    "project-display";
+
+
+
+  const koda =
+
+    document.createElement(
+      "div"
+    );
+
+
+  koda.className =
+    "koda-display";
+
+
+
+  const english =
+
+    document.createElement(
+      "div"
+    );
+
+
+  english.className =
+    "english-display";
+
+
+  english.textContent =
+    entry.project;
+
+
+
+  display.appendChild(
+    koda
+  );
+
+
+  display.appendChild(
+    english
+  );
+
+
+  row.appendChild(
+    display
+  );
+
+
+
+  /*
+    Convert project name
+    into uploaded Koda glyphs.
+  */
+
+  if (
+    window.KodaGlyphs
+  ) {
+
+
+    KodaGlyphs.render(
+
+      entry.project,
+
+      koda
+
+    );
+
+
+  }
+
+
+  else {
+
+
+    koda.textContent =
+      entry.project;
+
+
+  }
+
+
+
+  /*
+    Mobile/touch reveal.
+
+    Tapping the project toggles
+    between Koda and English.
+  */
+
+  row.addEventListener(
+
+    "click",
+
+    function(event) {
+
+
+      if (
+
+        event.target.closest(
+          ".admin-actions"
+        )
+
+      ) {
 
         return;
+
       }
 
 
-      try {
-
-        const response =
-          await fetch(
-            SUPABASE_URL +
-            "/rest/v1/alliance_public_projects" +
-            "?select=project&order=created_at.asc",
-            {
-              headers: {
-                apikey:
-                  SUPABASE_ANON_KEY,
-
-                Authorization:
-                  "Bearer " +
-                  SUPABASE_ANON_KEY
-              }
-            }
-          );
+      row.classList.toggle(
+        "revealed"
+      );
 
 
-        if (!response.ok) {
+    }
 
-          throw new Error(
-            "Unable to load pledge scroll."
-          );
-        }
+  );
 
 
-        const projects =
-          await response.json();
+
+  /*
+    Keyboard reveal.
+  */
+
+  row.addEventListener(
+
+    "keydown",
+
+    function(event) {
 
 
-        list.innerHTML = "";
+      if (
+
+        event.key === "Enter" ||
+
+        event.key === " "
+
+      ) {
 
 
-        if (!projects.length) {
-
-          list.innerHTML =
-            '<div class="scroll-empty">The scroll awaits its first signatures.</div>';
-
-          return;
-        }
+        event.preventDefault();
 
 
-        projects.forEach(
-          function(entry) {
-
-            const project =
-              document.createElement(
-                "div"
-              );
-
-            project.className =
-              "pledge-project";
-
-            project.textContent =
-              entry.project;
-
-            list.appendChild(
-              project
-            );
-          }
+        row.classList.toggle(
+          "revealed"
         );
 
+
       }
 
-      catch (error) {
 
-        console.error(error);
-
-        list.innerHTML =
-          '<div class="scroll-empty">The pledge scroll could not be loaded.</div>';
-      }
     }
+
+  );
+
+
+
+  /* Admin controls */
+
+  if (adminMode) {
+
+
+    const controls =
+
+      document.createElement(
+        "div"
+      );
+
+
+    controls.className =
+      "admin-actions";
+
+
+
+    const edit =
+
+      document.createElement(
+        "button"
+      );
+
+
+    edit.className =
+      "admin-button";
+
+
+    edit.type =
+      "button";
+
+
+    edit.textContent =
+      "EDIT";
+
+
+    edit.onclick =
+
+      function(event) {
+
+
+        event.stopPropagation();
+
+
+        editProject(
+          index
+        );
+
+
+      };
+
+
+
+    const remove =
+
+      document.createElement(
+        "button"
+      );
+
+
+    remove.className =
+
+      "admin-button delete";
+
+
+    remove.type =
+      "button";
+
+
+    remove.textContent =
+      "DELETE";
+
+
+    remove.onclick =
+
+      function(event) {
+
+
+        event.stopPropagation();
+
+
+        deleteProject(
+          index
+        );
+
+
+      };
+
+
+
+    controls.appendChild(
+      edit
+    );
+
+
+    controls.appendChild(
+      remove
+    );
+
+
+    row.appendChild(
+      controls
+    );
+
+
+  }
+
+
+  return row;
+
+
+}
+
+
+
+/* ==================================================
+   RENDER ALLIANCE SCROLL
+================================================== */
+
+function renderProjects() {
+
+
+  const list =
+
+    document.getElementById(
+      "pledgeList"
+    );
+
+
+  const projects =
+
+    getProjects();
+
+
+  list.innerHTML = "";
+
+
+
+  if (
+    projects.length === 0
+  ) {
+
+
+    const empty =
+
+      document.createElement(
+        "div"
+      );
+
+
+    empty.style.padding =
+      "35px 10px";
+
+
+    empty.style.textAlign =
+      "center";
+
+
+    empty.style.fontFamily =
+      "Georgia,serif";
+
+
+    empty.style.fontStyle =
+      "italic";
+
+
+    empty.style.opacity =
+      ".6";
+
+
+    empty.textContent =
+
+      "The scroll awaits its first signatures.";
+
+
+    list.appendChild(
+      empty
+    );
+
+
+    return;
+
+
+  }
+
+
+
+  projects.forEach(
+
+    function(
+      entry,
+      index
+    ) {
+
+
+      list.appendChild(
+
+        createProjectRow(
+          entry,
+          index
+        )
+
+      );
+
+
+    }
+
+  );
+
+
+}
+
+
+
+/* ==================================================
+   ADMIN EDIT
+================================================== */
+
+function editProject(
+  index
+) {
+
+
+  if (!adminMode) {
+
+    return;
+
+  }
+
+
+  const projects =
+
+    getProjects();
+
+
+  if (!projects[index]) {
+
+    return;
+
+  }
+
+
+
+  const replacement =
+
+    prompt(
+
+      "Edit project name:",
+
+      projects[index].project
+
+    );
+
+
+
+  if (
+    replacement === null
+  ) {
+
+    return;
+
+  }
+
+
+
+  const clean =
+
+    replacement.trim();
+
+
+
+  if (!clean) {
+
+    return;
+
+  }
+
+
+
+  projects[index].project =
+    clean;
+
+
+  saveProjects(
+    projects
+  );
+
+
+  renderProjects();
+
+
+}
+
+
+
+/* ==================================================
+   ADMIN DELETE
+================================================== */
+
+function deleteProject(
+  index
+) {
+
+
+  if (!adminMode) {
+
+    return;
+
+  }
+
+
+  const projects =
+
+    getProjects();
+
+
+  if (!projects[index]) {
+
+    return;
+
+  }
+
+
+
+  const approved =
+
+    confirm(
+
+      "Remove " +
+
+      projects[index].project +
+
+      " from the Alliance Pledge?"
+
+    );
+
+
+
+  if (!approved) {
+
+    return;
+
+  }
+
+
+
+  projects.splice(
+    index,
+    1
+  );
+
+
+  saveProjects(
+    projects
+  );
+
+
+  renderProjects();
+
+
+}
+
+
+
+/* ==================================================
+   TEST PLEDGE FORM
+================================================== */
+
+document
+.getElementById(
+  "pledgeForm"
+)
+.addEventListener(
+
+  "submit",
+
+  function(event) {
+
+
+    event.preventDefault();
+
+
+
+    const name =
+
+      document
+      .getElementById(
+        "pledgeName"
+      )
+      .value
+      .trim();
+
+
+
+    const project =
+
+      document
+      .getElementById(
+        "pledgeProject"
+      )
+      .value
+      .trim();
+
+
+
+    const wallet =
+
+      document
+      .getElementById(
+        "pledgeWallet"
+      )
+      .value
+      .trim();
+
+
+
+    const message =
+
+      document
+      .getElementById(
+        "pledgeMessage"
+      );
+
+
+
+    if (
+
+      !name ||
+
+      !project ||
+
+      !wallet
+
+    ) {
+
+
+      message.className =
+
+        "pledge-message error";
+
+
+      message.textContent =
+
+        "Complete all three fields.";
+
+
+      return;
+
+
+    }
+
+
+
+    if (
+
+      !/^0x[a-fA-F0-9]{40}$/
+      .test(wallet)
+
+    ) {
+
+
+      message.className =
+
+        "pledge-message error";
+
+
+      message.textContent =
+
+        "Enter a valid wallet address.";
+
+
+      return;
+
+
+    }
+
+
+
+    /*
+      TEST MODE:
+
+      The public browser test stores
+      ONLY the project name.
+
+      Name and wallet are NOT placed
+      into localStorage.
+    */
+
+
+    const projects =
+
+      getProjects();
+
+
+
+    projects.push({
+
+      project:
+        project
+
+    });
+
+
+
+    saveProjects(
+      projects
+    );
+
+
+
+    message.className =
+
+      "pledge-message success";
+
+
+    message.textContent =
+
+      "Your project has answered the Alliance Pledge.";
+
 
 
     document
       .getElementById(
         "pledgeForm"
       )
-      .addEventListener(
-        "submit",
-        async function(event) {
+      .reset();
 
-          event.preventDefault();
 
 
-          const name =
-            escapeText(
-              document.getElementById(
-                "pledgeName"
-              ).value
-            );
+    renderProjects();
 
 
-          const project =
-            escapeText(
-              document.getElementById(
-                "pledgeProject"
-              ).value
-            );
 
+    /*
+      Scroll back to the top so the
+      signer immediately sees their
+      project added to the parchment.
+    */
 
-          const wallet =
-            escapeText(
-              document.getElementById(
-                "pledgeWallet"
-              ).value
-            );
+    window.scrollTo({
 
+      top: 0,
 
-          const message =
-            document.getElementById(
-              "pledgeMessage"
-            );
+      behavior: "smooth"
 
+    });
 
-          const button =
-            document.getElementById(
-              "pledgeSubmit"
-            );
 
+  }
 
-          message.className =
-            "pledge-message";
+);
 
 
-          if (
-            !name ||
-            !project ||
-            !wallet
-          ) {
 
-            message.textContent =
-              "Complete all three fields.";
+/* ==================================================
+   ACCOUNT CHANGES
+================================================== */
 
-            message.classList.add(
-              "error"
-            );
+if (
+  window.ethereum
+) {
 
-            return;
-          }
 
+  window.ethereum.on(
 
-          if (!validWallet(wallet)) {
+    "accountsChanged",
 
-            message.textContent =
-              "Enter a valid wallet address.";
+    function() {
 
-            message.classList.add(
-              "error"
-            );
 
-            return;
-          }
+      checkAdminWallet();
 
 
-          if (!pledgeBackendReady()) {
+    }
 
-            message.textContent =
-              "The pledge system is not connected yet.";
+  );
 
-            message.classList.add(
-              "error"
-            );
 
-            return;
-          }
+}
 
 
-          button.disabled = true;
 
-          button.textContent =
-            "Recording Pledge...";
+/* ==================================================
+   START
+================================================== */
 
+checkAdminWallet();
 
-          try {
 
-            const response =
-              await fetch(
-                SUPABASE_URL +
-                "/functions/v1/alliance-pledge",
-                {
+</script>
 
-                  method: "POST",
-
-                  headers: {
-
-                    "Content-Type":
-                      "application/json",
-
-                    apikey:
-                      SUPABASE_ANON_KEY,
-
-                    Authorization:
-                      "Bearer " +
-                      SUPABASE_ANON_KEY
-                  },
-
-                  body:
-                    JSON.stringify({
-                      name,
-                      project,
-                      wallet
-                    })
-                }
-              );
-
-
-            const result =
-              await response.json();
-
-
-            if (!response.ok) {
-
-              throw new Error(
-                result.error ||
-                "Pledge could not be recorded."
-              );
-            }
-
-
-            message.textContent =
-              "Your project has answered the Alliance Pledge.";
-
-            message.classList.add(
-              "success"
-            );
-
-
-            document
-              .getElementById(
-                "pledgeForm"
-              )
-              .reset();
-
-
-            await loadAllianceScroll();
-
-          }
-
-          catch (error) {
-
-            console.error(error);
-
-            message.textContent =
-              error.message;
-
-            message.classList.add(
-              "error"
-            );
-
-          }
-
-          finally {
-
-            button.disabled = false;
-
-            button.textContent =
-              "Answer the Pledge";
-          }
-
-        }
-      );
-
-
-    loadAllianceScroll();
-
-
-    /* Refresh public Alliance Scroll periodically */
-
-    setInterval(
-      loadAllianceScroll,
-      30000
-    );
-
-  </script>
 
 </body>
+
 </html>
