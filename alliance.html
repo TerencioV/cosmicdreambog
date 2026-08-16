@@ -150,18 +150,18 @@ a {
   z-index: 2;
 
   width:
-    min(1450px,94vw);
+    min(1500px,96vw);
 
   margin: 0 auto;
 
   display: grid;
 
   grid-template-columns:
-    minmax(280px,.80fr)
-    minmax(400px,1.25fr)
-    minmax(250px,.75fr);
+    380px
+    minmax(520px,1fr)
+    300px;
 
-  gap: 38px;
+  gap: 45px;
 
   align-items: start;
 
@@ -376,19 +376,24 @@ a {
 
 /* ==================================================
    ALLIANCE SCROLL
-   TOP LEFT OF HERO
+   TOP LEFT HERO
 ================================================== */
 
 .hero-scroll {
 
   position: relative;
 
-  width: 100%;
+  width: 340px;
 
   min-height: 360px;
 
+  justify-self: center;
+
+  transform:
+    translateX(-90px);
+
   padding:
-    55px 30px 55px;
+    55px 32px 60px;
 
   color:
     var(--ink);
@@ -470,7 +475,7 @@ a {
 }
 
 
-/* Medieval-style title */
+/* Medieval title */
 
 .scroll-title {
 
@@ -522,7 +527,7 @@ a {
 
   display: grid;
 
-  gap: 5px;
+  gap: 7px;
 
 }
 
@@ -541,10 +546,10 @@ a {
 
   gap: 10px;
 
-  min-height: 50px;
+  min-height: 62px;
 
   padding:
-    8px 5px;
+    9px 5px;
 
   border-bottom:
 
@@ -566,7 +571,7 @@ a {
 
   min-width: 0;
 
-  min-height: 38px;
+  min-height: 52px;
 
   display: flex;
 
@@ -587,7 +592,9 @@ a {
 
   align-items: center;
 
-  min-height: 38px;
+  min-height: 52px;
+
+  font-size: 30px;
 
   opacity: 1;
 
@@ -598,9 +605,19 @@ a {
 }
 
 
+.koda-word {
+
+  gap:
+    3px !important;
+
+  min-height:
+    48px !important;
+
+}
+
+
 /*
-  Override sprite sizing to guarantee
-  the uploaded 26-character sprite works.
+  26 glyph horizontal sprite
 */
 
 .koda-glyph {
@@ -612,9 +629,11 @@ a {
     brightness(0)
     saturate(100%);
 
-  width: .88em !important;
+  width:
+    .95em !important;
 
-  height: 1.15em !important;
+  height:
+    1.3em !important;
 
 }
 
@@ -644,7 +663,7 @@ a {
     Georgia,
     serif;
 
-  font-size: 18px;
+  font-size: 21px;
 
   font-weight: 900;
 
@@ -1584,14 +1603,18 @@ a {
 
 
 .success {
+
   color:
     var(--green);
+
 }
 
 
 .error {
+
   color:
     #ff7777;
+
 }
 
 
@@ -1655,8 +1678,46 @@ footer {
 
 
 /* ==================================================
-   MOBILE
+   RESPONSIVE
 ================================================== */
+
+@media(
+  max-width: 1200px
+) {
+
+  .hero-inner {
+
+    grid-template-columns:
+      330px
+      minmax(430px,1fr)
+      250px;
+
+    gap:
+      30px;
+
+  }
+
+
+  .hero-scroll {
+
+    width:
+      310px;
+
+    transform:
+      translateX(-25px);
+
+  }
+
+
+  .greeter {
+
+    max-width:
+      280px;
+
+  }
+
+}
+
 
 @media(
   max-width: 1050px
@@ -1677,6 +1738,15 @@ footer {
 
     grid-row:
       1;
+
+    width:
+      100%;
+
+    max-width:
+      350px;
+
+    transform:
+      none;
 
   }
 
@@ -1742,8 +1812,19 @@ footer {
 
 
   .hero-scroll {
+
     grid-row:
       1;
+
+    width:
+      100%;
+
+    max-width:
+      390px;
+
+    transform:
+      none;
+
   }
 
 
@@ -1783,8 +1864,10 @@ footer {
 
 
   .nav-links {
+
     display:
       none;
+
   }
 
 
@@ -1808,6 +1891,14 @@ footer {
 
     padding:
       50px 24px;
+
+  }
+
+
+  .koda-display {
+
+    font-size:
+      26px;
 
   }
 
@@ -3356,7 +3447,7 @@ A Terencio Verde Project
 
 
 <!-- ==================================================
-     KODA GLYPH ENGINE
+     KODA ENGINE
 ================================================== -->
 
 <script src="koda-glyphs.js"></script>
@@ -3457,7 +3548,7 @@ function saveProjects(
 
 
 /* ==================================================
-   ADMIN WALLET
+   ADMIN
 ================================================== */
 
 async function activateAdmin() {
@@ -3584,6 +3675,7 @@ async function checkAdminWallet() {
   }
 
 
+
   if (window.ethereum) {
 
 
@@ -3670,6 +3762,7 @@ function updateAdminUI() {
     );
 
 
+
   if (adminMode) {
 
 
@@ -3710,7 +3803,7 @@ function updateAdminUI() {
 
 
 /* ==================================================
-   PROJECT ROW CREATION
+   PROJECT ROW
 ================================================== */
 
 function createProjectRow(
@@ -3805,11 +3898,6 @@ function createProjectRow(
 
 
 
-  /*
-    Convert project name
-    into uploaded Koda glyphs.
-  */
-
   if (
     window.KodaGlyphs
   ) {
@@ -3838,12 +3926,7 @@ function createProjectRow(
 
 
 
-  /*
-    Mobile/touch reveal.
-
-    Tapping the project toggles
-    between Koda and English.
-  */
+  /* Touch reveal */
 
   row.addEventListener(
 
@@ -3876,9 +3959,7 @@ function createProjectRow(
 
 
 
-  /*
-    Keyboard reveal.
-  */
+  /* Keyboard reveal */
 
   row.addEventListener(
 
@@ -3913,7 +3994,7 @@ function createProjectRow(
 
 
 
-  /* Admin controls */
+  /* Admin buttons */
 
   if (adminMode) {
 
@@ -4029,7 +4110,7 @@ function createProjectRow(
 
 
 /* ==================================================
-   RENDER ALLIANCE SCROLL
+   RENDER SCROLL
 ================================================== */
 
 function renderProjects() {
@@ -4128,7 +4209,7 @@ function renderProjects() {
 
 
 /* ==================================================
-   ADMIN EDIT
+   EDIT PROJECT
 ================================================== */
 
 function editProject(
@@ -4209,7 +4290,7 @@ function editProject(
 
 
 /* ==================================================
-   ADMIN DELETE
+   DELETE PROJECT
 ================================================== */
 
 function deleteProject(
@@ -4393,12 +4474,8 @@ document
 
     /*
       TEST MODE:
-
-      The public browser test stores
+      Public browser storage saves
       ONLY the project name.
-
-      Name and wallet are NOT placed
-      into localStorage.
     */
 
 
@@ -4446,12 +4523,6 @@ document
 
 
 
-    /*
-      Scroll back to the top so the
-      signer immediately sees their
-      project added to the parchment.
-    */
-
     window.scrollTo({
 
       top: 0,
@@ -4468,7 +4539,7 @@ document
 
 
 /* ==================================================
-   ACCOUNT CHANGES
+   WALLET CHANGES
 ================================================== */
 
 if (
