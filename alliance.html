@@ -67,21 +67,17 @@ a {
   overflow: hidden;
 
   background:
+    radial-gradient(
+      circle at 76% 30%,
+      rgba(95,30,150,.20),
+      transparent 32%
+    ),
     linear-gradient(
       90deg,
-      rgba(3,4,5,.96),
-      rgba(5,5,8,.80) 46%,
-      rgba(5,3,10,.60)
-    ),
-    radial-gradient(
-      circle at 75% 42%,
-      rgba(116,32,192,.35),
-      transparent 35%
-    ),
-    url("alliance-background.png");
-
-  background-size: cover;
-  background-position: center;
+      #030304,
+      #08060b 52%,
+      #050307
+    );
 }
 
 .hero::after {
@@ -93,7 +89,7 @@ a {
   background:
     linear-gradient(
       180deg,
-      transparent 75%,
+      transparent 76%,
       var(--black)
     );
 }
@@ -108,9 +104,9 @@ a {
   display: grid;
 
   grid-template-columns:
-    380px
-    minmax(520px,1fr)
-    300px;
+    360px
+    minmax(500px,1fr)
+    340px;
 
   gap: 45px;
   align-items: start;
@@ -255,13 +251,13 @@ a {
 
 
 /* ==================================================
-   ALLIANCE GREETER
+   ALLIANCE WELCOME IMAGE
 ================================================== */
 
-.greeter-wrap {
+.alliance-welcome-wrap {
   min-height: 620px;
 
-  padding-top: 55px;
+  padding-top: 45px;
 
   display: flex;
   flex-direction: column;
@@ -270,23 +266,38 @@ a {
   justify-content: flex-start;
 }
 
-.greeter {
+.alliance-welcome-frame {
+  width: 100%;
+  max-width: 330px;
+
+  padding: 8px;
+
+  border:
+    1px solid
+    rgba(167,213,45,.30);
+
+  border-radius: 12px;
+
+  background:
+    rgba(5,5,8,.78);
+
+  box-shadow:
+    0 25px 55px
+    rgba(0,0,0,.55);
+}
+
+.alliance-welcome-image {
   display: block;
 
   width: 100%;
-  max-width: 315px;
+  height: auto;
 
-  object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0 20px 40px
-      rgba(0,0,0,.75)
-    );
+  border-radius: 8px;
 }
 
 .greeter-message {
   width: 100%;
+  max-width: 330px;
 
   margin-top: 14px;
 
@@ -354,7 +365,7 @@ a {
   justify-self: center;
 
   transform:
-    translateX(-90px);
+    translateX(-75px);
 
   padding:
     55px 32px 60px;
@@ -448,11 +459,6 @@ a {
 
   opacity: .72;
 }
-
-
-/* ==================================================
-   NEW PLEDGE NOTE
-================================================== */
 
 .pledge-direction {
   margin: 0 0 22px;
@@ -882,7 +888,7 @@ a {
 
 
 /* ==================================================
-   SIMPLE CALLOUT
+   CLARITY CALLOUT
 ================================================== */
 
 .clarity-callout {
@@ -1159,15 +1165,15 @@ a {
 ================================================== */
 
 .signal-example {
-  margin-top: 45px;
+  margin-top: 55px;
 
   display: grid;
 
   grid-template-columns:
-    minmax(260px,.85fr)
-    minmax(300px,1.15fr);
+    minmax(320px,.9fr)
+    minmax(300px,1.1fr);
 
-  gap: 40px;
+  gap: 45px;
 
   align-items: center;
 }
@@ -1447,9 +1453,9 @@ footer {
 
   .hero-inner {
     grid-template-columns:
-      330px
+      320px
       minmax(430px,1fr)
-      250px;
+      300px;
 
     gap: 30px;
   }
@@ -1461,8 +1467,9 @@ footer {
       translateX(-25px);
   }
 
-  .greeter {
-    max-width: 260px;
+  .alliance-welcome-frame,
+  .greeter-message {
+    max-width: 290px;
   }
 }
 
@@ -1489,7 +1496,7 @@ footer {
     grid-row: 1;
   }
 
-  .greeter-wrap {
+  .alliance-welcome-wrap {
     grid-column: 1 / 3;
 
     min-height: 400px;
@@ -1497,10 +1504,7 @@ footer {
     padding-top: 20px;
   }
 
-  .greeter {
-    max-width: 260px;
-  }
-
+  .alliance-welcome-frame,
   .greeter-message {
     max-width: 430px;
   }
@@ -1518,7 +1522,7 @@ footer {
 
   .hero-scroll,
   .hero-copy-column,
-  .greeter-wrap {
+  .alliance-welcome-wrap {
     grid-column: 1;
   }
 
@@ -1537,7 +1541,7 @@ footer {
     padding-top: 15px;
   }
 
-  .greeter-wrap {
+  .alliance-welcome-wrap {
     grid-row: 3;
   }
 
@@ -1742,15 +1746,20 @@ Join the Alliance
 
 
 
-<!-- ALLIANCE GREETER -->
+<!-- ALLIANCE WELCOME / SHATTERED OBELISK -->
 
-<div class="greeter-wrap">
+<div class="alliance-welcome-wrap">
+
+<div class="alliance-welcome-frame">
 
 <img
-  src="alliance-greeter.png"
-  alt="Cosmic Dream Bog Alliance Greeter"
-  class="greeter"
+  src="alliance-welcome.png"
+  alt="Shattered Cosmic Dream Bog Obelisk"
+  class="alliance-welcome-image"
 >
+
+</div>
+
 
 <div class="greeter-message">
 
@@ -1764,14 +1773,17 @@ Welcome, project founder.
 
 <p>
 
-The Alliance is simple.
+Something has happened in the Bog.
 
-Submit your pledge.
+The Alliance is gathering projects
+willing to carry the signal.
 
-Receive your
-<strong>Signal Receiver Poster</strong>.
+Your role is simple:
 
-Then share the signal with your community
+submit your pledge,
+receive your
+<strong>Signal Receiver Poster</strong>,
+and share it with your community
 when the call begins.
 
 </p>
@@ -1876,9 +1888,9 @@ Joining the Alliance does
 <strong>not</strong>
 make you part of the Cosmic Dream Bog team.
 
-The Alliance simply creates a bridge
-between independent communities and one
-shared story.
+The Alliance creates a bridge between
+independent communities and one shared
+story.
 
 </p>
 
@@ -1925,7 +1937,7 @@ require participants to enter the deed.
 <div class="clarity-callout">
 
 <h3>
-Where does everything happen?
+Where does the active experience happen?
 </h3>
 
 <p>
@@ -1936,7 +1948,7 @@ Discord.
 
 The discoveries, clues, puzzles,
 Shard Hunt activities, story progression
-and current gamification all happen inside
+and gamified actions all happen inside
 the Cosmic Dream Bog Discord.
 
 The Otherside Bog deed is the world anchor
@@ -2093,9 +2105,10 @@ Answer the Call
 
 <p>
 
-Alliance communities receive the signal
-and interested members enter the
-Cosmic Dream Bog Discord.
+Alliance communities receive the signal.
+
+Interested community members follow the
+call into Cosmic Dream Bog's Discord and X.
 
 </p>
 
@@ -2353,8 +2366,8 @@ It does not require running the campaign,
 building the game or managing the Bog.
 
 <strong>
-You simply help carry the signal into
-your own community.
+You simply help carry the signal
+into your own community.
 </strong>
 
 </p>
@@ -2405,7 +2418,7 @@ Receive the Signal.
 Approved Alliance members receive a
 free
 <strong>Signal Receiver Poster</strong>
-airdropped to their wallet.
+airdropped to their submitted wallet.
 
 </p>
 
@@ -2429,11 +2442,11 @@ Post the Signal.
 
 <p>
 
-Copy or save your poster and share it
-inside your project's Discord.
+Save your poster and share it inside
+your project's Discord.
 
-The poster becomes your public signal
-that your community supports the journey.
+The poster becomes a visible sign that
+your project supports the journey.
 
 </p>
 
@@ -2472,7 +2485,7 @@ where the story and discoveries begin.
 
 
 
-<!-- SIGNAL POSTER EXAMPLE -->
+<!-- SIGNAL RECEIVER POSTER -->
 
 <div class="signal-example">
 
@@ -2481,14 +2494,14 @@ where the story and discoveries begin.
 
 <img
   src="BOG IE.png"
-  alt="Example Signal Receiver Poster for Cosmic Dream Bog Alliance members"
+  alt="Example Cosmic Dream Bog Signal Receiver Poster"
   class="signal-poster"
 >
 
 <div class="signal-caption">
 
-Example Signal Receiver Poster for
-Alliance members.
+Example Signal Receiver Poster
+for Alliance members.
 
 </div>
 
@@ -2517,8 +2530,7 @@ clear path into Cosmic Dream Bog.
 <strong>
 Receive it.
 Post it.
-Let your community decide whether
-they want to enter the Bog.
+Rally your community.
 </strong>
 
 </p>
@@ -2715,21 +2727,28 @@ Want to join the Alliance?
 
 Enter your project information below.
 
-Approved Alliance members will receive
-a free
+Approved Alliance members receive a
+free
 <strong>Signal Receiver Poster</strong>
 airdropped to the wallet submitted here.
 
-The poster will be prepared with your
-project founder's 3D avatar at the time
-of the Alliance poster drop.
+The Alliance poster will include the
+project founder's
+<strong>3D avatar</strong>
+at the time of the poster drop.
+
+Share that poster in your project's
+Discord to rally your community and
+direct interested members toward
+Cosmic Dream Bog.
 
 Only your
 <strong>project name</strong>
-appears publicly on the Alliance Pledge
-Scroll.
+appears publicly on the Alliance
+Pledge Scroll.
 
-Your name and wallet remain private.
+Your contact name and wallet address
+remain private.
 
 </p>
 
@@ -2893,8 +2912,7 @@ Return to the Bog
 <footer>
 
 Cosmic Dream Bog ·
-Private Alliance Transmission ·
-A Terencio Verde Project
+Private Alliance Transmission
 
 </footer>
 
@@ -2934,10 +2952,6 @@ let adminMode = false;
 
 
 
-/* ==================================================
-   SUPABASE HEADERS
-================================================== */
-
 function supabaseHeaders(
   extra = {}
 ) {
@@ -2958,10 +2972,6 @@ function supabaseHeaders(
 }
 
 
-
-/* ==================================================
-   GET PUBLIC ALLIANCE PROJECTS
-================================================== */
 
 async function fetchPublicProjects() {
 
@@ -3004,10 +3014,6 @@ async function fetchPublicProjects() {
 }
 
 
-
-/* ==================================================
-   SAVE PRIVATE PLEDGE
-================================================== */
 
 async function savePrivatePledge(
   name,
@@ -3067,10 +3073,6 @@ async function savePrivatePledge(
 }
 
 
-
-/* ==================================================
-   EMAIL PLEDGE
-================================================== */
 
 async function sendPledgeEmail(
   name,
@@ -3135,10 +3137,6 @@ async function sendPledgeEmail(
 }
 
 
-
-/* ==================================================
-   ADMIN WALLET
-================================================== */
 
 async function activateAdmin() {
 
@@ -3304,10 +3302,6 @@ function updateAdminUI() {
 
 
 
-/* ==================================================
-   PROJECT ROW
-================================================== */
-
 function createProjectRow(
   entry
 ) {
@@ -3445,10 +3439,6 @@ function createProjectRow(
   );
 
 
-
-  /* ==================================================
-     SECURE ADMIN EDIT / DELETE
-  ================================================== */
 
   if (adminMode) {
 
@@ -3794,10 +3784,6 @@ function createProjectRow(
 
 
 
-/* ==================================================
-   RENDER PROJECTS
-================================================== */
-
 async function renderProjects() {
 
   const list =
@@ -3862,10 +3848,6 @@ async function renderProjects() {
 }
 
 
-
-/* ==================================================
-   PLEDGE SUBMISSION
-================================================== */
 
 document
   .getElementById(
@@ -4041,10 +4023,6 @@ document
 
 
 
-/* ==================================================
-   WALLET CHANGES
-================================================== */
-
 if (
   window.ethereum
 ) {
@@ -4066,10 +4044,6 @@ if (
 }
 
 
-
-/* ==================================================
-   START
-================================================== */
 
 (async function startAlliancePage() {
 
