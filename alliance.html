@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta
@@ -10,10 +9,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-Cosmic Dream Bog — Alliance Transmission
-</title>
-
+<title>Cosmic Dream Bog — Alliance Transmission</title>
 
 <style>
 
@@ -22,59 +18,33 @@ Cosmic Dream Bog — Alliance Transmission
 }
 
 :root {
-
   --black: #050507;
-
   --purple: #8b3dff;
-
   --purple-light: #c78cff;
-
   --green: #a7d52d;
-
   --white: #f6f3fa;
-
   --muted: #bdb6c8;
-
-  --line:
-    rgba(178,105,255,.28);
-
+  --line: rgba(178,105,255,.28);
   --ink: #241708;
-
 }
-
 
 html {
   scroll-behavior: smooth;
 }
 
-
 html,
 body {
-
   margin: 0;
-
   width: 100%;
-
   min-height: 100%;
-
-  background:
-    var(--black);
-
-  color:
-    var(--white);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 body {
   overflow-x: hidden;
 }
-
 
 a {
   color: inherit;
@@ -86,72 +56,53 @@ a {
 ================================================== */
 
 .hero {
-
   position: relative;
 
   min-height: 100vh;
   min-height: 100svh;
 
   display: flex;
-
   align-items: flex-start;
 
   overflow: hidden;
 
   background:
-
     linear-gradient(
       90deg,
       rgba(3,4,5,.96),
       rgba(5,5,8,.80) 46%,
       rgba(5,3,10,.60)
     ),
-
     radial-gradient(
       circle at 75% 42%,
       rgba(116,32,192,.35),
       transparent 35%
     ),
-
     url("alliance-background.png");
 
   background-size: cover;
-
   background-position: center;
-
 }
 
-
 .hero::after {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
 
   background:
-
     linear-gradient(
       180deg,
       transparent 75%,
       var(--black)
     );
-
 }
 
-
 .hero-inner {
-
   position: relative;
-
   z-index: 2;
 
-  width:
-    min(1500px,96vw);
-
+  width: min(1500px,96vw);
   margin: 0 auto;
 
   display: grid;
@@ -162,114 +113,97 @@ a {
     300px;
 
   gap: 45px;
-
   align-items: start;
 
-  padding:
-    65px 0 110px;
-
+  padding: 65px 0 110px;
 }
 
 
 /* ==================================================
-   HERO TEXT
+   HERO COPY
 ================================================== */
 
 .hero-copy-column {
-
   padding-top: 55px;
-
 }
 
-
 .eyebrow {
-
   margin-bottom: 18px;
 
-  color:
-    var(--green);
+  color: var(--green);
 
   font-size: 12px;
-
   font-weight: 900;
-
   letter-spacing: 3px;
 
   text-transform: uppercase;
-
 }
 
-
 .hero h1 {
-
   margin: 0;
 
-  font-size:
-    clamp(46px,6vw,90px);
-
+  font-size: clamp(46px,6vw,90px);
   line-height: .92;
 
   letter-spacing: -3px;
-
   text-transform: uppercase;
-
 }
-
 
 .hero h1 span {
-
-  color:
-    var(--purple-light);
-
+  color: var(--purple-light);
 }
 
-
 .hero-copy {
-
   max-width: 690px;
-
   margin-top: 24px;
 
   color: #d4cedc;
 
-  font-size:
-    clamp(16px,1.4vw,20px);
-
+  font-size: clamp(16px,1.4vw,20px);
   line-height: 1.65;
-
 }
-
 
 .hero-copy strong {
   color: white;
 }
 
+.quick-definition {
+  margin-top: 26px;
+  padding: 18px 20px;
+
+  border-left: 3px solid var(--green);
+
+  background:
+    rgba(5,5,8,.70);
+
+  color: #ddd8e4;
+
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.quick-definition strong {
+  color: var(--green);
+}
 
 .hero-actions {
-
   display: flex;
-
   flex-wrap: wrap;
 
   gap: 12px;
 
   margin-top: 30px;
-
 }
 
-
 .button {
-
   display: inline-flex;
 
   align-items: center;
-
   justify-content: center;
 
   min-height: 48px;
 
-  padding:
-    0 20px;
+  padding: 0 20px;
 
   border:
     1px solid
@@ -278,7 +212,6 @@ a {
   border-radius: 7px;
 
   background:
-
     linear-gradient(
       180deg,
       #843ee4,
@@ -290,9 +223,7 @@ a {
   text-decoration: none;
 
   font-size: 12px;
-
   font-weight: 900;
-
   letter-spacing: 1.2px;
 
   text-transform: uppercase;
@@ -302,28 +233,17 @@ a {
   transition:
     transform .13s ease,
     filter .13s ease;
-
 }
-
 
 .button:hover {
-
-  transform:
-    translateY(-2px);
-
-  filter:
-    brightness(1.12);
-
+  transform: translateY(-2px);
+  filter: brightness(1.12);
 }
 
-
 .button.green {
-
-  border-color:
-    var(--green);
+  border-color: var(--green);
 
   background:
-
     linear-gradient(
       180deg,
       #91bc2b,
@@ -331,60 +251,104 @@ a {
     );
 
   color: #091006;
-
 }
 
 
 /* ==================================================
-   GREETER
+   ALLIANCE GREETER
 ================================================== */
 
 .greeter-wrap {
+  min-height: 620px;
 
-  min-height: 520px;
-
-  padding-top: 65px;
+  padding-top: 55px;
 
   display: flex;
+  flex-direction: column;
 
-  align-items: flex-end;
-
-  justify-content: center;
-
+  align-items: center;
+  justify-content: flex-start;
 }
 
-
 .greeter {
-
   display: block;
 
   width: 100%;
-
-  max-width: 390px;
+  max-width: 315px;
 
   object-fit: contain;
 
   filter:
-
     drop-shadow(
       0 20px 40px
       rgba(0,0,0,.75)
     );
+}
 
+.greeter-message {
+  width: 100%;
+
+  margin-top: 14px;
+
+  padding: 18px;
+
+  border:
+    1px solid
+    rgba(167,213,45,.30);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14,20,8,.90),
+      rgba(6,6,9,.92)
+    );
+
+  box-shadow:
+    0 18px 35px
+    rgba(0,0,0,.35);
+}
+
+.greeter-label {
+  margin-bottom: 8px;
+
+  color: var(--green);
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.greeter-message h3 {
+  margin: 0 0 9px;
+
+  color: white;
+
+  font-size: 17px;
+}
+
+.greeter-message p {
+  margin: 0;
+
+  color: #cfc8d7;
+
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 
 /* ==================================================
-   ALLIANCE SCROLL
-   TOP LEFT HERO
+   ALLIANCE PLEDGE SCROLL
 ================================================== */
 
 .hero-scroll {
-
   position: relative;
 
   width: 340px;
-
   min-height: 360px;
 
   justify-self: center;
@@ -395,53 +359,37 @@ a {
   padding:
     55px 32px 60px;
 
-  color:
-    var(--ink);
+  color: var(--ink);
 
   border-radius: 7px;
 
   background:
-
     linear-gradient(
       90deg,
-
       #735126,
-
       #bf9e5c 6%,
-
       #dfc88c 18%,
-
       #e5d09a 50%,
-
       #dfc88c 82%,
-
       #bf9e5c 94%,
-
       #735126
     );
 
   box-shadow:
-
     0 25px 55px
     rgba(0,0,0,.72),
 
     0 0 30px
     rgba(139,61,255,.12);
-
 }
-
-
-/* Scroll rollers */
 
 .hero-scroll::before,
 .hero-scroll::after {
-
   content: "";
 
   position: absolute;
 
   left: -10px;
-
   right: -10px;
 
   height: 25px;
@@ -449,7 +397,6 @@ a {
   border-radius: 50%;
 
   background:
-
     linear-gradient(
       180deg,
       #4b3114,
@@ -458,29 +405,20 @@ a {
     );
 
   box-shadow:
-
     0 5px 12px
     rgba(0,0,0,.45);
-
 }
-
 
 .hero-scroll::before {
   top: -9px;
 }
 
-
 .hero-scroll::after {
   bottom: -9px;
 }
 
-
-/* Medieval title */
-
 .scroll-title {
-
-  margin:
-    0 0 8px;
+  margin: 0 0 8px;
 
   text-align: center;
 
@@ -492,21 +430,43 @@ a {
     serif;
 
   font-size: 29px;
-
   font-weight: 900;
-
-  font-variant:
-    small-caps;
+  font-variant: small-caps;
 
   letter-spacing: 2px;
+}
 
+.scroll-subtitle {
+  margin: 0 0 15px;
+
+  text-align: center;
+
+  font-family: Georgia, serif;
+
+  font-size: 12px;
+  font-style: italic;
+
+  opacity: .72;
 }
 
 
-.scroll-subtitle {
+/* ==================================================
+   NEW PLEDGE NOTE
+================================================== */
 
-  margin:
-    0 0 25px;
+.pledge-direction {
+  margin: 0 0 22px;
+
+  padding: 12px;
+
+  border:
+    1px solid
+    rgba(58,36,10,.26);
+
+  border-radius: 6px;
+
+  background:
+    rgba(255,255,255,.15);
 
   text-align: center;
 
@@ -515,81 +475,82 @@ a {
     serif;
 
   font-size: 12px;
-
-  font-style: italic;
-
-  opacity: .72;
-
+  line-height: 1.45;
 }
 
+.pledge-direction strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 13px;
+}
+
+.pledge-direction a {
+  display: inline-block;
+
+  margin-top: 7px;
+
+  color: #472a08;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  text-decoration: underline;
+  text-transform: uppercase;
+}
 
 .pledge-list {
-
   display: grid;
-
   gap: 7px;
-
 }
 
 
 /* ==================================================
-   PROJECT ROW
+   PROJECT ROW / KODA
 ================================================== */
 
 .pledge-project {
-
   position: relative;
 
   display: flex;
-
   align-items: center;
 
   gap: 10px;
 
   min-height: 62px;
 
-  padding:
-    9px 5px;
+  padding: 9px 5px;
 
   border-bottom:
-
     1px solid
     rgba(65,43,15,.24);
 
   cursor: pointer;
-
   outline: none;
-
 }
 
-
 .project-display {
-
   position: relative;
 
   flex: 1;
 
   min-width: 0;
-
   min-height: 52px;
 
   display: flex;
-
   align-items: center;
-
 }
 
-
-/* ==================================================
-   KODA PROJECT NAME
-================================================== */
-
 .koda-display {
-
   width: 100%;
 
   display: flex;
-
   align-items: center;
 
   min-height: 52px;
@@ -601,27 +562,14 @@ a {
   transition:
     opacity .22s ease,
     transform .22s ease;
-
 }
-
 
 .koda-word {
-
-  gap:
-    3px !important;
-
-  min-height:
-    48px !important;
-
+  gap: 3px !important;
+  min-height: 48px !important;
 }
 
-
-/*
-  26 glyph horizontal sprite
-*/
-
 .koda-glyph {
-
   background-size:
     2600% 100% !important;
 
@@ -629,34 +577,20 @@ a {
     brightness(0)
     saturate(100%);
 
-  width:
-    .95em !important;
-
-  height:
-    1.3em !important;
-
+  width: .95em !important;
+  height: 1.3em !important;
 }
 
-
-/* ==================================================
-   ENGLISH REVEAL
-================================================== */
-
 .english-display {
-
   position: absolute;
-
   inset: 0;
 
   display: flex;
-
   align-items: center;
 
-  color:
-    #291a08;
+  color: #291a08;
 
   font-family:
-
     "Palatino Linotype",
     "Book Antiqua",
     Palatino,
@@ -664,7 +598,6 @@ a {
     serif;
 
   font-size: 21px;
-
   font-weight: 900;
 
   letter-spacing: .5px;
@@ -677,11 +610,7 @@ a {
   transition:
     opacity .22s ease,
     transform .22s ease;
-
 }
-
-
-/* Hover reveal */
 
 .pledge-project:hover
 .koda-display,
@@ -691,14 +620,11 @@ a {
 
 .pledge-project.revealed
 .koda-display {
-
   opacity: 0;
 
   transform:
     translateY(-5px);
-
 }
-
 
 .pledge-project:hover
 .english-display,
@@ -708,21 +634,18 @@ a {
 
 .pledge-project.revealed
 .english-display {
-
   opacity: 1;
 
   transform:
     translateY(0);
-
 }
 
 
 /* ==================================================
-   ADMIN CONTROLS
+   ADMIN
 ================================================== */
 
 .admin-panel {
-
   display: none;
 
   margin-bottom: 18px;
@@ -738,8 +661,7 @@ a {
   background:
     rgba(255,255,255,.17);
 
-  color:
-    #2b1b08;
+  color: #2b1b08;
 
   font-family:
     Arial,
@@ -747,54 +669,34 @@ a {
     sans-serif;
 
   font-size: 10px;
-
 }
-
 
 .admin-panel.visible {
-
   display: block;
-
 }
-
 
 .admin-panel strong {
-
   display: block;
-
   margin-bottom: 4px;
-
 }
-
 
 .admin-wallet {
+  word-break: break-all;
 
-  word-break:
-    break-all;
-
-  font-family:
-    monospace;
-
+  font-family: monospace;
   font-size: 9px;
-
 }
 
-
 .admin-actions {
-
   display: flex;
 
   gap: 5px;
 
   flex: 0 0 auto;
-
 }
 
-
 .admin-button {
-
-  padding:
-    5px 7px;
+  padding: 5px 7px;
 
   border:
     1px solid
@@ -802,40 +704,26 @@ a {
 
   border-radius: 4px;
 
-  background:
-    #ead399;
-
-  color:
-    #251706;
+  background: #ead399;
+  color: #251706;
 
   font-size: 9px;
-
   font-weight: 900;
 
   cursor: pointer;
-
 }
-
 
 .admin-button.delete {
-
   color: white;
-
-  background:
-    #a94236;
-
+  background: #a94236;
 }
 
-
 .admin-login {
-
   display: block;
 
-  margin:
-    20px auto 0;
+  margin: 20px auto 0;
 
-  padding:
-    5px 9px;
+  padding: 5px 9px;
 
   border:
     1px solid
@@ -843,8 +731,7 @@ a {
 
   border-radius: 3px;
 
-  background:
-    transparent;
+  background: transparent;
 
   color:
     rgba(48,29,8,.55);
@@ -852,18 +739,11 @@ a {
   font-size: 8px;
 
   cursor: pointer;
-
 }
 
-
 .admin-login:hover {
-
-  color:
-    #291a08;
-
-  border-color:
-    #291a08;
-
+  color: #291a08;
+  border-color: #291a08;
 }
 
 
@@ -872,7 +752,6 @@ a {
 ================================================== */
 
 .nav {
-
   position: sticky;
 
   top: 0;
@@ -888,15 +767,10 @@ a {
   border-bottom:
     1px solid
     rgba(139,61,255,.18);
-
 }
 
-
 .nav-inner {
-
-  width:
-    min(1180px,92vw);
-
+  width: min(1180px,92vw);
   margin: 0 auto;
 
   min-height: 60px;
@@ -904,109 +778,69 @@ a {
   display: flex;
 
   align-items: center;
-
-  justify-content:
-    space-between;
+  justify-content: space-between;
 
   gap: 20px;
-
 }
 
-
 .brand {
-
   font-size: 12px;
-
   font-weight: 900;
 
   letter-spacing: 1.5px;
 
-  text-transform:
-    uppercase;
-
+  text-transform: uppercase;
 }
-
 
 .brand span {
-
-  color:
-    var(--purple-light);
-
+  color: var(--purple-light);
 }
-
 
 .nav-links {
-
   display: flex;
-
   gap: 20px;
-
 }
 
-
 .nav-links a {
-
-  color:
-    var(--muted);
+  color: var(--muted);
 
   text-decoration: none;
 
   font-size: 11px;
-
   font-weight: 800;
 
   letter-spacing: 1px;
 
-  text-transform:
-    uppercase;
-
+  text-transform: uppercase;
 }
 
 
 /* ==================================================
-   CONTENT
+   GENERAL CONTENT
 ================================================== */
 
 .section {
-
-  padding:
-    100px 0;
-
+  padding: 100px 0;
 }
-
 
 .container {
-
-  width:
-    min(1050px,88vw);
-
-  margin:
-    0 auto;
-
+  width: min(1050px,88vw);
+  margin: 0 auto;
 }
 
-
 .section-number {
+  margin-bottom: 10px;
 
-  margin-bottom:
-    10px;
-
-  color:
-    var(--green);
+  color: var(--green);
 
   font-size: 11px;
-
   font-weight: 900;
 
   letter-spacing: 2px;
-
 }
 
-
 .section h2 {
-
-  margin:
-    0 0 20px;
+  margin: 0 0 20px;
 
   max-width: 850px;
 
@@ -1016,40 +850,27 @@ a {
   line-height: 1;
 
   letter-spacing: -2px;
-
 }
-
 
 .lead {
-
   max-width: 820px;
 
-  color:
-    #d2ccd9;
+  color: #d2ccd9;
 
   font-size: 18px;
-
   line-height: 1.75;
-
 }
-
 
 .lead strong {
-
   color: white;
-
 }
 
-
 .story-line {
-
-  margin:
-    45px 0;
+  margin: 45px 0;
 
   height: 1px;
 
   background:
-
     linear-gradient(
       90deg,
       transparent,
@@ -1057,7 +878,51 @@ a {
       var(--green),
       transparent
     );
+}
 
+
+/* ==================================================
+   SIMPLE CALLOUT
+================================================== */
+
+.clarity-callout {
+  margin-top: 35px;
+
+  padding: 26px;
+
+  border:
+    1px solid
+    rgba(167,213,45,.30);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25,32,12,.48),
+      rgba(8,7,11,.98)
+    );
+}
+
+.clarity-callout h3 {
+  margin: 0 0 12px;
+
+  color: var(--green);
+
+  font-size: 22px;
+}
+
+.clarity-callout p {
+  margin: 0;
+
+  color: #d2ccd9;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.clarity-callout strong {
+  color: white;
 }
 
 
@@ -1066,7 +931,6 @@ a {
 ================================================== */
 
 .grid {
-
   display: grid;
 
   grid-template-columns:
@@ -1074,82 +938,53 @@ a {
 
   gap: 18px;
 
-  margin-top:
-    40px;
-
+  margin-top: 40px;
 }
 
-
 .card {
+  min-height: 220px;
 
-  min-height:
-    220px;
-
-  padding:
-    28px;
+  padding: 28px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:
-    10px;
+  border-radius: 10px;
 
   background:
-
     linear-gradient(
       145deg,
       rgba(18,11,28,.9),
       rgba(7,7,10,.96)
     );
-
 }
-
 
 .card-label {
+  margin-bottom: 14px;
 
-  margin-bottom:
-    14px;
+  color: var(--green);
 
-  color:
-    var(--green);
+  font-size: 11px;
+  font-weight: 900;
 
-  font-size:
-    11px;
+  letter-spacing: 2px;
 
-  font-weight:
-    900;
-
-  letter-spacing:
-    2px;
-
-  text-transform:
-    uppercase;
-
+  text-transform: uppercase;
 }
-
 
 .card h3 {
+  margin: 0 0 12px;
 
-  margin:
-    0 0 12px;
-
-  font-size:
-    22px;
-
+  font-size: 22px;
 }
 
-
 .card p {
-
   margin: 0;
 
-  color:
-    var(--muted);
+  color: var(--muted);
 
-  line-height:
-    1.65;
-
+  line-height: 1.65;
 }
 
 
@@ -1158,158 +993,101 @@ a {
 ================================================== */
 
 .chapters {
-
-  margin-top:
-    50px;
-
+  margin-top: 50px;
 }
 
-
 .chapter {
-
   display: grid;
 
   grid-template-columns:
     90px 1fr;
 
-  gap:
-    25px;
+  gap: 25px;
 
-  padding:
-    30px 0;
+  padding: 30px 0;
 
   border-bottom:
     1px solid
     rgba(255,255,255,.08);
-
 }
-
 
 .chapter-number {
+  color: var(--purple-light);
 
-  color:
-    var(--purple-light);
-
-  font-size:
-    45px;
-
-  font-weight:
-    900;
-
+  font-size: 45px;
+  font-weight: 900;
 }
-
 
 .chapter h3 {
+  margin: 0 0 8px;
 
-  margin:
-    0 0 8px;
-
-  font-size:
-    25px;
-
+  font-size: 25px;
 }
 
-
 .chapter p {
-
   margin: 0;
 
-  color:
-    var(--muted);
+  color: var(--muted);
 
-  line-height:
-    1.7;
-
+  line-height: 1.7;
 }
 
 
 /* ==================================================
-   AIRDROP PROGRESSION
+   PROGRESSION
 ================================================== */
 
 .progression {
-
-  margin-top:
-    45px;
+  margin-top: 45px;
 
   display: grid;
 
   grid-template-columns:
     repeat(4,1fr);
 
-  gap:
-    10px;
-
+  gap: 10px;
 }
 
-
 .progress-step {
+  min-height: 185px;
 
-  min-height:
-    185px;
-
-  padding:
-    22px;
+  padding: 22px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:
-    8px;
+  border-radius: 8px;
 
-  background:
-    #09070e;
-
+  background: #09070e;
 }
-
 
 .progress-step span {
-
   display: block;
 
-  margin-bottom:
-    12px;
+  margin-bottom: 12px;
 
-  color:
-    var(--green);
+  color: var(--green);
 
-  font-size:
-    11px;
+  font-size: 11px;
+  font-weight: 900;
 
-  font-weight:
-    900;
-
-  letter-spacing:
-    2px;
-
+  letter-spacing: 2px;
 }
-
 
 .progress-step strong {
-
   display: block;
 
-  margin-bottom:
-    10px;
+  margin-bottom: 10px;
 
-  font-size:
-    18px;
-
+  font-size: 18px;
 }
 
-
 .progress-step p {
+  color: var(--muted);
 
-  color:
-    var(--muted);
-
-  font-size:
-    14px;
-
-  line-height:
-    1.6;
-
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 
@@ -1318,88 +1096,136 @@ a {
 ================================================== */
 
 .role-panel {
+  margin-top: 45px;
 
-  margin-top:
-    45px;
-
-  padding:
-    38px;
+  padding: 38px;
 
   border:
     1px solid
     rgba(167,213,45,.28);
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 
   background:
-
     linear-gradient(
       145deg,
       rgba(31,44,13,.28),
       rgba(7,7,10,.96)
     );
-
 }
 
-
 .role-item {
-
   display: grid;
 
   grid-template-columns:
     38px 1fr;
 
-  gap:
-    13px;
+  gap: 13px;
 
-  margin:
-    23px 0;
-
+  margin: 23px 0;
 }
 
-
 .role-icon {
+  width: 30px;
+  height: 30px;
 
-  width:
-    30px;
+  display: flex;
 
-  height:
-    30px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
+  align-items: center;
+  justify-content: center;
 
   border:
     1px solid
     var(--green);
 
-  border-radius:
-    50%;
+  border-radius: 50%;
 
-  color:
-    var(--green);
+  color: var(--green);
 
-  font-weight:
-    900;
+  font-weight: 900;
+}
 
+.role-item p {
+  margin-top: 5px;
+
+  color: var(--muted);
+
+  line-height: 1.6;
 }
 
 
-.role-item p {
+/* ==================================================
+   SIGNAL POSTER EXAMPLE
+================================================== */
 
-  color:
-    var(--muted);
+.signal-example {
+  margin-top: 45px;
 
-  line-height:
-    1.6;
+  display: grid;
 
+  grid-template-columns:
+    minmax(260px,.85fr)
+    minmax(300px,1.15fr);
+
+  gap: 40px;
+
+  align-items: center;
+}
+
+.signal-poster-frame {
+  padding: 12px;
+
+  border:
+    1px solid
+    rgba(199,140,255,.35);
+
+  border-radius: 12px;
+
+  background:
+    #0b0710;
+
+  box-shadow:
+    0 25px 55px
+    rgba(0,0,0,.50);
+}
+
+.signal-poster {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 7px;
+}
+
+.signal-caption {
+  margin-top: 12px;
+
+  color: #9d95a8;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+.signal-explanation h3 {
+  margin: 0 0 14px;
+
+  color: var(--green);
+
+  font-size: 28px;
+}
+
+.signal-explanation p {
+  color: #d2ccd9;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.signal-explanation strong {
+  color: white;
 }
 
 
@@ -1408,32 +1234,25 @@ a {
 ================================================== */
 
 .sealed {
+  margin-top: 45px;
 
-  margin-top:
-    45px;
-
-  padding:
-    50px 35px;
+  padding: 50px 35px;
 
   border:
     1px solid
     rgba(199,140,255,.35);
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 
-  text-align:
-    center;
+  text-align: center;
 
   background:
-
     radial-gradient(
       circle,
       rgba(117,37,183,.22),
       rgba(6,5,9,.96)
       65%
     );
-
 }
 
 
@@ -1441,239 +1260,182 @@ a {
    PLEDGE FORM
 ================================================== */
 
+.pledge-intro {
+  max-width: 760px;
+
+  margin-top: 28px;
+
+  padding: 25px;
+
+  border:
+    1px solid
+    rgba(167,213,45,.28);
+
+  border-radius: 10px;
+
+  background:
+    rgba(22,28,11,.30);
+}
+
+.pledge-intro strong {
+  color: var(--green);
+}
+
+.pledge-intro p {
+  margin: 0;
+
+  color: #ddd7e5;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
 .pledge-form {
+  width: min(600px,100%);
 
-  width:
-    min(600px,100%);
+  margin-top: 40px;
 
-  margin-top:
-    40px;
-
-  padding:
-    32px;
+  padding: 32px;
 
   border:
     1px solid
     rgba(167,213,45,.32);
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 
   background:
-
     linear-gradient(
       145deg,
       rgba(20,25,10,.45),
       rgba(8,7,11,.98)
     );
-
 }
-
 
 .pledge-form h3 {
-
   margin-top: 0;
 
-  color:
-    var(--green);
-
+  color: var(--green);
 }
-
 
 .form-group {
-
-  margin-top:
-    18px;
-
+  margin-top: 18px;
 }
-
 
 .form-group label {
+  display: block;
 
-  display:
-    block;
+  margin-bottom: 7px;
 
-  margin-bottom:
-    7px;
+  color: #ddd7e5;
 
-  color:
-    #ddd7e5;
+  font-size: 12px;
+  font-weight: 900;
 
-  font-size:
-    12px;
+  letter-spacing: 1px;
 
-  font-weight:
-    900;
-
-  letter-spacing:
-    1px;
-
-  text-transform:
-    uppercase;
-
+  text-transform: uppercase;
 }
 
-
 .form-group input {
+  width: 100%;
 
-  width:
-    100%;
-
-  padding:
-    14px;
+  padding: 14px;
 
   border:
     1px solid
     rgba(255,255,255,.14);
 
-  border-radius:
-    7px;
+  border-radius: 7px;
 
-  background:
-    #08070b;
+  background: #08070b;
 
-  color:
-    white;
+  color: white;
 
-  outline:
-    none;
+  outline: none;
 
-  font-size:
-    15px;
-
+  font-size: 15px;
 }
 
-
 .pledge-submit {
+  width: 100%;
 
-  width:
-    100%;
+  margin-top: 24px;
 
-  margin-top:
-    24px;
-
-  padding:
-    15px;
+  padding: 15px;
 
   border:
     1px solid
     var(--green);
 
-  border-radius:
-    7px;
+  border-radius: 7px;
 
   background:
-
     linear-gradient(
       180deg,
       #9aca2d,
       #557516
     );
 
-  color:
-    #071004;
+  color: #071004;
 
-  font-weight:
-    900;
+  font-weight: 900;
+  letter-spacing: 1px;
 
-  letter-spacing:
-    1px;
-
-  cursor:
-    pointer;
-
+  cursor: pointer;
 }
-
 
 .pledge-message {
+  min-height: 22px;
 
-  min-height:
-    22px;
+  margin-top: 14px;
 
-  margin-top:
-    14px;
+  font-size: 13px;
 
-  font-size:
-    13px;
-
-  text-align:
-    center;
-
+  text-align: center;
 }
-
 
 .success {
-
-  color:
-    var(--green);
-
+  color: var(--green);
 }
 
-
 .error {
-
-  color:
-    #ff7777;
-
+  color: #ff7777;
 }
 
 
 /* ==================================================
-   FINAL SECTION
+   FINAL INVITATION
 ================================================== */
 
 .invitation {
+  min-height: 70vh;
 
-  min-height:
-    70vh;
+  display: flex;
 
-  display:
-    flex;
+  align-items: center;
 
-  align-items:
-    center;
-
-  text-align:
-    center;
-
+  text-align: center;
 }
-
 
 .invitation h2,
 .invitation .lead {
-
-  margin-left:
-    auto;
-
-  margin-right:
-    auto;
-
+  margin-left: auto;
+  margin-right: auto;
 }
-
 
 .invitation
 .hero-actions {
-
-  justify-content:
-    center;
-
+  justify-content: center;
 }
 
-
 footer {
+  padding: 25px;
 
-  padding:
-    25px;
+  color: #81798a;
 
-  color:
-    #81798a;
+  text-align: center;
 
-  text-align:
-    center;
-
-  font-size:
-    11px;
-
+  font-size: 11px;
 }
 
 
@@ -1681,231 +1443,133 @@ footer {
    RESPONSIVE
 ================================================== */
 
-@media(
-  max-width: 1200px
-) {
+@media(max-width: 1200px) {
 
   .hero-inner {
-
     grid-template-columns:
       330px
       minmax(430px,1fr)
       250px;
 
-    gap:
-      30px;
-
+    gap: 30px;
   }
 
-
   .hero-scroll {
-
-    width:
-      310px;
+    width: 310px;
 
     transform:
       translateX(-25px);
-
   }
-
 
   .greeter {
-
-    max-width:
-      280px;
-
+    max-width: 260px;
   }
-
 }
 
 
-@media(
-  max-width: 1050px
-) {
+@media(max-width: 1050px) {
 
   .hero-inner {
-
     grid-template-columns:
       1fr 1.2fr;
-
   }
-
 
   .hero-scroll {
+    grid-column: 1;
+    grid-row: 1;
 
-    grid-column:
-      1;
+    width: 100%;
+    max-width: 350px;
 
-    grid-row:
-      1;
-
-    width:
-      100%;
-
-    max-width:
-      350px;
-
-    transform:
-      none;
-
+    transform: none;
   }
-
 
   .hero-copy-column {
-
-    grid-column:
-      2;
-
-    grid-row:
-      1;
-
+    grid-column: 2;
+    grid-row: 1;
   }
-
 
   .greeter-wrap {
+    grid-column: 1 / 3;
 
-    grid-column:
-      1 / 3;
+    min-height: 400px;
 
-    min-height:
-      320px;
-
-    padding-top:
-      10px;
-
+    padding-top: 20px;
   }
-
 
   .greeter {
-
-    max-width:
-      280px;
-
+    max-width: 260px;
   }
 
+  .greeter-message {
+    max-width: 430px;
+  }
 }
 
 
-@media(
-  max-width: 750px
-) {
+@media(max-width: 750px) {
 
   .hero-inner {
-
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
 
     width:
       min(92vw,600px);
-
   }
-
 
   .hero-scroll,
   .hero-copy-column,
   .greeter-wrap {
-
-    grid-column:
-      1;
-
+    grid-column: 1;
   }
-
 
   .hero-scroll {
+    grid-row: 1;
 
-    grid-row:
-      1;
+    width: 100%;
+    max-width: 390px;
 
-    width:
-      100%;
-
-    max-width:
-      390px;
-
-    transform:
-      none;
-
+    transform: none;
   }
-
 
   .hero-copy-column {
+    grid-row: 2;
 
-    grid-row:
-      2;
-
-    padding-top:
-      15px;
-
+    padding-top: 15px;
   }
-
 
   .greeter-wrap {
-
-    grid-row:
-      3;
-
+    grid-row: 3;
   }
 
-
-  .grid {
-
-    grid-template-columns:
-      1fr;
-
+  .grid,
+  .progression,
+  .signal-example {
+    grid-template-columns: 1fr;
   }
-
-
-  .progression {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
 
   .nav-links {
-
-    display:
-      none;
-
+    display: none;
   }
-
 
   .chapter {
-
     grid-template-columns:
       55px 1fr;
-
   }
-
 
   .section {
-
-    padding:
-      75px 0;
-
+    padding: 75px 0;
   }
-
 
   .hero-scroll {
-
-    padding:
-      50px 24px;
-
+    padding: 50px 24px;
   }
-
 
   .koda-display {
-
-    font-size:
-      26px;
-
+    font-size: 26px;
   }
-
 }
 
 </style>
-
 </head>
 
 
@@ -1913,24 +1577,24 @@ footer {
 
 
 <!-- ==================================================
-     PRIVATE PAGE GUARD
+     PRIVATE ALLIANCE ACCESS
 ================================================== -->
 
 <script>
 
 if (
   sessionStorage
-  .getItem(
-    "allianceAccess"
-  )
+    .getItem(
+      "allianceAccess"
+    )
   !==
   "granted"
 ) {
 
   window.location
-  .replace(
-    "index.html"
-  );
+    .replace(
+      "index.html"
+    );
 
 }
 
@@ -1944,28 +1608,38 @@ if (
 
 <header class="hero">
 
-
 <div class="hero-inner">
 
 
-<!-- ALLIANCE SCROLL -->
+<!-- ALLIANCE PLEDGE SCROLL -->
 
-<aside
-  class="hero-scroll"
->
+<aside class="hero-scroll">
 
 <h2 class="scroll-title">
-
 The Alliance Pledge
-
 </h2>
 
-
 <p class="scroll-subtitle">
-
 Projects that have answered the call
-
 </p>
+
+
+<div class="pledge-direction">
+
+<strong>
+Want your project on this scroll?
+</strong>
+
+Submit your project information at the
+bottom of this page.
+
+<br>
+
+<a href="#pledge">
+↓ Submit Alliance Pledge
+</a>
+
+</div>
 
 
 <div
@@ -1974,16 +1648,13 @@ Projects that have answered the call
 >
 
 <strong>
-
 ADMIN EDITING ACTIVE
-
 </strong>
 
 <div
   id="adminWalletDisplay"
   class="admin-wallet"
->
-</div>
+></div>
 
 </div>
 
@@ -1991,8 +1662,7 @@ ADMIN EDITING ACTIVE
 <div
   id="pledgeList"
   class="pledge-list"
->
-</div>
+></div>
 
 
 <button
@@ -2001,11 +1671,8 @@ ADMIN EDITING ACTIVE
   type="button"
   onclick="activateAdmin()"
 >
-
 Admin
-
 </button>
-
 
 </aside>
 
@@ -2015,168 +1682,149 @@ Admin
 
 <div class="hero-copy-column">
 
-
 <div class="eyebrow">
-
 Private Alliance Transmission
-
 </div>
 
-
 <h1>
-
 Welcome to the
 <span>Bog.</span>
-
 </h1>
 
 
 <p class="hero-copy">
 
-You were given access because we believe
-your community may belong inside what is
-being built here.
+You were invited because we believe your
+project and community may belong inside
+the Cosmic Dream Bog Alliance.
+
+</p>
+
+
+<div class="quick-definition">
 
 <strong>
-
-Cosmic Dream Bog is not simply an NFT launch.
-
+WHAT IS THE ALLIANCE?
 </strong>
 
-It is a story participants enter,
-investigate and experience together.
+A network of independent projects helping
+carry the Cosmic Dream Bog signal into
+their own communities.
 
-</p>
+You remain completely independent.
 
+Your role is simple:
+pledge your project, receive the signal,
+and share it when the call begins.
 
-<p class="hero-copy">
-
-This transmission explains the world,
-the journey and what it means for your
-project to answer the Alliance call.
-
-</p>
+</div>
 
 
 <div class="hero-actions">
-
 
 <a
   class="button green"
   href="#transmission"
 >
-
 Read the Transmission
-
 </a>
-
 
 <a
   class="button"
-  href="https://discord.gg/XkxVPNsS6w"
-  target="_blank"
-  rel="noopener noreferrer"
+  href="#pledge"
 >
-
-Enter Discord
-
+Join the Alliance
 </a>
 
+</div>
 
 </div>
 
 
-</div>
 
-
-
-<!-- GREETER -->
+<!-- ALLIANCE GREETER -->
 
 <div class="greeter-wrap">
 
-
 <img
-
   src="alliance-greeter.png"
-
-  alt="Alliance Greeter"
-
+  alt="Cosmic Dream Bog Alliance Greeter"
   class="greeter"
-
 >
 
+<div class="greeter-message">
+
+<div class="greeter-label">
+Alliance Greeter
+</div>
+
+<h3>
+Welcome, project founder.
+</h3>
+
+<p>
+
+The Alliance is simple.
+
+Submit your pledge.
+
+Receive your
+<strong>Signal Receiver Poster</strong>.
+
+Then share the signal with your community
+when the call begins.
+
+</p>
+
+</div>
 
 </div>
 
 
 </div>
-
 
 </header>
 
 
 
 <!-- ==================================================
-     NAV
+     NAVIGATION
 ================================================== -->
 
 <nav class="nav">
 
-
 <div class="nav-inner">
 
-
 <div class="brand">
-
 Cosmic Dream
 <span>Bog</span>
-
 </div>
-
 
 <div class="nav-links">
 
-
 <a href="#world">
-
 World
-
 </a>
-
 
 <a href="#journey">
-
 Journey
-
 </a>
-
 
 <a href="#alliance">
-
 Alliance
-
 </a>
-
 
 <a href="#otherside">
-
 Otherside
-
 </a>
-
 
 <a href="#pledge">
-
 Pledge
-
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </nav>
 
@@ -2191,22 +1839,15 @@ Pledge
   class="section"
 >
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 01
-
 </div>
 
-
 <h2>
-
 Not another drop.
 A call to enter the Bog.
-
 </h2>
 
 
@@ -2217,7 +1858,9 @@ exactly what they can buy.
 
 Cosmic Dream Bog begins differently.
 
+<strong>
 Participants enter a mystery first.
+</strong>
 
 </p>
 
@@ -2229,28 +1872,24 @@ Participants enter a mystery first.
 
 Your project remains your project.
 
-Joining the Alliance does not make you
-part of the Cosmic Dream Bog team.
+Joining the Alliance does
+<strong>not</strong>
+make you part of the Cosmic Dream Bog team.
 
-<strong>
-
-The Alliance creates a bridge between
-respected communities and one shared adventure.
-
-</strong>
+The Alliance simply creates a bridge
+between independent communities and one
+shared story.
 
 </p>
 
-
 </div>
-
 
 </section>
 
 
 
 <!-- ==================================================
-     WORLD
+     TRANSMISSION 02
 ================================================== -->
 
 <section
@@ -2258,38 +1897,59 @@ respected communities and one shared adventure.
   class="section"
 >
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 02
-
 </div>
 
-
 <h2>
-
-The Bog is already waiting.
-
+The Bog is the world.
+Discord is where the journey begins.
 </h2>
 
 
 <p class="lead">
 
-Cosmic Dream Bog is built around a specific
-place inside the Otherside ecosystem:
-
-a Bog environment shaped by
+Cosmic Dream Bog is anchored to a real
+Otherside Bog environment shaped by
 Cosmic Dream sediment.
 
-Strange.
-Unstable.
-Dreamlike.
+But the current campaign does
+<strong>not</strong>
+require participants to enter the deed.
 
 </p>
 
+
+<div class="clarity-callout">
+
+<h3>
+Where does everything happen?
+</h3>
+
+<p>
+
+<strong>
+Discord.
+</strong>
+
+The discoveries, clues, puzzles,
+Shard Hunt activities, story progression
+and current gamification all happen inside
+the Cosmic Dream Bog Discord.
+
+The Otherside Bog deed is the world anchor
+and future destination.
+
+<strong>
+The Bog is the destination.
+Discord is where the signal starts.
+</strong>
+
+</p>
+
+</div>
 
 
 <div class="grid">
@@ -2297,20 +1957,13 @@ Dreamlike.
 
 <article class="card">
 
-
 <div class="card-label">
-
 The Obelisk
-
 </div>
 
-
 <h3>
-
 Something has shattered.
-
 </h3>
-
 
 <p>
 
@@ -2318,12 +1971,12 @@ An ancient obelisk has been deliberately
 broken.
 
 Its fragments are scattered throughout
-the Bog.
+the story.
 
-Discovering why becomes part of the journey.
+Discovering what happened becomes part
+of the Discord journey.
 
 </p>
-
 
 </article>
 
@@ -2331,29 +1984,21 @@ Discovering why becomes part of the journey.
 
 <article class="card">
 
-
 <div class="card-label">
-
 The Shards
-
 </div>
 
-
 <h3>
-
 Discovery matters.
-
 </h3>
-
 
 <p>
 
 Shards, fragments, puzzles and clues
-become pieces of a mystery shared across
-participating communities.
+become pieces of one mystery shared
+across participating communities.
 
 </p>
-
 
 </article>
 
@@ -2361,30 +2006,21 @@ participating communities.
 
 <article class="card">
 
-
 <div class="card-label">
-
 Discord
-
 </div>
 
-
 <h3>
-
-The live campaign layer.
-
+The active campaign.
 </h3>
-
 
 <p>
 
 Discord is where chapters open,
-discoveries happen,
-Shard Hunt runs and participant
-progress is earned.
+discoveries happen, Shard Hunt runs
+and participant progress is earned.
 
 </p>
-
 
 </article>
 
@@ -2392,44 +2028,35 @@ progress is earned.
 
 <article class="card">
 
-
 <div class="card-label">
-
-Tone
-
+The Bog
 </div>
 
-
 <h3>
-
-Eerie. Strange. Playful.
-
+The world behind the story.
 </h3>
-
 
 <p>
 
-The atmosphere sits inside interactive
-horror and community discovery.
+The Otherside deed gives Cosmic Dream Bog
+a real spatial home while the current
+interactive campaign runs through Discord.
 
 </p>
-
 
 </article>
 
 
 </div>
 
-
 </div>
-
 
 </section>
 
 
 
 <!-- ==================================================
-     STORY
+     TRANSMISSION 03
 ================================================== -->
 
 <section
@@ -2437,59 +2064,42 @@ horror and community discovery.
   class="section"
 >
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 03
-
 </div>
 
-
 <h2>
-
 Four movements.
 One shared story.
-
 </h2>
 
 
 <div class="chapters">
 
 
-
 <div class="chapter">
 
-
 <div class="chapter-number">
-
 01
-
 </div>
-
 
 <div>
 
-
 <h3>
-
 Answer the Call
-
 </h3>
-
 
 <p>
 
-Alliance projects bring selected
-community members into the Bog.
+Alliance communities receive the signal
+and interested members enter the
+Cosmic Dream Bog Discord.
 
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -2497,23 +2107,15 @@ community members into the Bog.
 
 <div class="chapter">
 
-
 <div class="chapter-number">
-
 02
-
 </div>
-
 
 <div>
 
-
 <h3>
-
 The Shattering
-
 </h3>
-
 
 <p>
 
@@ -2525,9 +2127,7 @@ Shard Hunt begins.
 
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -2535,35 +2135,25 @@ Shard Hunt begins.
 
 <div class="chapter">
 
-
 <div class="chapter-number">
-
 03
-
 </div>
-
 
 <div>
 
-
 <h3>
-
 The Investigation
-
 </h3>
-
 
 <p>
 
-Clues, puzzles, fragments and strange
-discoveries connect participating
-communities to one mystery.
+Participants discover clues,
+solve puzzles and uncover fragments
+inside Discord.
 
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -2571,114 +2161,84 @@ communities to one mystery.
 
 <div class="chapter">
 
-
 <div class="chapter-number">
-
 04
-
 </div>
-
 
 <div>
 
-
 <h3>
-
 The Rally
-
 </h3>
-
 
 <p>
 
-Communities move toward restoration of
-the obelisk and confrontation with the
-force responsible for the Shattering.
+Communities move toward restoration
+of the obelisk and confrontation with
+the force responsible for the Shattering.
 
 </p>
 
+</div>
 
 </div>
 
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 </section>
 
 
 
 <!-- ==================================================
-     AIRDROP PROGRESSION
+     TRANSMISSION 04
 ================================================== -->
 
 <section class="section">
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 04
-
 </div>
 
-
 <h2>
-
-Progress is proven on-chain.
-
+Discord progress becomes
+on-chain proof.
 </h2>
 
 
 <p class="lead">
 
-Participants complete required tasks and
-game progression inside Discord.
+Participants complete required story
+and game activities through Discord.
 
-As each stage is completed,
-qualifying wallets become part of
-that chapter's community airdrop.
+When a stage is completed,
+qualifying participant wallets become
+part of that chapter's NFT airdrop.
 
 </p>
-
 
 
 <div class="progression">
 
 
-
 <div class="progress-step">
 
-
 <span>
-
 AIRDROP 01
-
 </span>
 
-
 <strong>
-
 Story NFT One
-
 </strong>
 
-
 <p>
-
 Complete the first qualifying
 story milestone.
-
 </p>
-
 
 </div>
 
@@ -2686,28 +2246,18 @@ story milestone.
 
 <div class="progress-step">
 
-
 <span>
-
 AIRDROP 02
-
 </span>
 
-
 <strong>
-
 Story NFT Two
-
 </strong>
 
-
 <p>
-
 Continue the investigation
 and complete the next stage.
-
 </p>
-
 
 </div>
 
@@ -2715,28 +2265,18 @@ and complete the next stage.
 
 <div class="progress-step">
 
-
 <span>
-
 AIRDROP 03
-
 </span>
 
-
 <strong>
-
 Story NFT Three
-
 </strong>
 
-
 <p>
-
 Complete the final qualifying
 story stage.
-
 </p>
-
 
 </div>
 
@@ -2744,35 +2284,23 @@ story stage.
 
 <div class="progress-step">
 
-
 <span>
-
 UNLOCK
-
 </span>
 
-
 <strong>
-
 Fourth Mint
-
 </strong>
 
-
 <p>
-
-The same wallet must contain
-all three story NFTs to
-become eligible.
-
+The same wallet must hold all
+three story NFTs to become eligible.
 </p>
 
-
 </div>
 
 
 </div>
-
 
 
 <div class="story-line"></div>
@@ -2780,32 +2308,25 @@ become eligible.
 
 <p class="lead">
 
-
 <strong>
-
 One wallet.
 One path.
-
 </strong>
-
 
 All three progression NFTs must exist
 together inside the qualifying wallet
 before the fourth mint can unlock.
 
-
 </p>
 
-
 </div>
-
 
 </section>
 
 
 
 <!-- ==================================================
-     ALLIANCE ROLE
+     TRANSMISSION 05
 ================================================== -->
 
 <section
@@ -2813,59 +2334,55 @@ before the fourth mint can unlock.
   class="section"
 >
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 05
-
 </div>
 
-
 <h2>
-
-Become the signal.
-
+Become the Signal.
 </h2>
 
+
+<p class="lead">
+
+This is the Alliance member's role.
+
+It does not require running the campaign,
+building the game or managing the Bog.
+
+<strong>
+You simply help carry the signal into
+your own community.
+</strong>
+
+</p>
 
 
 <div class="role-panel">
 
 
-
 <div class="role-item">
 
-
 <div class="role-icon">
-
 1
-
 </div>
-
 
 <div>
 
-
 <strong>
-
-Receive the call.
-
+Pledge your project.
 </strong>
-
 
 <p>
 
-Alliance projects receive the invitation
-before their community enters.
+Submit the Alliance Pledge at the bottom
+of this page.
 
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -2873,34 +2390,26 @@ before their community enters.
 
 <div class="role-item">
 
-
 <div class="role-icon">
-
 2
-
 </div>
-
 
 <div>
 
-
 <strong>
-
-Invite your people.
-
+Receive the Signal.
 </strong>
-
 
 <p>
 
-Bring community members who enjoy
-mystery, collaboration and discovery.
+Approved Alliance members receive a
+free
+<strong>Signal Receiver Poster</strong>
+airdropped to their wallet.
 
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -2908,34 +2417,27 @@ mystery, collaboration and discovery.
 
 <div class="role-item">
 
-
 <div class="role-icon">
-
 3
-
 </div>
-
 
 <div>
 
-
 <strong>
-
-Send them into Discord.
-
+Post the Signal.
 </strong>
-
 
 <p>
 
-Discord becomes the active entrance
-into the campaign.
+Copy or save your poster and share it
+inside your project's Discord.
+
+The poster becomes your public signal
+that your community supports the journey.
 
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -2943,31 +2445,25 @@ into the campaign.
 
 <div class="role-item">
 
-
 <div class="role-icon">
-
 4
-
 </div>
-
 
 <div>
 
-
 <strong>
-
-Rally when the story calls.
-
+Rally your community.
 </strong>
-
 
 <p>
 
-Join important chapter moments
-when it fits your community.
+Interested members follow the call into
+Cosmic Dream Bog's Discord and X,
+where the story and discoveries begin.
 
 </p>
 
+</div>
 
 </div>
 
@@ -2975,18 +2471,71 @@ when it fits your community.
 </div>
 
 
+
+<!-- SIGNAL POSTER EXAMPLE -->
+
+<div class="signal-example">
+
+
+<div class="signal-poster-frame">
+
+<img
+  src="BOG IE.png"
+  alt="Example Signal Receiver Poster for Cosmic Dream Bog Alliance members"
+  class="signal-poster"
+>
+
+<div class="signal-caption">
+
+Example Signal Receiver Poster for
+Alliance members.
+
+</div>
+
+</div>
+
+
+<div class="signal-explanation">
+
+<h3>
+This is what carrying the signal looks like.
+</h3>
+
+<p>
+
+Your Signal Receiver Poster is designed
+to be shared directly with your community.
+
+It tells your members that your project
+has answered the call and gives them a
+clear path into Cosmic Dream Bog.
+
+</p>
+
+<p>
+
+<strong>
+Receive it.
+Post it.
+Let your community decide whether
+they want to enter the Bog.
+</strong>
+
+</p>
+
 </div>
 
 
 </div>
 
+</div>
 
 </section>
 
 
 
 <!-- ==================================================
-     OTHERSIDE
+     TRANSMISSION 06
 ================================================== -->
 
 <section
@@ -2994,53 +2543,39 @@ when it fits your community.
   class="section"
 >
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 06
-
 </div>
 
-
 <h2>
-
 The story has a real location.
-
 </h2>
-
 
 
 <div class="grid">
 
 
-
 <article class="card">
 
-
 <div class="card-label">
-
 Primary Anchor
-
 </div>
 
-
 <h3>
-
 Otherdeed #31867
-
 </h3>
-
 
 <p>
 
-Environment: Bog.
+Environment:
+Bog.
 
 <br><br>
 
-Sediment: Cosmic Dream.
+Sediment:
+Cosmic Dream.
 
 <br><br>
 
@@ -3049,31 +2584,24 @@ of Cosmic Dream Bog.
 
 </p>
 
-
 </article>
 
 
 
 <article class="card">
 
-
 <div class="card-label">
-
 Secondary Anchor
-
 </div>
 
-
 <h3>
-
 Otherdeed #12450
-
 </h3>
-
 
 <p>
 
-Environment: Splinter.
+Environment:
+Splinter.
 
 <br><br>
 
@@ -3083,12 +2611,10 @@ current journey.
 
 </p>
 
-
 </article>
 
 
 </div>
-
 
 
 <div class="story-line"></div>
@@ -3096,54 +2622,46 @@ current journey.
 
 <p class="lead">
 
+The current campaign and gamification
+run through Discord.
+
 The long-term direction is an
 interactive horror-themed spatial
-experience built around the Bog deed.
+experience built around the Bog deed
+when the necessary Otherside creation
+tools become available.
 
 </p>
 
-
 </div>
-
 
 </section>
 
 
 
 <!-- ==================================================
-     FINAL MINT
+     TRANSMISSION 07
 ================================================== -->
 
 <section class="section">
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 TRANSMISSION 07
-
 </div>
 
-
 <h2>
-
 The final mint remains
 behind the curtain.
-
 </h2>
 
 
 <div class="sealed">
 
-
 <h3>
-
 FOURTH MINT
-
 </h3>
-
 
 <p>
 
@@ -3152,28 +2670,23 @@ story NFTs become eligible for a fourth
 and final mint:
 
 <strong>
-
 a 3D avatar.
-
 </strong>
 
 Additional details remain unreleased.
 
 </p>
 
-
 </div>
 
-
 </div>
-
 
 </section>
 
 
 
 <!-- ==================================================
-     PLEDGE FORM
+     ALLIANCE PLEDGE
 ================================================== -->
 
 <section
@@ -3181,33 +2694,46 @@ Additional details remain unreleased.
   class="section"
 >
 
-
 <div class="container">
 
-
 <div class="section-number">
-
 ALLIANCE PLEDGE
-
 </div>
 
-
 <h2>
-
-Answer the call.
-
+Answer the Call.
 </h2>
 
 
-<p class="lead">
+<div class="pledge-intro">
 
-Enter the three required pieces of
-information below.
+<p>
 
-Only the project name appears publicly
-on the Alliance Pledge Scroll.
+<strong>
+Want to join the Alliance?
+</strong>
+
+Enter your project information below.
+
+Approved Alliance members will receive
+a free
+<strong>Signal Receiver Poster</strong>
+airdropped to the wallet submitted here.
+
+The poster will be prepared with your
+project founder's 3D avatar at the time
+of the Alliance poster drop.
+
+Only your
+<strong>project name</strong>
+appears publicly on the Alliance Pledge
+Scroll.
+
+Your name and wallet remain private.
 
 </p>
+
+</div>
 
 
 
@@ -3216,60 +2742,38 @@ on the Alliance Pledge Scroll.
   class="pledge-form"
 >
 
-
 <h3>
-
-Answer the Alliance Pledge
-
+Submit Alliance Pledge
 </h3>
 
 
-
 <div class="form-group">
-
 
 <label for="pledgeName">
-
-Name
-
+Founder / Contact Name
 </label>
 
-
 <input
-
   id="pledgeName"
-
   type="text"
-
   required
-
 >
-
 
 </div>
 
 
 
 <div class="form-group">
-
 
 <label for="pledgeProject">
-
-Project
-
+Project Name
 </label>
 
-
 <input
-
   id="pledgeProject"
-
   type="text"
-
   required
-
 >
-
 
 </div>
 
@@ -3277,60 +2781,37 @@ Project
 
 <div class="form-group">
 
-
 <label for="pledgeWallet">
-
 Wallet Address
-
 </label>
 
-
 <input
-
   id="pledgeWallet"
-
   type="text"
-
   placeholder="0x..."
-
   required
-
 >
-
 
 </div>
 
 
 
 <button
-
   class="pledge-submit"
-
   type="submit"
-
 >
-
-Answer the Pledge
-
+Submit Alliance Pledge
 </button>
 
 
-
 <div
-
   id="pledgeMessage"
-
   class="pledge-message"
-
->
-</div>
-
+></div>
 
 </form>
 
-
 </div>
-
 
 </section>
 
@@ -3340,31 +2821,26 @@ Answer the Pledge
      FINAL TRANSMISSION
 ================================================== -->
 
-<section
-  class="section invitation"
->
-
+<section class="section invitation">
 
 <div class="container">
 
-
 <div class="section-number">
-
 FINAL TRANSMISSION
-
 </div>
 
-
 <h2>
-
-Will your people answer the call?
-
+Will your community
+answer the call?
 </h2>
-
 
 <p class="lead">
 
-Separate communities.
+Separate projects.
+
+Independent communities.
+
+One signal.
 
 One strange place.
 
@@ -3373,67 +2849,45 @@ One mystery waiting to be solved.
 </p>
 
 
-
 <div class="hero-actions">
 
-
 <a
-
   class="button green"
+  href="#pledge"
+>
+Join the Alliance
+</a>
 
+<a
+  class="button"
   href="https://discord.gg/XkxVPNsS6w"
-
   target="_blank"
-
   rel="noopener noreferrer"
-
 >
-
 Enter Discord
-
 </a>
 
-
-
 <a
-
   class="button"
-
   href="https://x.com/bogvoyager"
-
   target="_blank"
-
   rel="noopener noreferrer"
-
 >
-
 @BogVoyager
-
 </a>
-
-
 
 <a
-
   class="button"
-
   href="index.html"
-
 >
-
 Return to the Bog
-
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </section>
-
 
 
 <footer>
@@ -3454,601 +2908,1179 @@ A Terencio Verde Project
 
 
 
+<!-- ==================================================
+     DATABASE + ALLIANCE SYSTEM
+================================================== -->
 
 <script>
 
-const SUPABASE_URL = "https://goqqeqcagebdubyumpch.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_GxykHlcRxftMHsauR5TvEA_XCo7fYDx";
-const PRIVATE_PLEDGE_TABLE = "alliance_pledges";
-const PUBLIC_PROJECT_TABLE = "alliance_public_projects";
+const SUPABASE_URL =
+  "https://goqqeqcagebdubyumpch.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_GxykHlcRxftMHsauR5TvEA_XCo7fYDx";
+
+const PRIVATE_PLEDGE_TABLE =
+  "alliance_pledges";
+
+const PUBLIC_PROJECT_TABLE =
+  "alliance_public_projects";
 
 const ADMIN_WALLET =
   "0x6a0f160c342490d3F2C0B47f8283F442660F07d9"
-  .toLowerCase();
+    .toLowerCase();
 
 let adminMode = false;
 
-function supabaseHeaders(extra = {}) {
+
+
+/* ==================================================
+   SUPABASE HEADERS
+================================================== */
+
+function supabaseHeaders(
+  extra = {}
+) {
+
   return {
-    apikey: SUPABASE_PUBLISHABLE_KEY,
-    Authorization: "Bearer " + SUPABASE_PUBLISHABLE_KEY,
+
+    apikey:
+      SUPABASE_PUBLISHABLE_KEY,
+
+    Authorization:
+      "Bearer " +
+      SUPABASE_PUBLISHABLE_KEY,
+
     ...extra
+
   };
+
 }
 
+
+
+/* ==================================================
+   GET PUBLIC ALLIANCE PROJECTS
+================================================== */
+
 async function fetchPublicProjects() {
-  const response = await fetch(
-    SUPABASE_URL +
+
+  const response =
+    await fetch(
+
+      SUPABASE_URL +
       "/rest/v1/" +
       PUBLIC_PROJECT_TABLE +
       "?select=id,project&order=id.asc",
-    {
-      method: "GET",
-      headers: supabaseHeaders()
-    }
-  );
+
+      {
+
+        method:
+          "GET",
+
+        headers:
+          supabaseHeaders()
+
+      }
+
+    );
+
 
   if (!response.ok) {
-    const details = await response.text();
-    throw new Error("Alliance scroll unavailable: " + details);
+
+    const details =
+      await response.text();
+
+    throw new Error(
+      "Alliance scroll unavailable: " +
+      details
+    );
+
   }
+
 
   return await response.json();
+
 }
 
-async function savePrivatePledge(name, project, wallet) {
-  const response = await fetch(
-    SUPABASE_URL +
+
+
+/* ==================================================
+   SAVE PRIVATE PLEDGE
+================================================== */
+
+async function savePrivatePledge(
+  name,
+  project,
+  wallet
+) {
+
+  const response =
+    await fetch(
+
+      SUPABASE_URL +
       "/rest/v1/" +
       PRIVATE_PLEDGE_TABLE,
-    {
-      method: "POST",
-      headers: supabaseHeaders({
-        "Content-Type": "application/json",
-        Prefer: "return=minimal"
-      }),
-      body: JSON.stringify({
-        name,
-        project,
-        wallet
-      })
-    }
-  );
+
+      {
+
+        method:
+          "POST",
+
+        headers:
+          supabaseHeaders({
+
+            "Content-Type":
+              "application/json",
+
+            Prefer:
+              "return=minimal"
+
+          }),
+
+        body:
+          JSON.stringify({
+
+            name,
+            project,
+            wallet
+
+          })
+
+      }
+
+    );
+
 
   if (!response.ok) {
-    const details = await response.text();
-    throw new Error("Pledge could not be saved: " + details);
-  }
-}
 
-async function sendPledgeEmail(name, project, wallet) {
-  try {
-    const response = await fetch(
-      SUPABASE_URL +
-        "/functions/v1/alliance-pledge-email",
-      {
-        method: "POST",
-        headers: supabaseHeaders({
-          "Content-Type": "application/json"
-        }),
-        body: JSON.stringify({
-          name,
-          project,
-          wallet
-        })
-      }
+    const details =
+      await response.text();
+
+    throw new Error(
+      "Pledge could not be saved: " +
+      details
     );
 
-    if (!response.ok) {
-      console.warn(
-        "Pledge saved, but email notification is not active yet."
-      );
-    }
-  } catch (error) {
-    console.warn(
-      "Pledge saved, but email notification is not active yet.",
-      error
-    );
   }
+
 }
 
-async function activateAdmin() {
-  if (!window.ethereum) {
-    alert("No browser wallet detected.");
-    return;
-  }
+
+
+/* ==================================================
+   EMAIL PLEDGE
+================================================== */
+
+async function sendPledgeEmail(
+  name,
+  project,
+  wallet
+) {
 
   try {
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts"
-    });
-
-    if (
-      accounts.length > 0 &&
-      accounts[0].toLowerCase() === ADMIN_WALLET
-    ) {
-      adminMode = true;
-      updateAdminUI();
-      await renderProjects();
-    } else {
-      alert("Admin wallet not detected.");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function checkAdminWallet() {
-  adminMode = false;
-
-  if (window.ethereum) {
-    try {
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts"
-      });
-
-      if (
-        accounts.length > 0 &&
-        accounts[0].toLowerCase() === ADMIN_WALLET
-      ) {
-        adminMode = true;
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  updateAdminUI();
-}
-
-function updateAdminUI() {
-  const panel = document.getElementById("adminPanel");
-  const login = document.getElementById("adminLogin");
-  const walletDisplay = document.getElementById("adminWalletDisplay");
-
-  if (adminMode) {
-    panel.classList.add("visible");
-    login.style.display = "none";
-    walletDisplay.textContent = ADMIN_WALLET;
-  } else {
-    panel.classList.remove("visible");
-    login.style.display = "block";
-  }
-}
-
-function createProjectRow(entry) {
-  const row = document.createElement("div");
-  row.className = "pledge-project";
-  row.tabIndex = 0;
-  row.setAttribute("aria-label", entry.project);
-  row.title = "Reveal " + entry.project;
-
-  const display = document.createElement("div");
-  display.className = "project-display";
-
-  const koda = document.createElement("div");
-  koda.className = "koda-display";
-
-  const english = document.createElement("div");
-  english.className = "english-display";
-  english.textContent = entry.project;
-
-  display.appendChild(koda);
-  display.appendChild(english);
-  row.appendChild(display);
-
-  if (window.KodaGlyphs) {
-    KodaGlyphs.render(entry.project, koda);
-  } else {
-    koda.textContent = entry.project;
-  }
-
-  row.addEventListener("click", function(event) {
-    if (event.target.closest(".admin-actions")) return;
-    row.classList.toggle("revealed");
-  });
-
-  row.addEventListener("keydown", function(event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      row.classList.toggle("revealed");
-    }
-  });
-
- if (adminMode) {
-
-  const controls =
-    document.createElement("div");
-
-  controls.className =
-    "admin-actions";
-
-
-  async function runAdminAction(
-    action,
-    projectName
-  ) {
-
-    if (!window.ethereum) {
-
-      alert(
-        "No wallet detected."
-      );
-
-      return;
-    }
-
-
-    const accounts =
-      await window.ethereum.request({
-        method: "eth_requestAccounts"
-      });
-
-
-    if (
-      !accounts.length ||
-      accounts[0].toLowerCase()
-      !== ADMIN_WALLET
-    ) {
-
-      alert(
-        "Admin wallet required."
-      );
-
-      return;
-    }
-
-
-    const account =
-      accounts[0];
-
-    const timestamp =
-      Date.now();
-
-
-    const message =
-      [
-        "Cosmic Dream Bog Alliance Admin",
-        `Action: ${action}`,
-        `Public ID: ${entry.id}`,
-        `Project: ${
-          action === "edit"
-            ? projectName
-            : ""
-        }`,
-        `Timestamp: ${timestamp}`,
-      ].join("\n");
-
-
-    const messageHex =
-      "0x" +
-      Array
-        .from(
-          new TextEncoder()
-            .encode(message)
-        )
-        .map(
-          byte =>
-            byte
-              .toString(16)
-              .padStart(2, "0")
-        )
-        .join("");
-
-
-    const signature =
-      await window.ethereum.request({
-        method: "personal_sign",
-        params: [
-          messageHex,
-          account
-        ]
-      });
-
 
     const response =
       await fetch(
+
         SUPABASE_URL +
-        "/functions/v1/alliance-admin",
+        "/functions/v1/alliance-pledge-email",
+
         {
-          method: "POST",
+
+          method:
+            "POST",
 
           headers:
             supabaseHeaders({
+
               "Content-Type":
                 "application/json"
+
             }),
 
           body:
             JSON.stringify({
-              action,
-              publicId:
-                entry.id,
-              project:
-                projectName,
-              timestamp,
-              signature
+
+              name,
+              project,
+              wallet
+
             })
+
         }
+
       );
-
-
-    const result =
-      await response.json();
 
 
     if (!response.ok) {
 
-      console.error(
-        "Admin action failed:",
-        result
+      console.warn(
+        "Pledge saved, but email notification failed."
       );
 
-      alert(
-        result.error ||
-        "Admin action failed."
-      );
-
-      return;
     }
 
+  }
 
-    await renderProjects();
+  catch(error) {
+
+    console.warn(
+      "Pledge saved, but email notification failed.",
+      error
+    );
+
+  }
+
+}
+
+
+
+/* ==================================================
+   ADMIN WALLET
+================================================== */
+
+async function activateAdmin() {
+
+  if (!window.ethereum) {
+
+    alert(
+      "No browser wallet detected."
+    );
+
+    return;
 
   }
 
 
-  const edit =
-    document.createElement(
-      "button"
+  try {
+
+    const accounts =
+      await window.ethereum.request({
+
+        method:
+          "eth_requestAccounts"
+
+      });
+
+
+    if (
+
+      accounts.length > 0 &&
+
+      accounts[0]
+        .toLowerCase()
+      ===
+      ADMIN_WALLET
+
+    ) {
+
+      adminMode = true;
+
+      updateAdminUI();
+
+      await renderProjects();
+
+    }
+
+    else {
+
+      alert(
+        "Admin wallet not detected."
+      );
+
+    }
+
+  }
+
+  catch(error) {
+
+    console.error(
+      error
     );
 
-  edit.className =
-    "admin-button";
+  }
 
-  edit.type =
-    "button";
-
-  edit.textContent =
-    "EDIT";
+}
 
 
-  edit.onclick =
-    async function(event) {
 
-      event.stopPropagation();
+async function checkAdminWallet() {
+
+  adminMode = false;
 
 
-      const replacement =
-        prompt(
-          "Edit project name:",
-          entry.project
-        );
+  if (window.ethereum) {
+
+    try {
+
+      const accounts =
+        await window.ethereum.request({
+
+          method:
+            "eth_accounts"
+
+        });
 
 
       if (
-        replacement === null
+
+        accounts.length > 0 &&
+
+        accounts[0]
+          .toLowerCase()
+        ===
+        ADMIN_WALLET
+
       ) {
-        return;
-      }
 
-
-      const clean =
-        replacement.trim();
-
-
-      if (!clean) {
-
-        alert(
-          "Project name cannot be empty."
-        );
-
-        return;
-      }
-
-
-      try {
-
-        await runAdminAction(
-          "edit",
-          clean
-        );
+        adminMode = true;
 
       }
 
-      catch(error) {
+    }
 
-        console.error(error);
+    catch(error) {
 
-        alert(
-          "Admin edit failed."
-        );
+      console.error(
+        error
+      );
 
-      }
+    }
 
-    };
+  }
 
 
-  const remove =
-    document.createElement(
-      "button"
+  updateAdminUI();
+
+}
+
+
+
+function updateAdminUI() {
+
+  const panel =
+    document.getElementById(
+      "adminPanel"
     );
 
-  remove.className =
-    "admin-button delete";
+  const login =
+    document.getElementById(
+      "adminLogin"
+    );
 
-  remove.type =
-    "button";
-
-  remove.textContent =
-    "DELETE";
-
-
-  remove.onclick =
-    async function(event) {
-
-      event.stopPropagation();
+  const walletDisplay =
+    document.getElementById(
+      "adminWalletDisplay"
+    );
 
 
-      const approved =
-        confirm(
-          "Remove " +
-          entry.project +
-          " from the Alliance Pledge?"
-        );
+  if (adminMode) {
+
+    panel.classList.add(
+      "visible"
+    );
+
+    login.style.display =
+      "none";
+
+    walletDisplay.textContent =
+      ADMIN_WALLET;
+
+  }
+
+  else {
+
+    panel.classList.remove(
+      "visible"
+    );
+
+    login.style.display =
+      "block";
+
+  }
+
+}
 
 
-      if (!approved) {
-        return;
-      }
 
+/* ==================================================
+   PROJECT ROW
+================================================== */
 
-      try {
+function createProjectRow(
+  entry
+) {
 
-        await runAdminAction(
-          "delete",
-          ""
-        );
+  const row =
+    document.createElement(
+      "div"
+    );
 
-      }
+  row.className =
+    "pledge-project";
 
-      catch(error) {
+  row.tabIndex = 0;
 
-        console.error(error);
-
-        alert(
-          "Admin deletion failed."
-        );
-
-      }
-
-    };
-
-
-  controls.appendChild(
-    edit
+  row.setAttribute(
+    "aria-label",
+    entry.project
   );
 
-  controls.appendChild(
-    remove
+  row.title =
+    "Reveal " +
+    entry.project;
+
+
+  const display =
+    document.createElement(
+      "div"
+    );
+
+  display.className =
+    "project-display";
+
+
+  const koda =
+    document.createElement(
+      "div"
+    );
+
+  koda.className =
+    "koda-display";
+
+
+  const english =
+    document.createElement(
+      "div"
+    );
+
+  english.className =
+    "english-display";
+
+  english.textContent =
+    entry.project;
+
+
+  display.appendChild(
+    koda
+  );
+
+  display.appendChild(
+    english
   );
 
   row.appendChild(
-    controls
+    display
   );
 
-}
+
+  if (
+    window.KodaGlyphs
+  ) {
+
+    KodaGlyphs.render(
+      entry.project,
+      koda
+    );
+
+  }
+
+  else {
+
+    koda.textContent =
+      entry.project;
+
+  }
+
+
+
+  row.addEventListener(
+
+    "click",
+
+    function(event) {
+
+      if (
+        event.target.closest(
+          ".admin-actions"
+        )
+      ) {
+
+        return;
+
+      }
+
+      row.classList.toggle(
+        "revealed"
+      );
+
+    }
+
+  );
+
+
+
+  row.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+
+        event.preventDefault();
+
+        row.classList.toggle(
+          "revealed"
+        );
+
+      }
+
+    }
+
+  );
+
+
+
+  /* ==================================================
+     SECURE ADMIN EDIT / DELETE
+  ================================================== */
+
+  if (adminMode) {
+
+    const controls =
+      document.createElement(
+        "div"
+      );
+
+    controls.className =
+      "admin-actions";
+
+
+    async function runAdminAction(
+      action,
+      projectName
+    ) {
+
+      if (!window.ethereum) {
+
+        alert(
+          "No wallet detected."
+        );
+
+        return;
+
+      }
+
+
+      const accounts =
+        await window.ethereum.request({
+
+          method:
+            "eth_requestAccounts"
+
+        });
+
+
+      if (
+
+        !accounts.length ||
+
+        accounts[0]
+          .toLowerCase()
+        !==
+        ADMIN_WALLET
+
+      ) {
+
+        alert(
+          "Admin wallet required."
+        );
+
+        return;
+
+      }
+
+
+      const account =
+        accounts[0];
+
+      const timestamp =
+        Date.now();
+
+
+      const message =
+        [
+
+          "Cosmic Dream Bog Alliance Admin",
+
+          `Action: ${action}`,
+
+          `Public ID: ${entry.id}`,
+
+          `Project: ${
+            action === "edit"
+              ? projectName
+              : ""
+          }`,
+
+          `Timestamp: ${timestamp}`
+
+        ].join("\n");
+
+
+      const messageHex =
+        "0x" +
+        Array
+          .from(
+            new TextEncoder()
+              .encode(message)
+          )
+          .map(
+            byte =>
+              byte
+                .toString(16)
+                .padStart(2,"0")
+          )
+          .join("");
+
+
+      const signature =
+        await window.ethereum.request({
+
+          method:
+            "personal_sign",
+
+          params: [
+            messageHex,
+            account
+          ]
+
+        });
+
+
+      const response =
+        await fetch(
+
+          SUPABASE_URL +
+          "/functions/v1/alliance-admin",
+
+          {
+
+            method:
+              "POST",
+
+            headers:
+              supabaseHeaders({
+
+                "Content-Type":
+                  "application/json"
+
+              }),
+
+            body:
+              JSON.stringify({
+
+                action,
+
+                publicId:
+                  entry.id,
+
+                project:
+                  projectName,
+
+                timestamp,
+
+                signature
+
+              })
+
+          }
+
+        );
+
+
+      const result =
+        await response.json();
+
+
+      if (!response.ok) {
+
+        console.error(
+          "Admin action failed:",
+          result
+        );
+
+        alert(
+          result.error ||
+          "Admin action failed."
+        );
+
+        return;
+
+      }
+
+
+      await renderProjects();
+
+    }
+
+
+
+    const edit =
+      document.createElement(
+        "button"
+      );
+
+    edit.className =
+      "admin-button";
+
+    edit.type =
+      "button";
+
+    edit.textContent =
+      "EDIT";
+
+
+    edit.onclick =
+      async function(event) {
+
+        event.stopPropagation();
+
+
+        const replacement =
+          prompt(
+
+            "Edit project name:",
+
+            entry.project
+
+          );
+
+
+        if (
+          replacement === null
+        ) {
+
+          return;
+
+        }
+
+
+        const clean =
+          replacement.trim();
+
+
+        if (!clean) {
+
+          alert(
+            "Project name cannot be empty."
+          );
+
+          return;
+
+        }
+
+
+        try {
+
+          await runAdminAction(
+            "edit",
+            clean
+          );
+
+        }
+
+        catch(error) {
+
+          console.error(
+            error
+          );
+
+          alert(
+            "Admin edit failed."
+          );
+
+        }
+
+      };
+
+
+
+    const remove =
+      document.createElement(
+        "button"
+      );
+
+    remove.className =
+      "admin-button delete";
+
+    remove.type =
+      "button";
+
+    remove.textContent =
+      "DELETE";
+
+
+    remove.onclick =
+      async function(event) {
+
+        event.stopPropagation();
+
+
+        const approved =
+          confirm(
+
+            "Remove " +
+            entry.project +
+            " from the Alliance Pledge?"
+
+          );
+
+
+        if (!approved) {
+
+          return;
+
+        }
+
+
+        try {
+
+          await runAdminAction(
+            "delete",
+            ""
+          );
+
+        }
+
+        catch(error) {
+
+          console.error(
+            error
+          );
+
+          alert(
+            "Admin deletion failed."
+          );
+
+        }
+
+      };
+
+
+    controls.appendChild(
+      edit
+    );
+
+    controls.appendChild(
+      remove
+    );
+
+    row.appendChild(
+      controls
+    );
+
+  }
+
 
   return row;
+
 }
 
+
+
+/* ==================================================
+   RENDER PROJECTS
+================================================== */
+
 async function renderProjects() {
-  const list = document.getElementById("pledgeList");
+
+  const list =
+    document.getElementById(
+      "pledgeList"
+    );
+
 
   list.innerHTML =
     '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">Loading the Alliance Pledge...</div>';
 
+
   try {
-    const projects = await fetchPublicProjects();
+
+    const projects =
+      await fetchPublicProjects();
+
+
     list.innerHTML = "";
 
-    if (projects.length === 0) {
+
+    if (
+      projects.length === 0
+    ) {
+
       list.innerHTML =
         '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">The scroll awaits its first signatures.</div>';
+
       return;
+
     }
 
-    projects.forEach(function(entry) {
-      list.appendChild(createProjectRow(entry));
-    });
-  } catch (error) {
-    console.error(error);
-    list.innerHTML =
-      '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">The shared Alliance Scroll is being connected.</div>';
+
+    projects.forEach(
+
+      function(entry) {
+
+        list.appendChild(
+          createProjectRow(
+            entry
+          )
+        );
+
+      }
+
+    );
+
   }
+
+  catch(error) {
+
+    console.error(
+      error
+    );
+
+
+    list.innerHTML =
+      '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">The Alliance Scroll is temporarily unavailable.</div>';
+
+  }
+
 }
+
+
+
+/* ==================================================
+   PLEDGE SUBMISSION
+================================================== */
 
 document
-.getElementById("pledgeForm")
-.addEventListener("submit", async function(event) {
-  event.preventDefault();
+  .getElementById(
+    "pledgeForm"
+  )
+  .addEventListener(
 
-  const name =
-    document.getElementById("pledgeName").value.trim();
+    "submit",
 
-  const project =
-    document.getElementById("pledgeProject").value.trim();
+    async function(event) {
 
-  const wallet =
-    document.getElementById("pledgeWallet").value.trim();
+      event.preventDefault();
 
-  const message =
-    document.getElementById("pledgeMessage");
 
-  const submitButton =
-    event.currentTarget.querySelector(".pledge-submit");
+      const name =
+        document
+          .getElementById(
+            "pledgeName"
+          )
+          .value
+          .trim();
 
-  message.className = "pledge-message";
 
-  if (!name || !project || !wallet) {
-    message.className = "pledge-message error";
-    message.textContent = "Complete all three fields.";
-    return;
-  }
+      const project =
+        document
+          .getElementById(
+            "pledgeProject"
+          )
+          .value
+          .trim();
 
-  if (!/^0x[a-fA-F0-9]{40}$/.test(wallet)) {
-    message.className = "pledge-message error";
-    message.textContent = "Enter a valid wallet address.";
-    return;
-  }
 
-  submitButton.disabled = true;
-  submitButton.textContent = "Recording Pledge...";
+      const wallet =
+        document
+          .getElementById(
+            "pledgeWallet"
+          )
+          .value
+          .trim();
 
-  try {
-    await savePrivatePledge(name, project, wallet);
 
-    sendPledgeEmail(name, project, wallet);
+      const message =
+        document
+          .getElementById(
+            "pledgeMessage"
+          );
 
-    message.className = "pledge-message success";
-    message.textContent =
-      "Your project has answered the Alliance Pledge.";
 
-    document.getElementById("pledgeForm").reset();
+      const submitButton =
+        event
+          .currentTarget
+          .querySelector(
+            ".pledge-submit"
+          );
 
-    await renderProjects();
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  } catch (error) {
-    console.error(error);
-    message.className = "pledge-message error";
-    message.textContent =
-      "The pledge could not be recorded. Please try again.";
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Answer the Pledge";
-  }
-});
+      message.className =
+        "pledge-message";
 
-if (window.ethereum) {
-  window.ethereum.on("accountsChanged", async function() {
-    await checkAdminWallet();
-    await renderProjects();
-  });
+
+      if (
+        !name ||
+        !project ||
+        !wallet
+      ) {
+
+        message.className =
+          "pledge-message error";
+
+        message.textContent =
+          "Complete all three fields.";
+
+        return;
+
+      }
+
+
+      if (
+        !/^0x[a-fA-F0-9]{40}$/
+          .test(wallet)
+      ) {
+
+        message.className =
+          "pledge-message error";
+
+        message.textContent =
+          "Enter a valid wallet address.";
+
+        return;
+
+      }
+
+
+      submitButton.disabled =
+        true;
+
+      submitButton.textContent =
+        "Recording Pledge...";
+
+
+      try {
+
+        await savePrivatePledge(
+          name,
+          project,
+          wallet
+        );
+
+
+        sendPledgeEmail(
+          name,
+          project,
+          wallet
+        );
+
+
+        message.className =
+          "pledge-message success";
+
+        message.textContent =
+          "Your project has answered the Alliance Pledge.";
+
+
+        document
+          .getElementById(
+            "pledgeForm"
+          )
+          .reset();
+
+
+        await renderProjects();
+
+
+        window.scrollTo({
+
+          top: 0,
+
+          behavior:
+            "smooth"
+
+        });
+
+      }
+
+      catch(error) {
+
+        console.error(
+          error
+        );
+
+
+        message.className =
+          "pledge-message error";
+
+        message.textContent =
+          "The pledge could not be recorded. Please try again.";
+
+      }
+
+      finally {
+
+        submitButton.disabled =
+          false;
+
+        submitButton.textContent =
+          "Submit Alliance Pledge";
+
+      }
+
+    }
+
+  );
+
+
+
+/* ==================================================
+   WALLET CHANGES
+================================================== */
+
+if (
+  window.ethereum
+) {
+
+  window.ethereum.on(
+
+    "accountsChanged",
+
+    async function() {
+
+      await checkAdminWallet();
+
+      await renderProjects();
+
+    }
+
+  );
+
 }
 
+
+
+/* ==================================================
+   START
+================================================== */
+
 (async function startAlliancePage() {
+
   await checkAdminWallet();
+
   await renderProjects();
+
 })();
 
 </script>
 
 
-
 </body>
-
 </html>
