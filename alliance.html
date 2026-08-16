@@ -116,6 +116,101 @@ a {
 
 
 /* ==================================================
+   DESKTOP HERO TIGHTENING
+================================================== */
+
+@media(min-width: 751px) {
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-inner {
+    padding-top: 45px;
+    padding-bottom: 85px;
+  }
+
+  .hero-copy-column {
+    padding-top: 35px !important;
+  }
+
+  .alliance-welcome-wrap {
+    min-height: 0 !important;
+    padding-top: 25px !important;
+  }
+
+}
+
+
+/* ==================================================
+   SCROLL CUE
+================================================== */
+
+.scroll-cue {
+  display: none;
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 18px;
+
+  z-index: 5;
+
+  transform: translateX(-50%);
+
+  text-decoration: none;
+
+  flex-direction: column;
+  align-items: center;
+
+  gap: 5px;
+
+  color: rgba(255,255,255,.65);
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.scroll-cue-arrow {
+  color: var(--green);
+
+  font-size: 22px;
+  line-height: 1;
+
+  animation:
+    scrollBounce
+    1.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(7px);
+  }
+
+}
+
+@media(min-width: 751px) {
+
+  .scroll-cue {
+    display: flex;
+  }
+
+}
+
+
+/* ==================================================
    HERO COPY
 ================================================== */
 
@@ -1161,7 +1256,7 @@ a {
 
 
 /* ==================================================
-   SIGNAL POSTER EXAMPLE
+   SIGNAL POSTER
 ================================================== */
 
 .signal-example {
@@ -1429,8 +1524,7 @@ a {
   margin-right: auto;
 }
 
-.invitation
-.hero-actions {
+.invitation .hero-actions {
   justify-content: center;
 }
 
@@ -1518,6 +1612,13 @@ footer {
 
     width:
       min(92vw,600px);
+
+    padding: 65px 0 110px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
   }
 
   .hero-scroll,
@@ -1543,6 +1644,8 @@ footer {
 
   .alliance-welcome-wrap {
     grid-row: 3;
+
+    min-height: 400px;
   }
 
   .grid,
@@ -1571,6 +1674,11 @@ footer {
   .koda-display {
     font-size: 26px;
   }
+
+  .scroll-cue {
+    display: none;
+  }
+
 }
 
 </style>
@@ -1587,18 +1695,14 @@ footer {
 <script>
 
 if (
-  sessionStorage
-    .getItem(
-      "allianceAccess"
-    )
+  sessionStorage.getItem("allianceAccess")
   !==
   "granted"
 ) {
 
-  window.location
-    .replace(
-      "index.html"
-    );
+  window.location.replace(
+    "index.html"
+  );
 
 }
 
@@ -1718,7 +1822,8 @@ their own communities.
 You remain completely independent.
 
 Your role is simple:
-pledge your project, receive the signal,
+pledge your project,
+receive the signal,
 and share it when the call begins.
 
 </div>
@@ -1746,7 +1851,7 @@ Join the Alliance
 
 
 
-<!-- ALLIANCE WELCOME / SHATTERED OBELISK -->
+<!-- ALLIANCE WELCOME IMAGE -->
 
 <div class="alliance-welcome-wrap">
 
@@ -1794,6 +1899,24 @@ when the call begins.
 
 
 </div>
+
+
+<!-- DESKTOP SCROLL INDICATOR -->
+
+<a
+  href="#transmission"
+  class="scroll-cue"
+>
+
+<span>
+Scroll to Continue
+</span>
+
+<span class="scroll-cue-arrow">
+↓
+</span>
+
+</a>
 
 </header>
 
@@ -1946,9 +2069,13 @@ Where does the active experience happen?
 Discord.
 </strong>
 
-The discoveries, clues, puzzles,
-Shard Hunt activities, story progression
-and gamified actions all happen inside
+The discoveries,
+clues,
+puzzles,
+Shard Hunt activities,
+story progression
+and gamified actions
+all happen inside
 the Cosmic Dream Bog Discord.
 
 The Otherside Bog deed is the world anchor
@@ -2006,9 +2133,11 @@ Discovery matters.
 
 <p>
 
-Shards, fragments, puzzles and clues
-become pieces of one mystery shared
-across participating communities.
+Shards,
+fragments,
+puzzles
+and clues become pieces of one mystery
+shared across participating communities.
 
 </p>
 
@@ -2029,7 +2158,8 @@ The active campaign.
 <p>
 
 Discord is where chapters open,
-discoveries happen, Shard Hunt runs
+discoveries happen,
+Shard Hunt runs
 and participant progress is earned.
 
 </p>
@@ -2161,7 +2291,8 @@ The Investigation
 <p>
 
 Participants discover clues,
-solve puzzles and uncover fragments
+solve puzzles
+and uncover fragments
 inside Discord.
 
 </p>
@@ -2249,8 +2380,10 @@ Story NFT One
 </strong>
 
 <p>
+
 Complete the first qualifying
 story milestone.
+
 </p>
 
 </div>
@@ -2268,8 +2401,10 @@ Story NFT Two
 </strong>
 
 <p>
+
 Continue the investigation
 and complete the next stage.
+
 </p>
 
 </div>
@@ -2287,8 +2422,10 @@ Story NFT Three
 </strong>
 
 <p>
+
 Complete the final qualifying
 story stage.
+
 </p>
 
 </div>
@@ -2306,8 +2443,10 @@ Fourth Mint
 </strong>
 
 <p>
+
 The same wallet must hold all
 three story NFTs to become eligible.
+
 </p>
 
 </div>
@@ -2363,7 +2502,8 @@ Become the Signal.
 This is the Alliance member's role.
 
 It does not require running the campaign,
-building the game or managing the Bog.
+building the game
+or managing the Bog.
 
 <strong>
 You simply help carry the signal
@@ -2390,8 +2530,8 @@ Pledge your project.
 
 <p>
 
-Submit the Alliance Pledge at the bottom
-of this page.
+Submit the Alliance Pledge
+at the bottom of this page.
 
 </p>
 
@@ -2442,11 +2582,12 @@ Post the Signal.
 
 <p>
 
-Save your poster and share it inside
+Save your poster
+and share it inside
 your project's Discord.
 
-The poster becomes a visible sign that
-your project supports the journey.
+The poster becomes a visible sign
+that your project supports the journey.
 
 </p>
 
@@ -2520,8 +2661,9 @@ Your Signal Receiver Poster is designed
 to be shared directly with your community.
 
 It tells your members that your project
-has answered the call and gives them a
-clear path into Cosmic Dream Bog.
+has answered the call
+and gives them a clear path
+into Cosmic Dream Bog.
 
 </p>
 
@@ -2617,9 +2759,9 @@ Splinter.
 
 <br><br>
 
-A second owned land anchor while
-the Bog remains the focus of the
-current journey.
+A second owned land anchor
+while the Bog remains
+the focus of the current journey.
 
 </p>
 
@@ -2678,8 +2820,8 @@ FOURTH MINT
 <p>
 
 Wallets holding all three qualifying
-story NFTs become eligible for a fourth
-and final mint:
+story NFTs become eligible
+for a fourth and final mint:
 
 <strong>
 a 3D avatar.
@@ -2725,30 +2867,41 @@ Answer the Call.
 Want to join the Alliance?
 </strong>
 
-Enter your project information below.
+Enter your project information below
+to submit your Alliance Pledge.
 
-Approved Alliance members receive a
+Approved Alliance members will receive a
 free
 <strong>Signal Receiver Poster</strong>
 airdropped to the wallet submitted here.
 
-The Alliance poster will include the
-project founder's
-<strong>3D avatar</strong>
-at the time of the poster drop.
+Share your Signal Receiver Poster inside
+your project's Discord
+to show your support,
+rally your community,
+and direct interested members toward
+the Cosmic Dream Bog Discord and X.
 
-Share that poster in your project's
-Discord to rally your community and
-direct interested members toward
-Cosmic Dream Bog.
+<br><br>
+
+<strong>
+The founder's 3D avatar is separate
+from the Signal Receiver Poster.
+</strong>
+
+The founder's 3D avatar will be received
+at the
+<strong>final-stage mint.</strong>
+
+<br><br>
 
 Only your
 <strong>project name</strong>
-appears publicly on the Alliance
-Pledge Scroll.
+will appear publicly on the
+Alliance Pledge Scroll.
 
-Your contact name and wallet address
-remain private.
+Your founder/contact name
+and wallet address remain private.
 
 </p>
 
