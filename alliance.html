@@ -3454,1126 +3454,346 @@ A Terencio Verde Project
 
 
 
+
 <script>
 
-
-/* ==================================================
-   ADMIN WALLET
-================================================== */
+const SUPABASE_URL = "https://goqqeqcagebdubyumpch.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_GxykHlcRxftMHsauR5TvEA_XCo7fYDx";
+const PRIVATE_PLEDGE_TABLE = "alliance_pledges";
+const PUBLIC_PROJECT_TABLE = "alliance_public_projects";
 
 const ADMIN_WALLET =
-
-"0x6a0f160c342490d3F2C0B47f8283F442660F07d9"
-.toLowerCase();
-
+  "0x6a0f160c342490d3F2C0B47f8283F442660F07d9"
+  .toLowerCase();
 
 let adminMode = false;
 
-
-
-/* ==================================================
-   TEST PROJECT STORAGE
-================================================== */
-
-const TEST_STORAGE_KEY =
-
-"cosmicDreamAllianceProjects";
-
-
-
-function getProjects() {
-
-
-  try {
-
-
-    const saved =
-
-      localStorage.getItem(
-        TEST_STORAGE_KEY
-      );
-
-
-    if (!saved) {
-
-      return [];
-
-    }
-
-
-    return JSON.parse(
-      saved
-    );
-
-
-  }
-
-
-  catch(error) {
-
-
-    console.error(
-      error
-    );
-
-
-    return [];
-
-
-  }
-
-
+function supabaseHeaders(extra = {}) {
+  return {
+    apikey: SUPABASE_PUBLISHABLE_KEY,
+    Authorization: "Bearer " + SUPABASE_PUBLISHABLE_KEY,
+    ...extra
+  };
 }
 
-
-
-function saveProjects(
-  projects
-) {
-
-
-  localStorage.setItem(
-
-    TEST_STORAGE_KEY,
-
-    JSON.stringify(
-      projects
-    )
-
+async function fetchPublicProjects() {
+  const response = await fetch(
+    SUPABASE_URL +
+      "/rest/v1/" +
+      PUBLIC_PROJECT_TABLE +
+      "?select=id,project&order=id.asc",
+    {
+      method: "GET",
+      headers: supabaseHeaders()
+    }
   );
 
+  if (!response.ok) {
+    const details = await response.text();
+    throw new Error("Alliance scroll unavailable: " + details);
+  }
 
+  return await response.json();
 }
 
+async function savePrivatePledge(name, project, wallet) {
+  const response = await fetch(
+    SUPABASE_URL +
+      "/rest/v1/" +
+      PRIVATE_PLEDGE_TABLE,
+    {
+      method: "POST",
+      headers: supabaseHeaders({
+        "Content-Type": "application/json",
+        Prefer: "return=minimal"
+      }),
+      body: JSON.stringify({
+        name,
+        project,
+        wallet
+      })
+    }
+  );
 
+  if (!response.ok) {
+    const details = await response.text();
+    throw new Error("Pledge could not be saved: " + details);
+  }
+}
 
-/* ==================================================
-   ADMIN
-================================================== */
+async function sendPledgeEmail(name, project, wallet) {
+  try {
+    const response = await fetch(
+      SUPABASE_URL +
+        "/functions/v1/alliance-pledge-email",
+      {
+        method: "POST",
+        headers: supabaseHeaders({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify({
+          name,
+          project,
+          wallet
+        })
+      }
+    );
+
+    if (!response.ok) {
+      console.warn(
+        "Pledge saved, but email notification is not active yet."
+      );
+    }
+  } catch (error) {
+    console.warn(
+      "Pledge saved, but email notification is not active yet.",
+      error
+    );
+  }
+}
 
 async function activateAdmin() {
-
-
   if (!window.ethereum) {
-
-
-    alert(
-      "No browser wallet detected."
-    );
-
-
+    alert("No browser wallet detected.");
     return;
-
-
   }
-
 
   try {
-
-
-    const accounts =
-
-      await window.ethereum.request({
-
-        method:
-          "eth_requestAccounts"
-
-      });
-
-
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts"
+    });
 
     if (
-
       accounts.length > 0 &&
-
-      accounts[0]
-      .toLowerCase()
-      ===
-      ADMIN_WALLET
-
+      accounts[0].toLowerCase() === ADMIN_WALLET
     ) {
-
-
       adminMode = true;
-
-
-      sessionStorage.setItem(
-
-        "cosmicDreamAdmin",
-
-        "active"
-
-      );
-
-
       updateAdminUI();
-
-
-      renderProjects();
-
-
+      await renderProjects();
+    } else {
+      alert("Admin wallet not detected.");
     }
-
-
-    else {
-
-
-      alert(
-        "Admin wallet not detected."
-      );
-
-
-    }
-
-
+  } catch (error) {
+    console.error(error);
   }
-
-
-  catch(error) {
-
-
-    console.error(
-      error
-    );
-
-
-  }
-
-
 }
-
-
 
 async function checkAdminWallet() {
-
-
   adminMode = false;
 
-
-  const storedWallet =
-
-    sessionStorage.getItem(
-      "cosmicDreamWallet"
-    );
-
-
-  if (
-
-    storedWallet &&
-
-    storedWallet
-    .toLowerCase()
-    ===
-    ADMIN_WALLET
-
-  ) {
-
-
-    adminMode = true;
-
-
-  }
-
-
-
   if (window.ethereum) {
-
-
     try {
-
-
-      const accounts =
-
-        await window.ethereum.request({
-
-          method:
-            "eth_accounts"
-
-        });
-
-
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts"
+      });
 
       if (
-
         accounts.length > 0 &&
-
-        accounts[0]
-        .toLowerCase()
-        ===
-        ADMIN_WALLET
-
+        accounts[0].toLowerCase() === ADMIN_WALLET
       ) {
-
-
         adminMode = true;
-
-
       }
-
-
+    } catch (error) {
+      console.error(error);
     }
-
-
-    catch(error) {
-
-
-      console.error(
-        error
-      );
-
-
-    }
-
-
   }
-
 
   updateAdminUI();
-
-
-  renderProjects();
-
-
 }
-
-
 
 function updateAdminUI() {
-
-
-  const panel =
-
-    document.getElementById(
-      "adminPanel"
-    );
-
-
-  const login =
-
-    document.getElementById(
-      "adminLogin"
-    );
-
-
-  const walletDisplay =
-
-    document.getElementById(
-      "adminWalletDisplay"
-    );
-
-
+  const panel = document.getElementById("adminPanel");
+  const login = document.getElementById("adminLogin");
+  const walletDisplay = document.getElementById("adminWalletDisplay");
 
   if (adminMode) {
-
-
-    panel.classList.add(
-      "visible"
-    );
-
-
-    login.style.display =
-      "none";
-
-
-    walletDisplay.textContent =
-
-      ADMIN_WALLET;
-
-
+    panel.classList.add("visible");
+    login.style.display = "none";
+    walletDisplay.textContent = ADMIN_WALLET;
+  } else {
+    panel.classList.remove("visible");
+    login.style.display = "block";
   }
-
-
-  else {
-
-
-    panel.classList.remove(
-      "visible"
-    );
-
-
-    login.style.display =
-      "block";
-
-
-  }
-
-
 }
 
-
-
-/* ==================================================
-   PROJECT ROW
-================================================== */
-
-function createProjectRow(
-  entry,
-  index
-) {
-
-
-  const row =
-
-    document.createElement(
-      "div"
-    );
-
-
-  row.className =
-    "pledge-project";
-
-
+function createProjectRow(entry) {
+  const row = document.createElement("div");
+  row.className = "pledge-project";
   row.tabIndex = 0;
+  row.setAttribute("aria-label", entry.project);
+  row.title = "Reveal " + entry.project;
 
+  const display = document.createElement("div");
+  display.className = "project-display";
 
-  row.setAttribute(
+  const koda = document.createElement("div");
+  koda.className = "koda-display";
 
-    "aria-label",
+  const english = document.createElement("div");
+  english.className = "english-display";
+  english.textContent = entry.project;
 
-    entry.project
+  display.appendChild(koda);
+  display.appendChild(english);
+  row.appendChild(display);
 
-  );
-
-
-  row.title =
-
-    "Reveal " +
-    entry.project;
-
-
-
-  const display =
-
-    document.createElement(
-      "div"
-    );
-
-
-  display.className =
-    "project-display";
-
-
-
-  const koda =
-
-    document.createElement(
-      "div"
-    );
-
-
-  koda.className =
-    "koda-display";
-
-
-
-  const english =
-
-    document.createElement(
-      "div"
-    );
-
-
-  english.className =
-    "english-display";
-
-
-  english.textContent =
-    entry.project;
-
-
-
-  display.appendChild(
-    koda
-  );
-
-
-  display.appendChild(
-    english
-  );
-
-
-  row.appendChild(
-    display
-  );
-
-
-
-  if (
-    window.KodaGlyphs
-  ) {
-
-
-    KodaGlyphs.render(
-
-      entry.project,
-
-      koda
-
-    );
-
-
+  if (window.KodaGlyphs) {
+    KodaGlyphs.render(entry.project, koda);
+  } else {
+    koda.textContent = entry.project;
   }
 
+  row.addEventListener("click", function(event) {
+    if (event.target.closest(".admin-actions")) return;
+    row.classList.toggle("revealed");
+  });
 
-  else {
-
-
-    koda.textContent =
-      entry.project;
-
-
-  }
-
-
-
-  /* Touch reveal */
-
-  row.addEventListener(
-
-    "click",
-
-    function(event) {
-
-
-      if (
-
-        event.target.closest(
-          ".admin-actions"
-        )
-
-      ) {
-
-        return;
-
-      }
-
-
-      row.classList.toggle(
-        "revealed"
-      );
-
-
+  row.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      row.classList.toggle("revealed");
     }
-
-  );
-
-
-
-  /* Keyboard reveal */
-
-  row.addEventListener(
-
-    "keydown",
-
-    function(event) {
-
-
-      if (
-
-        event.key === "Enter" ||
-
-        event.key === " "
-
-      ) {
-
-
-        event.preventDefault();
-
-
-        row.classList.toggle(
-          "revealed"
-        );
-
-
-      }
-
-
-    }
-
-  );
-
-
-
-  /* Admin buttons */
+  });
 
   if (adminMode) {
+    const controls = document.createElement("div");
+    controls.className = "admin-actions";
 
-
-    const controls =
-
-      document.createElement(
-        "div"
+    const edit = document.createElement("button");
+    edit.className = "admin-button";
+    edit.type = "button";
+    edit.textContent = "EDIT";
+    edit.onclick = function(event) {
+      event.stopPropagation();
+      alert(
+        "Secure database editing is the next admin-backend step."
       );
+    };
 
-
-    controls.className =
-      "admin-actions";
-
-
-
-    const edit =
-
-      document.createElement(
-        "button"
+    const remove = document.createElement("button");
+    remove.className = "admin-button delete";
+    remove.type = "button";
+    remove.textContent = "DELETE";
+    remove.onclick = function(event) {
+      event.stopPropagation();
+      alert(
+        "Secure database deletion is the next admin-backend step."
       );
+    };
 
-
-    edit.className =
-      "admin-button";
-
-
-    edit.type =
-      "button";
-
-
-    edit.textContent =
-      "EDIT";
-
-
-    edit.onclick =
-
-      function(event) {
-
-
-        event.stopPropagation();
-
-
-        editProject(
-          index
-        );
-
-
-      };
-
-
-
-    const remove =
-
-      document.createElement(
-        "button"
-      );
-
-
-    remove.className =
-
-      "admin-button delete";
-
-
-    remove.type =
-      "button";
-
-
-    remove.textContent =
-      "DELETE";
-
-
-    remove.onclick =
-
-      function(event) {
-
-
-        event.stopPropagation();
-
-
-        deleteProject(
-          index
-        );
-
-
-      };
-
-
-
-    controls.appendChild(
-      edit
-    );
-
-
-    controls.appendChild(
-      remove
-    );
-
-
-    row.appendChild(
-      controls
-    );
-
-
+    controls.appendChild(edit);
+    controls.appendChild(remove);
+    row.appendChild(controls);
   }
-
 
   return row;
-
-
 }
 
+async function renderProjects() {
+  const list = document.getElementById("pledgeList");
 
+  list.innerHTML =
+    '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">Loading the Alliance Pledge...</div>';
 
-/* ==================================================
-   RENDER SCROLL
-================================================== */
+  try {
+    const projects = await fetchPublicProjects();
+    list.innerHTML = "";
 
-function renderProjects() {
-
-
-  const list =
-
-    document.getElementById(
-      "pledgeList"
-    );
-
-
-  const projects =
-
-    getProjects();
-
-
-  list.innerHTML = "";
-
-
-
-  if (
-    projects.length === 0
-  ) {
-
-
-    const empty =
-
-      document.createElement(
-        "div"
-      );
-
-
-    empty.style.padding =
-      "35px 10px";
-
-
-    empty.style.textAlign =
-      "center";
-
-
-    empty.style.fontFamily =
-      "Georgia,serif";
-
-
-    empty.style.fontStyle =
-      "italic";
-
-
-    empty.style.opacity =
-      ".6";
-
-
-    empty.textContent =
-
-      "The scroll awaits its first signatures.";
-
-
-    list.appendChild(
-      empty
-    );
-
-
-    return;
-
-
-  }
-
-
-
-  projects.forEach(
-
-    function(
-      entry,
-      index
-    ) {
-
-
-      list.appendChild(
-
-        createProjectRow(
-          entry,
-          index
-        )
-
-      );
-
-
+    if (projects.length === 0) {
+      list.innerHTML =
+        '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">The scroll awaits its first signatures.</div>';
+      return;
     }
 
-  );
-
-
+    projects.forEach(function(entry) {
+      list.appendChild(createProjectRow(entry));
+    });
+  } catch (error) {
+    console.error(error);
+    list.innerHTML =
+      '<div style="padding:35px 10px;text-align:center;font-family:Georgia,serif;font-style:italic;opacity:.6;">The shared Alliance Scroll is being connected.</div>';
+  }
 }
-
-
-
-/* ==================================================
-   EDIT PROJECT
-================================================== */
-
-function editProject(
-  index
-) {
-
-
-  if (!adminMode) {
-
-    return;
-
-  }
-
-
-  const projects =
-
-    getProjects();
-
-
-  if (!projects[index]) {
-
-    return;
-
-  }
-
-
-
-  const replacement =
-
-    prompt(
-
-      "Edit project name:",
-
-      projects[index].project
-
-    );
-
-
-
-  if (
-    replacement === null
-  ) {
-
-    return;
-
-  }
-
-
-
-  const clean =
-
-    replacement.trim();
-
-
-
-  if (!clean) {
-
-    return;
-
-  }
-
-
-
-  projects[index].project =
-    clean;
-
-
-  saveProjects(
-    projects
-  );
-
-
-  renderProjects();
-
-
-}
-
-
-
-/* ==================================================
-   DELETE PROJECT
-================================================== */
-
-function deleteProject(
-  index
-) {
-
-
-  if (!adminMode) {
-
-    return;
-
-  }
-
-
-  const projects =
-
-    getProjects();
-
-
-  if (!projects[index]) {
-
-    return;
-
-  }
-
-
-
-  const approved =
-
-    confirm(
-
-      "Remove " +
-
-      projects[index].project +
-
-      " from the Alliance Pledge?"
-
-    );
-
-
-
-  if (!approved) {
-
-    return;
-
-  }
-
-
-
-  projects.splice(
-    index,
-    1
-  );
-
-
-  saveProjects(
-    projects
-  );
-
-
-  renderProjects();
-
-
-}
-
-
-
-/* ==================================================
-   TEST PLEDGE FORM
-================================================== */
 
 document
-.getElementById(
-  "pledgeForm"
-)
-.addEventListener(
+.getElementById("pledgeForm")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
 
-  "submit",
+  const name =
+    document.getElementById("pledgeName").value.trim();
 
-  function(event) {
+  const project =
+    document.getElementById("pledgeProject").value.trim();
 
+  const wallet =
+    document.getElementById("pledgeWallet").value.trim();
 
-    event.preventDefault();
+  const message =
+    document.getElementById("pledgeMessage");
 
+  const submitButton =
+    event.currentTarget.querySelector(".pledge-submit");
 
+  message.className = "pledge-message";
 
-    const name =
-
-      document
-      .getElementById(
-        "pledgeName"
-      )
-      .value
-      .trim();
-
-
-
-    const project =
-
-      document
-      .getElementById(
-        "pledgeProject"
-      )
-      .value
-      .trim();
-
-
-
-    const wallet =
-
-      document
-      .getElementById(
-        "pledgeWallet"
-      )
-      .value
-      .trim();
-
-
-
-    const message =
-
-      document
-      .getElementById(
-        "pledgeMessage"
-      );
-
-
-
-    if (
-
-      !name ||
-
-      !project ||
-
-      !wallet
-
-    ) {
-
-
-      message.className =
-
-        "pledge-message error";
-
-
-      message.textContent =
-
-        "Complete all three fields.";
-
-
-      return;
-
-
-    }
-
-
-
-    if (
-
-      !/^0x[a-fA-F0-9]{40}$/
-      .test(wallet)
-
-    ) {
-
-
-      message.className =
-
-        "pledge-message error";
-
-
-      message.textContent =
-
-        "Enter a valid wallet address.";
-
-
-      return;
-
-
-    }
-
-
-
-    /*
-      TEST MODE:
-      Public browser storage saves
-      ONLY the project name.
-    */
-
-
-    const projects =
-
-      getProjects();
-
-
-
-    projects.push({
-
-      project:
-        project
-
-    });
-
-
-
-    saveProjects(
-      projects
-    );
-
-
-
-    message.className =
-
-      "pledge-message success";
-
-
-    message.textContent =
-
-      "Your project has answered the Alliance Pledge.";
-
-
-
-    document
-      .getElementById(
-        "pledgeForm"
-      )
-      .reset();
-
-
-
-    renderProjects();
-
-
-
-    window.scrollTo({
-
-      top: 0,
-
-      behavior: "smooth"
-
-    });
-
-
+  if (!name || !project || !wallet) {
+    message.className = "pledge-message error";
+    message.textContent = "Complete all three fields.";
+    return;
   }
 
-);
+  if (!/^0x[a-fA-F0-9]{40}$/.test(wallet)) {
+    message.className = "pledge-message error";
+    message.textContent = "Enter a valid wallet address.";
+    return;
+  }
 
+  submitButton.disabled = true;
+  submitButton.textContent = "Recording Pledge...";
 
+  try {
+    await savePrivatePledge(name, project, wallet);
 
-/* ==================================================
-   WALLET CHANGES
-================================================== */
+    sendPledgeEmail(name, project, wallet);
 
-if (
-  window.ethereum
-) {
+    message.className = "pledge-message success";
+    message.textContent =
+      "Your project has answered the Alliance Pledge.";
 
+    document.getElementById("pledgeForm").reset();
 
-  window.ethereum.on(
+    await renderProjects();
 
-    "accountsChanged",
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  } catch (error) {
+    console.error(error);
+    message.className = "pledge-message error";
+    message.textContent =
+      "The pledge could not be recorded. Please try again.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Answer the Pledge";
+  }
+});
 
-    function() {
-
-
-      checkAdminWallet();
-
-
-    }
-
-  );
-
-
+if (window.ethereum) {
+  window.ethereum.on("accountsChanged", async function() {
+    await checkAdminWallet();
+    await renderProjects();
+  });
 }
 
-
-
-/* ==================================================
-   START
-================================================== */
-
-checkAdminWallet();
-
+(async function startAlliancePage() {
+  await checkAdminWallet();
+  await renderProjects();
+})();
 
 </script>
+
 
 
 </body>
