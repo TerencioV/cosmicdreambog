@@ -3655,36 +3655,289 @@ function createProjectRow(entry) {
     }
   });
 
-  if (adminMode) {
-    const controls = document.createElement("div");
-    controls.className = "admin-actions";
+ if (adminMode) {
 
-    const edit = document.createElement("button");
-    edit.className = "admin-button";
-    edit.type = "button";
-    edit.textContent = "EDIT";
-    edit.onclick = function(event) {
-      event.stopPropagation();
+  const controls =
+    document.createElement("div");
+
+  controls.className =
+    "admin-actions";
+
+
+  async function runAdminAction(
+    action,
+    projectName
+  ) {
+
+    if (!window.ethereum) {
+
       alert(
-        "Secure database editing is the next admin-backend step."
+        "No wallet detected."
       );
-    };
 
-    const remove = document.createElement("button");
-    remove.className = "admin-button delete";
-    remove.type = "button";
-    remove.textContent = "DELETE";
-    remove.onclick = function(event) {
-      event.stopPropagation();
+      return;
+    }
+
+
+    const accounts =
+      await window.ethereum.request({
+        method: "eth_requestAccounts"
+      });
+
+
+    if (
+      !accounts.length ||
+      accounts[0].toLowerCase()
+      !== ADMIN_WALLET
+    ) {
+
       alert(
-        "Secure database deletion is the next admin-backend step."
+        "Admin wallet required."
       );
-    };
 
-    controls.appendChild(edit);
-    controls.appendChild(remove);
-    row.appendChild(controls);
+      return;
+    }
+
+
+    const account =
+      accounts[0];
+
+    const timestamp =
+      Date.now();
+
+
+    const message =
+      [
+        "Cosmic Dream Bog Alliance Admin",
+        `Action: ${action}`,
+        `Public ID: ${entry.id}`,
+        `Project: ${
+          action === "edit"
+            ? projectName
+            : ""
+        }`,
+        `Timestamp: ${timestamp}`,
+      ].join("\n");
+
+
+    const messageHex =
+      "0x" +
+      Array
+        .from(
+          new TextEncoder()
+            .encode(message)
+        )
+        .map(
+          byte =>
+            byte
+              .toString(16)
+              .padStart(2, "0")
+        )
+        .join("");
+
+
+    const signature =
+      await window.ethereum.request({
+        method: "personal_sign",
+        params: [
+          messageHex,
+          account
+        ]
+      });
+
+
+    const response =
+      await fetch(
+        SUPABASE_URL +
+        "/functions/v1/alliance-admin",
+        {
+          method: "POST",
+
+          headers:
+            supabaseHeaders({
+              "Content-Type":
+                "application/json"
+            }),
+
+          body:
+            JSON.stringify({
+              action,
+              publicId:
+                entry.id,
+              project:
+                projectName,
+              timestamp,
+              signature
+            })
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      console.error(
+        "Admin action failed:",
+        result
+      );
+
+      alert(
+        result.error ||
+        "Admin action failed."
+      );
+
+      return;
+    }
+
+
+    await renderProjects();
+
   }
+
+
+  const edit =
+    document.createElement(
+      "button"
+    );
+
+  edit.className =
+    "admin-button";
+
+  edit.type =
+    "button";
+
+  edit.textContent =
+    "EDIT";
+
+
+  edit.onclick =
+    async function(event) {
+
+      event.stopPropagation();
+
+
+      const replacement =
+        prompt(
+          "Edit project name:",
+          entry.project
+        );
+
+
+      if (
+        replacement === null
+      ) {
+        return;
+      }
+
+
+      const clean =
+        replacement.trim();
+
+
+      if (!clean) {
+
+        alert(
+          "Project name cannot be empty."
+        );
+
+        return;
+      }
+
+
+      try {
+
+        await runAdminAction(
+          "edit",
+          clean
+        );
+
+      }
+
+      catch(error) {
+
+        console.error(error);
+
+        alert(
+          "Admin edit failed."
+        );
+
+      }
+
+    };
+
+
+  const remove =
+    document.createElement(
+      "button"
+    );
+
+  remove.className =
+    "admin-button delete";
+
+  remove.type =
+    "button";
+
+  remove.textContent =
+    "DELETE";
+
+
+  remove.onclick =
+    async function(event) {
+
+      event.stopPropagation();
+
+
+      const approved =
+        confirm(
+          "Remove " +
+          entry.project +
+          " from the Alliance Pledge?"
+        );
+
+
+      if (!approved) {
+        return;
+      }
+
+
+      try {
+
+        await runAdminAction(
+          "delete",
+          ""
+        );
+
+      }
+
+      catch(error) {
+
+        console.error(error);
+
+        alert(
+          "Admin deletion failed."
+        );
+
+      }
+
+    };
+
+
+  controls.appendChild(
+    edit
+  );
+
+  controls.appendChild(
+    remove
+  );
+
+  row.appendChild(
+    controls
+  );
+
+}
 
   return row;
 }
