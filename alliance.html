@@ -114,8 +114,7 @@ a {
   padding: 65px 0 110px;
 }
 
-
-/* Keep all hero columns inside the viewport on narrower desktop screens. */
+/* Keep all hero columns safely inside the viewport. */
 .hero-scroll,
 .hero-copy-column,
 .alliance-welcome-wrap {
@@ -550,16 +549,22 @@ a {
 }
 
 .scroll-subtitle {
-  margin: 0 0 15px;
+  margin: 22px 0 12px;
+  padding: 9px 6px;
 
+  border-top: 1px solid rgba(58,36,10,.28);
+  border-bottom: 1px solid rgba(58,36,10,.28);
+
+  color: #3b240a;
   text-align: center;
 
-  font-family: Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 900;
 
-  font-size: 12px;
-  font-style: italic;
-
-  opacity: .72;
+  letter-spacing: 1.4px;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .pledge-direction {
@@ -1733,11 +1738,6 @@ if (
 The Alliance Pledge
 </h2>
 
-<p class="scroll-subtitle">
-Projects that have answered the call
-</p>
-
-
 <div class="pledge-direction">
 
 <strong>
@@ -1770,6 +1770,11 @@ ADMIN EDITING ACTIVE
   class="admin-wallet"
 ></div>
 
+</div>
+
+
+<div class="scroll-subtitle">
+PROJECTS THAT HAVE ANSWERED THE CALL
 </div>
 
 
