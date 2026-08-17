@@ -115,6 +115,14 @@ a {
 }
 
 
+/* Keep all hero columns inside the viewport on narrower desktop screens. */
+.hero-scroll,
+.hero-copy-column,
+.alliance-welcome-wrap {
+  min-width: 0;
+}
+
+
 /* ==================================================
    DESKTOP HERO TIGHTENING
 ================================================== */
@@ -459,8 +467,7 @@ a {
 
   justify-self: center;
 
-  transform:
-    translateX(-75px);
+  transform: none;
 
   padding:
     55px 32px 60px;
@@ -1543,7 +1550,7 @@ footer {
    RESPONSIVE
 ================================================== */
 
-@media(max-width: 1200px) {
+@media(max-width: 1360px) {
 
   .hero-inner {
     grid-template-columns:
@@ -1557,8 +1564,7 @@ footer {
   .hero-scroll {
     width: 310px;
 
-    transform:
-      translateX(-25px);
+    transform: none;
   }
 
   .alliance-welcome-frame,
@@ -1568,7 +1574,7 @@ footer {
 }
 
 
-@media(max-width: 1050px) {
+@media(max-width: 1180px) {
 
   .hero-inner {
     grid-template-columns:
