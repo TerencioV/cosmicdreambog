@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cosmic Dream Bog - Journey</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #08090b;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .journey-page {
+      position: relative;
+      width: min(
+        100vw,
+        calc(100vh * 724 / 1086)
+      );
+
+      height: min(
+        100vh,
+        calc(100vw * 1086 / 724)
+      );
+    }
+
+    .journey-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Real BOG VOYAGER wallet button */
+    .bog-voyager {
+      position: absolute;
+
+      top: 1.05%;
+      right: 1.25%;
+
+      width: 32.5%;
+      height: 6.2%;
+
+      padding: 6px 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      border: 1px solid #8b3dff;
+      border-radius: 6px;
+
+      background: #08070d;
+      color: white;
+
+      box-shadow:
+        0 0 0 2px #08090b,
+        0 0 8px rgba(139, 61, 255, 0.45);
+
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .voyager-text {
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .voyager-title {
+      display: block;
+
+      color: #d8b4fe;
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      line-height: 1;
+    }
+
+    .wallet-address {
+      display: block;
+
+      margin-top: 5px;
+
+      color: #d1d5db;
+
+      font-family: monospace;
+      font-size: 8px;
+      line-height: 1;
+
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      flex: 0 0 auto;
+
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background: #ef4444;
+      box-shadow: 0 0 7px #ef4444;
+    }
+
+    .status-dot.connected {
+      background: #22c55e;
+      box-shadow: 0 0 7px #22c55e;
+    }
+
+    /* X icon */
+    .x-link {
+      position: absolute;
+
+      right: 8%;
+      bottom: 1%;
+
+      width: 5%;
+      height: 4%;
+
+      display: block;
+      background: transparent;
+
+      cursor: pointer;
+      z-index: 80;
+    }
+
+    /* Discord icon */
+    .discord-link {
+      position: absolute;
+
+      right: 2.5%;
+      bottom: 1%;
+
+      width: 5%;
+      height: 4%;
+
+      display: block;
+      background: transparent;
+
+      cursor: pointer;
+      z-index: 80;
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/journey-cRgZA30F.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/en_US-SK3WV2N3-pA3BfisF.js">
+  <link rel="stylesheet" crossorigin href="/assets/en_US-SK3WV2N3-B77lyCCA.css">
+</head>
+
+<body>
+
+  <div id="wallet-widget-root"></div>
+
+  <main class="journey-page">
+
+    <img
+      src="/assets/cdb-journey-B4bfNCZB.png"
+      alt="Cosmic Dream Bog Journey"
+      class="journey-image"
+    >
+
+    <button
+      id="bogVoyager"
+      class="bog-voyager"
+      type="button"
+      onclick="toggleWallet()"
+      aria-label="Bog Voyager Wallet">
+
+      <span class="voyager-text">
+
+        <span class="voyager-title">
+          BOG VOYAGER
+        </span>
+
+        <span
+          id="walletAddress"
+          class="wallet-address">
+          DISCONNECTED
+        </span>
+
+      </span>
+
+      <span
+        id="statusDot"
+        class="status-dot">
+      </span>
+
+    </button>
+
+    <a
+      class="x-link"
+      href="https://x.com/bogvoyager"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Cosmic Dream Bog on X"
+      title="@bogvoyager">
+    </a>
+
+    <a
+      class="discord-link"
+      href="https://discord.gg/XkxVPNsS6w"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Join Cosmic Dream Bog Discord"
+      title="Join Discord">
+    </a>
+
+  </main>
+
+  <script>
+    // Wallet status/connect/disconnect is now handled by the RainbowKit +
+    // Glyph React widget mounted into #wallet-widget-root (see
+    // src/journey-widget.jsx and src/JourneyApp.jsx). That widget updates
+    // #walletAddress / #statusDot directly and exposes
+    // window.__cdbToggleWallet; this button's onclick just calls it.
+    function toggleWallet() {
+
+      if (window.__cdbToggleWallet) {
+        window.__cdbToggleWallet();
+      } else {
+        alert("Wallet connection is still loading — please try again in a moment.");
+      }
+    }
+  </script>
+
+
+</body>
+</html>
