@@ -298,6 +298,8 @@
 
 <body>
 
+  <div id="wallet-widget-root"></div>
+
   <main class="stage">
 
     <img
@@ -395,122 +397,18 @@
 
   <script>
 
-    const APECHAIN = {
-      chainId: "0x8173",
+    // Wallet connection is now handled by the RainbowKit + Glyph React
+    // widget mounted into #wallet-widget-root (see src/wallet-widget.jsx).
+    // That widget exposes window.__cdbOpenWalletModal once it's ready;
+    // this hotspot button's onclick just opens that modal. After a
+    // successful connect, the widget itself sets sessionStorage and
+    // redirects to journey.html, mirroring the previous behavior.
+    function connectWallet() {
 
-      chainName: "ApeChain",
-
-      nativeCurrency: {
-        name: "APE",
-        symbol: "APE",
-        decimals: 18
-      },
-
-      rpcUrls: [
-        "https://apechain.calderachain.xyz/http"
-      ],
-
-      blockExplorerUrls: [
-        "https://apescan.io/"
-      ]
-    };
-
-
-    async function connectWallet() {
-
-      if (!window.ethereum) {
-
-        alert(
-          "No compatible browser wallet was detected."
-        );
-
-        return;
-      }
-
-
-      try {
-
-        const accounts =
-          await window.ethereum.request({
-            method: "eth_requestAccounts"
-          });
-
-
-        try {
-
-          await window.ethereum.request({
-
-            method:
-              "wallet_switchEthereumChain",
-
-            params: [
-              {
-                chainId:
-                  APECHAIN.chainId
-              }
-            ]
-          });
-
-        }
-
-        catch (switchError) {
-
-          if (switchError.code === 4902) {
-
-            await window.ethereum.request({
-
-              method:
-                "wallet_addEthereumChain",
-
-              params: [
-                APECHAIN
-              ]
-            });
-
-          }
-
-          else {
-
-            throw switchError;
-          }
-        }
-
-
-        if (accounts.length > 0) {
-
-          sessionStorage.setItem(
-            "cosmicDreamWallet",
-            accounts[0]
-          );
-
-          sessionStorage.removeItem(
-            "bogVoyagerManualDisconnect"
-          );
-
-          window.location.href =
-            "journey.html";
-        }
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        if (error.code === 4001) {
-
-          alert(
-            "Wallet connection was cancelled."
-          );
-
-        }
-
-        else {
-
-          alert(
-            "Wallet connection failed. Please try again."
-          );
-        }
+      if (window.__cdbOpenWalletModal) {
+        window.__cdbOpenWalletModal();
+      } else {
+        alert("Wallet connection is still loading — please try again in a moment.");
       }
     }
 
@@ -679,6 +577,8 @@
       );
 
   </script>
+
+  <script type="module" src="/src/wallet-widget.jsx"></script>
 
 </body>
 </html>
